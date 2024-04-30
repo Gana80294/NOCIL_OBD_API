@@ -1,0 +1,154 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj": {}
+  },
+  "projects": {
+    "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj",
+        "projectName": "NOCIL_VP.Domain.Core",
+        "projectPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj",
+        "packagesPath": "C:\\Users\\Exalca\\.nuget\\packages\\",
+        "outputPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Exalca\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj",
+        "projectName": "NOCIL_VP.Infrastructure.Interfaces",
+        "projectPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj",
+        "packagesPath": "C:\\Users\\Exalca\\.nuget\\packages\\",
+        "outputPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Interfaces\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Exalca\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj": {
+                "projectPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

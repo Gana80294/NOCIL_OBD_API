@@ -1,0 +1,75 @@
+4/16/2024 9:53:13 AM:SendMailToVendors - {"Username":"Gana","ToEmail":"gana@exalca.com","Form_Id":0,"Vendor_Type_Id":0}
+***** 4/16/2024 9:53:16 AM *****
+Stack Trace :    at NOCIL_VP.Infrastructure.Data.Helpers.EmailHelper.SendMailToVendors(SendMail sendMail) in D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\Helpers\EmailHelper.cs:line 93
+   at NOCIL_VP.API.Controllers.Dashboard.DashboardController.SendTestMail() in D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.API\Controllers\Dashboard\DashboardController.cs:line 105
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+Excception : Error reading HTML file: Could not find a part of the path 'D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.API\EmailTemplates\WelcomeVendor.html'.
+Inner Exception : null
+*************************
+4/16/2024 9:54:38 AM:SendMailToVendors - {"Username":"Gana","ToEmail":"gana@exalca.com","Form_Id":0,"Vendor_Type_Id":0}
+***** 4/16/2024 9:55:06 AM *****
+Stack Trace :    at NOCIL_VP.Infrastructure.Data.Helpers.EmailHelper.SendMailToVendors(SendMail sendMail)
+   at NOCIL_VP.API.Controllers.Dashboard.DashboardController.SendTestMail() in D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.API\Controllers\Dashboard\DashboardController.cs:line 105
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+Excception : Error reading HTML file: Could not find a part of the path 'D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.API\EmailTemplates\WelcomeVendor.html'.
+Inner Exception : null
+*************************
+4/16/2024 9:55:29 AM:SendMailToVendors - {"Username":"Gana","ToEmail":"gana@exalca.com","Form_Id":0,"Vendor_Type_Id":0}
+4/16/2024 5:43:19 PM:SendMailToVendors - {"Username":"Import testing","ToEmail":"gana@exalca.com","Form_Id":31,"Vendor_Type_Id":4}
+***** 4/16/2024 5:43:28 PM *****
+Stack Trace :    at NOCIL_VP.Infrastructure.Data.Repositories.Registration.RegistrationRepository.InitiateRegistration(FormDto formDto) in D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\Repositories\Registration\RegistrationRepository.cs:line 106
+   at NOCIL_VP.API.Controllers.Registration.RegistrationController.Initiate(FormDto formDto) in D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.API\Controllers\Registration\RegistrationController.cs:line 28
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+Excception : Mailbox unavailable. The server response was: Access denied - Invalid HELO name (See RFC2821 4.1.1.1)
+Inner Exception : null
+*************************
+4/16/2024 5:44:23 PM:SendMailToVendors - {"Username":"Import testing","ToEmail":"gana@exalca.com","Form_Id":32,"Vendor_Type_Id":4}
+4/16/2024 5:47:19 PM:SendMailToVendors - {"Username":"Domestic testing","ToEmail":"gana@exalca.com","Form_Id":33,"Vendor_Type_Id":1}
+***** 4/16/2024 5:47:39 PM *****
+Stack Trace :    at NOCIL_VP.Infrastructure.Data.Repositories.Registration.RegistrationRepository.InitiateRegistration(FormDto formDto) in D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\Repositories\Registration\RegistrationRepository.cs:line 106
+   at NOCIL_VP.API.Controllers.Registration.RegistrationController.Initiate(FormDto formDto) in D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.API\Controllers\Registration\RegistrationController.cs:line 28
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+Excception : Mailbox unavailable. The server response was: Access denied - Invalid HELO name (See RFC2821 4.1.1.1)
+Inner Exception : null
+*************************
+4/16/2024 5:48:21 PM:SendMailToVendors - {"Username":"Domestic testing","ToEmail":"gana@exalca.com","Form_Id":34,"Vendor_Type_Id":1}
+***** 4/16/2024 10:13:59 PM *****
+Stack Trace :    at NOCIL_VP.Infrastructure.Data.Repositories.Registration.RegistrationRepository.ApproveForm(ApprovalDto approvalDto) in D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\Repositories\Registration\RegistrationRepository.cs:line 308
+   at NOCIL_VP.API.Controllers.Registration.RegistrationController.Approve(ApprovalDto approvalDto) in D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.API\Controllers\Registration\RegistrationController.cs:line 40
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+Excception : Error reading HTML file: Could not find file 'D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.API\wwwroot\EmailTemplates\ApprovalInfo.html'.
+Inner Exception : null
+*************************
+4/16/2024 10:22:29 PM:SendMailToVendors - {"Username":"Exalca Transporters","ToEmail":"gana@exalca.com","Form_Id":35,"Vendor_Type_Id":3}

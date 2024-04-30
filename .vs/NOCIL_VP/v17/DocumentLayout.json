@@ -1,0 +1,92 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|d:\\exalca\\dotnet\\projects\\nocil_vp\\nocil_vp.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|solutionrelative:nocil_vp.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90AD6D42-242F-479F-BC48-4009AD264156}|NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj|d:\\exalca\\dotnet\\projects\\nocil_vp\\nocil_vp.infrastructure.data\\helpers\\emailhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90AD6D42-242F-479F-BC48-4009AD264156}|NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj|solutionrelative:nocil_vp.infrastructure.data\\helpers\\emailhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90AD6D42-242F-479F-BC48-4009AD264156}|NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj|d:\\exalca\\dotnet\\projects\\nocil_vp\\nocil_vp.infrastructure.data\\filters\\commonexceptionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90AD6D42-242F-479F-BC48-4009AD264156}|NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj|solutionrelative:nocil_vp.infrastructure.data\\filters\\commonexceptionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90AD6D42-242F-479F-BC48-4009AD264156}|NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj|d:\\exalca\\dotnet\\projects\\nocil_vp\\nocil_vp.infrastructure.data\\repositories\\registration\\registrationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90AD6D42-242F-479F-BC48-4009AD264156}|NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj|solutionrelative:nocil_vp.infrastructure.data\\repositories\\registration\\registrationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmailHelper.cs",
+              "DocumentMoniker": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\Helpers\\EmailHelper.cs",
+              "RelativeDocumentMoniker": "NOCIL_VP.Infrastructure.Data\\Helpers\\EmailHelper.cs",
+              "ToolTip": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\Helpers\\EmailHelper.cs",
+              "RelativeToolTip": "NOCIL_VP.Infrastructure.Data\\Helpers\\EmailHelper.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAADQAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T10:27:20.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\appsettings.json",
+              "RelativeDocumentMoniker": "NOCIL_VP.API\\appsettings.json",
+              "ToolTip": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\appsettings.json",
+              "RelativeToolTip": "NOCIL_VP.API\\appsettings.json",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABkAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-30T10:13:05.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CommonExceptionHandler.cs",
+              "DocumentMoniker": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\Filters\\CommonExceptionHandler.cs",
+              "RelativeDocumentMoniker": "NOCIL_VP.Infrastructure.Data\\Filters\\CommonExceptionHandler.cs",
+              "ToolTip": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\Filters\\CommonExceptionHandler.cs",
+              "RelativeToolTip": "NOCIL_VP.Infrastructure.Data\\Filters\\CommonExceptionHandler.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAUwBYAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T09:47:30.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RegistrationRepository.cs",
+              "DocumentMoniker": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\Repositories\\Registration\\RegistrationRepository.cs",
+              "RelativeDocumentMoniker": "NOCIL_VP.Infrastructure.Data\\Repositories\\Registration\\RegistrationRepository.cs",
+              "ToolTip": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\Repositories\\Registration\\RegistrationRepository.cs",
+              "RelativeToolTip": "NOCIL_VP.Infrastructure.Data\\Repositories\\Registration\\RegistrationRepository.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAAAKQBAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T05:39:22.181Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

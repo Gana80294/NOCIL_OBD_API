@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NOCIL_VP.API", "NOCIL_VP.API\NOCIL_VP.API.csproj", "{37E525C6-D66A-4052-8E34-9CAE24BEDA84}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{D8A71C7F-7E18-4EE1-9B58-5B00869441E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{640C553A-C1CF-4943-9371-EBF3128DA801}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NOCIL_VP.Domain.Core", "Core\NOCIL_VP.Domain.Core.csproj", "{7D85D810-EB91-4BF2-A3E7-E05D7C2C5F1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NOCIL_VP.Infrastructure.Data", "NOCIL_VP.Infrastructure.Data\NOCIL_VP.Infrastructure.Data.csproj", "{90AD6D42-242F-479F-BC48-4009AD264156}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NOCIL_VP.Infrastructure.Interfaces", "NOCIL_VP.Infrastructure.Interfaces\NOCIL_VP.Infrastructure.Interfaces.csproj", "{C2B1A5D3-998C-4181-847E-B969CFF8B3F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37E525C6-D66A-4052-8E34-9CAE24BEDA84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37E525C6-D66A-4052-8E34-9CAE24BEDA84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37E525C6-D66A-4052-8E34-9CAE24BEDA84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37E525C6-D66A-4052-8E34-9CAE24BEDA84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D85D810-EB91-4BF2-A3E7-E05D7C2C5F1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D85D810-EB91-4BF2-A3E7-E05D7C2C5F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D85D810-EB91-4BF2-A3E7-E05D7C2C5F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D85D810-EB91-4BF2-A3E7-E05D7C2C5F1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90AD6D42-242F-479F-BC48-4009AD264156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90AD6D42-242F-479F-BC48-4009AD264156}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90AD6D42-242F-479F-BC48-4009AD264156}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90AD6D42-242F-479F-BC48-4009AD264156}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2B1A5D3-998C-4181-847E-B969CFF8B3F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2B1A5D3-998C-4181-847E-B969CFF8B3F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2B1A5D3-998C-4181-847E-B969CFF8B3F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2B1A5D3-998C-4181-847E-B969CFF8B3F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7D85D810-EB91-4BF2-A3E7-E05D7C2C5F1D} = {D8A71C7F-7E18-4EE1-9B58-5B00869441E9}
+		{90AD6D42-242F-479F-BC48-4009AD264156} = {640C553A-C1CF-4943-9371-EBF3128DA801}
+		{C2B1A5D3-998C-4181-847E-B969CFF8B3F1} = {640C553A-C1CF-4943-9371-EBF3128DA801}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {47D32992-BED3-42A1-ACC4-ED65F634BCCC}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\NOCIL_VP.API.props" />
+</Project>

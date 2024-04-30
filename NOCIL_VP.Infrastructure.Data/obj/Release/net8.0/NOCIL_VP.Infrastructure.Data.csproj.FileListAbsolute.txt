@@ -1,0 +1,17 @@
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\bin\Release\net8.0\NOCIL_VP.Infrastructure.Data.deps.json
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\bin\Release\net8.0\NOCIL_VP.Infrastructure.Data.dll
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\bin\Release\net8.0\NOCIL_VP.Infrastructure.Data.pdb
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\bin\Release\net8.0\NOCIL_VP.Domain.Core.dll
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\bin\Release\net8.0\NOCIL_VP.Infrastructure.Interfaces.dll
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\bin\Release\net8.0\NOCIL_VP.Domain.Core.pdb
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\bin\Release\net8.0\NOCIL_VP.Infrastructure.Interfaces.pdb
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\obj\Release\net8.0\NOCIL_VP.Infrastructure.Data.csproj.AssemblyReference.cache
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\obj\Release\net8.0\NOCIL_VP.Infrastructure.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\obj\Release\net8.0\NOCIL_VP.Infrastructure.Data.AssemblyInfoInputs.cache
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\obj\Release\net8.0\NOCIL_VP.Infrastructure.Data.AssemblyInfo.cs
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\obj\Release\net8.0\NOCIL_VP.Infrastructure.Data.csproj.CoreCompileInputs.cache
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\obj\Release\net8.0\NOCIL_VP.A259EC37.Up2Date
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\obj\Release\net8.0\NOCIL_VP.Infrastructure.Data.dll
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\obj\Release\net8.0\refint\NOCIL_VP.Infrastructure.Data.dll
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\obj\Release\net8.0\NOCIL_VP.Infrastructure.Data.pdb
+D:\Exalca\DotNet\Projects\NOCIL_VP\NOCIL_VP.Infrastructure.Data\obj\Release\net8.0\ref\NOCIL_VP.Infrastructure.Data.dll

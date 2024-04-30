@@ -1,0 +1,6 @@
+@NOCIL_VP.API_HostAddress = http://localhost:5023
+
+GET {{NOCIL_VP.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
