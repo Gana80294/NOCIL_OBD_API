@@ -149,7 +149,7 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
                     mailBody = readHtmlString("RejectionInfoToVendor.html");
                     mailBody = mailBody.Replace("{recepient}", rejectionMailInfo.Username)
                         .Replace("{reason}", rejectionMailInfo.Reason)
-                        .Replace("{url}", siteLink);
+                        .Replace("{url}", siteURL + encodedJson);
                 }
                 else
                 {

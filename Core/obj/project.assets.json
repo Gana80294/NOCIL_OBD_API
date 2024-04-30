@@ -4021,11 +4021,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj",
+      "projectUniqueName": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\Core\\NOCIL_VP.Domain.Core.csproj",
       "projectName": "NOCIL_VP.Domain.Core",
-      "projectPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj",
+      "projectPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\Core\\NOCIL_VP.Domain.Core.csproj",
       "packagesPath": "C:\\Users\\Exalca\\.nuget\\packages\\",
-      "outputPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\obj\\",
+      "outputPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Exalca\\AppData\\Roaming\\NuGet\\NuGet.Config",

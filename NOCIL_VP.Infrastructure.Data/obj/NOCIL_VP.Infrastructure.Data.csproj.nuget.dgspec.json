@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj": {}
+    "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj": {}
   },
   "projects": {
-    "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj": {
+    "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\Core\\NOCIL_VP.Domain.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj",
+        "projectUniqueName": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\Core\\NOCIL_VP.Domain.Core.csproj",
         "projectName": "NOCIL_VP.Domain.Core",
-        "projectPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj",
+        "projectPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\Core\\NOCIL_VP.Domain.Core.csproj",
         "packagesPath": "C:\\Users\\Exalca\\.nuget\\packages\\",
-        "outputPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\obj\\",
+        "outputPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Exalca\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -80,14 +80,14 @@
         }
       }
     },
-    "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj": {
+    "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj",
+        "projectUniqueName": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj",
         "projectName": "NOCIL_VP.Infrastructure.Data",
-        "projectPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj",
+        "projectPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj",
         "packagesPath": "C:\\Users\\Exalca\\.nuget\\packages\\",
-        "outputPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\obj\\",
+        "outputPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Exalca\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -104,11 +104,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj": {
-                "projectPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj"
+              "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\Core\\NOCIL_VP.Domain.Core.csproj": {
+                "projectPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\Core\\NOCIL_VP.Domain.Core.csproj"
               },
-              "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj": {
-                "projectPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj"
+              "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj": {
+                "projectPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj"
               }
             }
           }
@@ -193,14 +193,14 @@
         }
       }
     },
-    "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj": {
+    "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj",
+        "projectUniqueName": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj",
         "projectName": "NOCIL_VP.Infrastructure.Interfaces",
-        "projectPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj",
+        "projectPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj",
         "packagesPath": "C:\\Users\\Exalca\\.nuget\\packages\\",
-        "outputPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Interfaces\\obj\\",
+        "outputPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Interfaces\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Exalca\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -217,8 +217,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj": {
-                "projectPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj"
+              "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\Core\\NOCIL_VP.Domain.Core.csproj": {
+                "projectPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\Core\\NOCIL_VP.Domain.Core.csproj"
               }
             }
           }

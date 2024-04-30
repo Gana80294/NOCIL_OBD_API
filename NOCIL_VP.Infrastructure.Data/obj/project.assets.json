@@ -4074,11 +4074,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj",
+      "projectUniqueName": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj",
       "projectName": "NOCIL_VP.Infrastructure.Data",
-      "projectPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj",
+      "projectPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj",
       "packagesPath": "C:\\Users\\Exalca\\.nuget\\packages\\",
-      "outputPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\obj\\",
+      "outputPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Exalca\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4095,11 +4095,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj": {
-              "projectPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\Core\\NOCIL_VP.Domain.Core.csproj"
+            "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\Core\\NOCIL_VP.Domain.Core.csproj": {
+              "projectPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\Core\\NOCIL_VP.Domain.Core.csproj"
             },
-            "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj": {
-              "projectPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj"
+            "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj": {
+              "projectPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.Infrastructure.Interfaces\\NOCIL_VP.Infrastructure.Interfaces.csproj"
             }
           }
         }
