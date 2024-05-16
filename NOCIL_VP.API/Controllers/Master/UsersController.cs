@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NOCIL_VP.Domain.Core.Dtos.Master;
 using NOCIL_VP.Domain.Core.Entities.Master;
@@ -9,6 +10,7 @@ namespace NOCIL_VP.API.Controllers.Master
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class UsersController : ControllerBase
     {
         private IUserRepository _userRepository;

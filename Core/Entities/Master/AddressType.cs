@@ -10,8 +10,9 @@ namespace NOCIL_VP.Domain.Core.Entities.Master
     public class AddressType
     {
         [Key]
-        public int Address_Type_Id {  get; set; }
-        [Required,MaxLength(50)]
+        public int Address_Type_Id { get; set; }
+        [Required, MaxLength(50)]
         public string Address_Type { get; set; }
+        public bool Is_Deleted { get; set; } = false;
     }
 }

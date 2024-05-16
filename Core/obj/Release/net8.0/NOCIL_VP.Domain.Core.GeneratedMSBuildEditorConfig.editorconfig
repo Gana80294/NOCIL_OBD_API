@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = NOCIL_VP.Domain.Core
-build_property.ProjectDir = D:\Exalca\DotNet\Projects\NOCIL_VP\Core\
+build_property.ProjectDir = D:\Exalca\DotNet\NOCIL_OBD_API\Core\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

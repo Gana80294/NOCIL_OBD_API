@@ -42,7 +42,7 @@ namespace NOCIL_VP.Domain.Core.Entities
         public DbSet<TechnicalProfile> Technical_Profile { get; set; }
         public DbSet<Subsideries> Subsideries { get; set; }
         public DbSet<MajorCustomer> MajorCustomers { get; set; }
-        public DbSet<Attachment> Attchments { get; set; }
+        public DbSet<Attachment> Attachments { get; set; }
         public DbSet<Bank_Detail> Bank_Details { get; set; }
         public DbSet<CommercialProfile> Commercial_Profile { get; set; }
         public DbSet<NocilRelatedEmployee> NocilRelatedEmployees { get; set; }
@@ -77,6 +77,20 @@ namespace NOCIL_VP.Domain.Core.Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User_Role_Mapping>().HasKey(t => new { t.Employee_Id, t.Role_Id });
+
+            // Query Filters
+            modelBuilder.Entity<AddressType>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<VendorType>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<TankerType>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<Role>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<PurchaseOrganization>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<OrganizationType>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<FormStatus>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<Department>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<ContactType>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<CompanyStatus>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<CompanyCode>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<User>().HasQueryFilter(x => x.Is_Active);
         }
 
     }

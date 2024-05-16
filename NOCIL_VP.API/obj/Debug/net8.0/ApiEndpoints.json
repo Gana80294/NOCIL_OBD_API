@@ -75,22 +75,6 @@
   },
   {
     "ContainingType": "NOCIL_VP.API.Controllers.Auth.AuthController",
-    "Method": "RequestOtp",
-    "RelativePath": "api/Auth/RequestOtp",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "requestOtp",
-        "Type": "NOCIL_VP.Domain.Core.Dtos.Auth.RequestOtp",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NOCIL_VP.API.Controllers.Auth.AuthController",
     "Method": "RequestOtpForForgotPassword",
     "RelativePath": "api/Auth/RequestOtpForForgotPassword",
     "HttpMethod": "GET",
@@ -101,6 +85,22 @@
         "Name": "employee_Id",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NOCIL_VP.API.Controllers.Auth.AuthController",
+    "Method": "RequestOtpForVendorLogin",
+    "RelativePath": "api/Auth/RequestOtpForVendorLogin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requestOtp",
+        "Type": "NOCIL_VP.Domain.Core.Dtos.Auth.RequestOtp",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -123,8 +123,8 @@
   },
   {
     "ContainingType": "NOCIL_VP.API.Controllers.Auth.AuthController",
-    "Method": "VerifyOtp",
-    "RelativePath": "api/Auth/VerifyOtp",
+    "Method": "VerifyOtpForVendorLogin",
+    "RelativePath": "api/Auth/VerifyOtpForVendorLogin",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -392,6 +392,16 @@
     "ContainingType": "NOCIL_VP.API.Controllers.Master.MasterController",
     "Method": "GetVendorTypes",
     "RelativePath": "api/Master/GetVendorTypes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NOCIL_VP.API.Controllers.Dashboard.NotificationsController",
+    "Method": "GetAllExpiryNotifications",
+    "RelativePath": "api/Notifications/GetAllExpiryNotifications",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

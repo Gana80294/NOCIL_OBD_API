@@ -13,5 +13,6 @@ namespace NOCIL_VP.Domain.Core.Entities.Master
         public int Contact_Type_Id { get; set; }
         [Required, MaxLength(50)]
         public string Contact_Type { get; set; }
+        public bool Is_Deleted { get; set; } = false;
     }
 }

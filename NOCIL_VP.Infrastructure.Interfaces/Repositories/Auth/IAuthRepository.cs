@@ -13,8 +13,8 @@ namespace NOCIL_VP.Infrastructure.Interfaces.Repositories.Auth
     {
         Task<AuthenticationResponse> AuthenticateUser(LoginDetails loginDetails);
         Task<User> UpdatePassword(UpdatePassword updatePassword);
-        Task<ResponseMessage> RequestOtp(RequestOtp requestOtp);
-        Task<AuthenticationResponse> VerifyOtp(VerifyOtp otp);
+        Task<ResponseMessage> RequestOtpForVendorLogin(RequestOtp requestOtp);
+        Task<AuthenticationResponse> VerifyOtpForVendorLogin(VerifyOtp otp);
         Task<ResponseMessage> ForgotPassword(ForgotPassword forgotPassword);
         Task<ResponseMessage> RequestOtpForForgotPassword(string employee_Id);
     }

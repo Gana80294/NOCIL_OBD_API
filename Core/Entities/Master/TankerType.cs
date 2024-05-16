@@ -13,5 +13,6 @@ namespace NOCIL_VP.Domain.Core.Entities.Master
         public int Tanker_Type_Id { get; set; }
         [Required, MaxLength(50)]
         public string Tanker_Type { get; set; }
+        public bool Is_Deleted { get; set; } = false;
     }
 }

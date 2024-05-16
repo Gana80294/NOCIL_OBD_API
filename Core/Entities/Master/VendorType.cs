@@ -12,5 +12,6 @@ namespace NOCIL_VP.Domain.Core.Entities.Master
         [Key]
         public int Id { get; set; }
         public string Vendor_Type { get; set; }
+        public bool Is_Deleted { get; set; } = false;
     }
 }

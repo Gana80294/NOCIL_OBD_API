@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
+using NOCIL_VP.API.Auth;
 using NOCIL_VP.API.Extensions;
 using NOCIL_VP.Domain.Core.Entities;
 using NOCIL_VP.Infrastructure.Data.Filters;
@@ -30,10 +31,15 @@ builder.Services.AddAuthentication(options =>
     jwt.SaveToken = true;
     jwt.TokenValidationParameters = new TokenValidationParameters
     {
+        RequireExpirationTime = true,
+        ValidateLifetime = true,
+        RequireSignedTokens = true,
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("JWTSecurity").GetValue<string>("securityKey"))),
-        ValidateAudience = false,
-        ValidateIssuer = false
+        ValidateIssuer = true,
+        ValidIssuer = builder.Configuration.GetSection("JWTSecurity").GetValue<string>("issuer"),
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration.GetSection("JWTSecurity").GetValue<string>("audience")
     };
 });
 
@@ -48,8 +54,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddMvc(config =>
 {
-    config.Filters.Add(typeof(CommonExceptionHandler));
-    //config.Filters.Add(typeof(AuthorizeActionFilter));
+    config.Filters.Add<CommonExceptionHandler>(-100);
 }).AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
@@ -80,6 +85,8 @@ app.UseHttpLogging();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+
+app.UseAuthMiddleware();
 
 app.UseAuthorization();
 

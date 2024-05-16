@@ -1,22 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\",
+  "WorkspaceRootPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|d:\\exalca\\dotnet\\projects\\nocil_vp\\nocil_vp.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|solutionrelative:nocil_vp.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|d:\\exalca\\dotnet\\nocil_obd_api\\nocil_vp.api\\controllers\\reports\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|solutionrelative:nocil_vp.api\\controllers\\reports\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{90AD6D42-242F-479F-BC48-4009AD264156}|NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj|d:\\exalca\\dotnet\\projects\\nocil_vp\\nocil_vp.infrastructure.data\\helpers\\emailhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{90AD6D42-242F-479F-BC48-4009AD264156}|NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj|solutionrelative:nocil_vp.infrastructure.data\\helpers\\emailhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|d:\\exalca\\dotnet\\nocil_obd_api\\nocil_vp.api\\controllers\\master\\vendorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|solutionrelative:nocil_vp.api\\controllers\\master\\vendorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{90AD6D42-242F-479F-BC48-4009AD264156}|NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj|d:\\exalca\\dotnet\\projects\\nocil_vp\\nocil_vp.infrastructure.data\\filters\\commonexceptionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{90AD6D42-242F-479F-BC48-4009AD264156}|NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj|solutionrelative:nocil_vp.infrastructure.data\\filters\\commonexceptionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|d:\\exalca\\dotnet\\nocil_obd_api\\nocil_vp.api\\controllers\\master\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|solutionrelative:nocil_vp.api\\controllers\\master\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{90AD6D42-242F-479F-BC48-4009AD264156}|NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj|d:\\exalca\\dotnet\\projects\\nocil_vp\\nocil_vp.infrastructure.data\\repositories\\registration\\registrationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{90AD6D42-242F-479F-BC48-4009AD264156}|NOCIL_VP.Infrastructure.Data\\NOCIL_VP.Infrastructure.Data.csproj|solutionrelative:nocil_vp.infrastructure.data\\repositories\\registration\\registrationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|d:\\exalca\\dotnet\\nocil_obd_api\\nocil_vp.api\\controllers\\master\\mastercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|solutionrelative:nocil_vp.api\\controllers\\master\\mastercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|d:\\exalca\\dotnet\\nocil_obd_api\\nocil_vp.api\\controllers\\dashboard\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|solutionrelative:nocil_vp.api\\controllers\\dashboard\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|d:\\exalca\\dotnet\\nocil_obd_api\\nocil_vp.api\\controllers\\dashboard\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|solutionrelative:nocil_vp.api\\controllers\\dashboard\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,55 +41,85 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmailHelper.cs",
-              "DocumentMoniker": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\Helpers\\EmailHelper.cs",
-              "RelativeDocumentMoniker": "NOCIL_VP.Infrastructure.Data\\Helpers\\EmailHelper.cs",
-              "ToolTip": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\Helpers\\EmailHelper.cs",
-              "RelativeToolTip": "NOCIL_VP.Infrastructure.Data\\Helpers\\EmailHelper.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAADQAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T10:27:20.569Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\appsettings.json",
-              "RelativeDocumentMoniker": "NOCIL_VP.API\\appsettings.json",
-              "ToolTip": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\appsettings.json",
-              "RelativeToolTip": "NOCIL_VP.API\\appsettings.json",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABkAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-30T10:13:05.662Z",
+              "Title": "ReportsController.cs",
+              "DocumentMoniker": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Reports\\ReportsController.cs",
+              "RelativeDocumentMoniker": "NOCIL_VP.API\\Controllers\\Reports\\ReportsController.cs",
+              "ToolTip": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Reports\\ReportsController.cs",
+              "RelativeToolTip": "NOCIL_VP.API\\Controllers\\Reports\\ReportsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-16T10:24:27.783Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VendorsController.cs",
+              "DocumentMoniker": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Master\\VendorsController.cs",
+              "RelativeDocumentMoniker": "NOCIL_VP.API\\Controllers\\Master\\VendorsController.cs",
+              "ToolTip": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Master\\VendorsController.cs",
+              "RelativeToolTip": "NOCIL_VP.API\\Controllers\\Master\\VendorsController.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAAAkAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-16T10:23:58.65Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "CommonExceptionHandler.cs",
-              "DocumentMoniker": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\Filters\\CommonExceptionHandler.cs",
-              "RelativeDocumentMoniker": "NOCIL_VP.Infrastructure.Data\\Filters\\CommonExceptionHandler.cs",
-              "ToolTip": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\Filters\\CommonExceptionHandler.cs",
-              "RelativeToolTip": "NOCIL_VP.Infrastructure.Data\\Filters\\CommonExceptionHandler.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAUwBYAAAAMAAAA",
+              "Title": "RolesController.cs",
+              "DocumentMoniker": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Master\\RolesController.cs",
+              "RelativeDocumentMoniker": "NOCIL_VP.API\\Controllers\\Master\\RolesController.cs",
+              "ToolTip": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Master\\RolesController.cs",
+              "RelativeToolTip": "NOCIL_VP.API\\Controllers\\Master\\RolesController.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAoAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T09:47:30.188Z",
+              "WhenOpened": "2024-05-16T10:23:38.369Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "RegistrationRepository.cs",
-              "DocumentMoniker": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\Repositories\\Registration\\RegistrationRepository.cs",
-              "RelativeDocumentMoniker": "NOCIL_VP.Infrastructure.Data\\Repositories\\Registration\\RegistrationRepository.cs",
-              "ToolTip": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.Infrastructure.Data\\Repositories\\Registration\\RegistrationRepository.cs",
-              "RelativeToolTip": "NOCIL_VP.Infrastructure.Data\\Repositories\\Registration\\RegistrationRepository.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAAAKQBAAAaAAAA",
+              "Title": "MasterController.cs",
+              "DocumentMoniker": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Master\\MasterController.cs",
+              "RelativeDocumentMoniker": "NOCIL_VP.API\\Controllers\\Master\\MasterController.cs",
+              "ToolTip": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Master\\MasterController.cs",
+              "RelativeToolTip": "NOCIL_VP.API\\Controllers\\Master\\MasterController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-29T05:39:22.181Z",
+              "WhenOpened": "2024-05-16T10:23:18.047Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NotificationsController.cs",
+              "DocumentMoniker": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Dashboard\\NotificationsController.cs",
+              "RelativeDocumentMoniker": "NOCIL_VP.API\\Controllers\\Dashboard\\NotificationsController.cs",
+              "ToolTip": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Dashboard\\NotificationsController.cs",
+              "RelativeToolTip": "NOCIL_VP.API\\Controllers\\Dashboard\\NotificationsController.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAABQAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-16T10:22:40.173Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Dashboard\\DashboardController.cs",
+              "RelativeDocumentMoniker": "NOCIL_VP.API\\Controllers\\Dashboard\\DashboardController.cs",
+              "ToolTip": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Dashboard\\DashboardController.cs",
+              "RelativeToolTip": "NOCIL_VP.API\\Controllers\\Dashboard\\DashboardController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA0AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-16T10:20:04.456Z",
               "EditorCaption": ""
             }
           ]

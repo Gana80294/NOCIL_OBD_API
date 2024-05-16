@@ -41,15 +41,15 @@ namespace NOCIL_VP.API.Controllers.Auth
 
 
         [HttpPost]
-        public async Task<IActionResult> RequestOtp(RequestOtp requestOtp)
+        public async Task<IActionResult> RequestOtpForVendorLogin(RequestOtp requestOtp)
         {
-            return Ok(await _authRepository.RequestOtp(requestOtp));
+            return Ok(await _authRepository.RequestOtpForVendorLogin(requestOtp));
         }
 
         [HttpPost]
-        public async Task<IActionResult> VerifyOtp(VerifyOtp otp)
+        public async Task<IActionResult> VerifyOtpForVendorLogin(VerifyOtp otp)
         {
-            return Ok(await this._authRepository.VerifyOtp(otp));
+            return Ok(await this._authRepository.VerifyOtpForVendorLogin(otp));
         }
     }
 }

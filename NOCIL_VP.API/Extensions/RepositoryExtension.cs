@@ -1,4 +1,6 @@
-﻿using NOCIL_VP.Infrastructure.Data.Repositories.Auth;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using NOCIL_VP.Infrastructure.Data.Repositories.Auth;
 using NOCIL_VP.Infrastructure.Data.Repositories.Dashboard;
 using NOCIL_VP.Infrastructure.Data.Repositories.Master;
 using NOCIL_VP.Infrastructure.Data.Repositories.Registration;
@@ -10,6 +12,7 @@ using NOCIL_VP.Infrastructure.Interfaces.Repositories.Master;
 using NOCIL_VP.Infrastructure.Interfaces.Repositories.Registration;
 using NOCIL_VP.Infrastructure.Interfaces.Repositories.Registration.UpdateForm;
 using NOCIL_VP.Infrastructure.Interfaces.Repositories.Reports;
+using System.Text;
 
 namespace NOCIL_VP.API.Extensions
 {
@@ -30,6 +33,8 @@ namespace NOCIL_VP.API.Extensions
             services.AddScoped<IUpdateFormRepository, UpdateFormRepository>();
             services.AddScoped<IVendorRepository, VendorRepository>();
             services.AddScoped<IReportRepository, ReportRepository>();
+            services.AddScoped<INotificationsRepository, NotificationsRepository>();
+
             return services;
         }
     }
