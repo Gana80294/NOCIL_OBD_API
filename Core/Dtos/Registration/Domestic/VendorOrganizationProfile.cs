@@ -20,6 +20,7 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration.Domestic
         public int Status_of_Company_Id { get; set; }
         [Required]
         public float Annual_Prod_Capacity { get; set; }
+        public string Unit { get; set; }
         public bool RelationToNocil { get; set; }
     }
 }

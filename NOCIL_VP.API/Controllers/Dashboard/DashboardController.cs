@@ -9,6 +9,7 @@ namespace NOCIL_VP.API.Controllers.Dashboard
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class DashboardController : ControllerBase
     {
         private IDashboardRepository _dashboardRepository;
@@ -55,36 +56,42 @@ namespace NOCIL_VP.API.Controllers.Dashboard
 
         #region Admin Dashboard
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllData()
         {
             return Ok(await this._dashboardRepository.GetAllData());
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllInitiatedData()
         {
             return Ok(await this._dashboardRepository.GetAllInitiatedData());
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllPendingData()
         {
             return Ok(await this._dashboardRepository.GetAllPendingData());
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllApprovedData()
         {
             return Ok(await this._dashboardRepository.GetAllApprovedData());
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllRejectedData()
         {
             return Ok(await this._dashboardRepository.GetAllRejectedData());
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllSAPData()
         {
             return Ok(await this._dashboardRepository.GetAllSAPData());

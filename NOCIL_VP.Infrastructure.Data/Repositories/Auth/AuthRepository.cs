@@ -37,7 +37,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Auth
         {
             AuthenticationResponse authResponse = new AuthenticationResponse();
             var user = this._dbContext.Users.FirstOrDefault(u =>
-            ((u.Employee_Id == loginDetails.UserName || u.Email == loginDetails.UserName) && u.Is_Active));
+            ((u.Employee_Id == loginDetails.UserName || u.Email == loginDetails.UserName)));
 
             if (user == null)
             {
@@ -94,7 +94,8 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Auth
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, authenticationResponse.DisplayName),
-                new Claim(ClaimTypes.Role, authenticationResponse.Role)
+                new Claim(ClaimTypes.Role, authenticationResponse.Role),
+                new Claim("EmployeeId",authenticationResponse.Employee_Id)
             };
 
             var token = new JwtSecurityToken(
@@ -187,7 +188,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Auth
         }
 
         // Request for OTP
-        public async Task<ResponseMessage> RequestOtp(RequestOtp requestOtp)
+        public async Task<ResponseMessage> RequestOtpForVendorLogin(RequestOtp requestOtp)
         {
 
             var res = await this._otpHelper.SendOTP(requestOtp.Mobile);
@@ -261,7 +262,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Auth
 
 
         // Verify OTP
-        public async Task<AuthenticationResponse> VerifyOtp(VerifyOtp otp)
+        public async Task<AuthenticationResponse> VerifyOtpForVendorLogin(VerifyOtp otp)
         {
             var txn = this._dbContext.OtpTransactions.FirstOrDefault(x => x.Form_Id == otp.FormId);
             if (txn == null) { throw new Exception("Unable to find the transaction - Kindly requet OTP again"); }

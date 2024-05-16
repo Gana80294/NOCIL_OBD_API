@@ -13,5 +13,6 @@ namespace NOCIL_VP.Domain.Core.Entities.Master
         public string PO_Code { get; set; }
         [Required, MaxLength(50)]
         public string Description { get; set; }
+        public bool Is_Deleted { get; set; } = false;
     }
 }

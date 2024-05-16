@@ -13,5 +13,6 @@ namespace NOCIL_VP.Domain.Core.Entities.Master
         public int Role_Id { get; set; }
         [Required, MaxLength(50)]
         public string Role_Name { get; set; }
+        public bool Is_Deleted { get; set; } = false;
     }
 }

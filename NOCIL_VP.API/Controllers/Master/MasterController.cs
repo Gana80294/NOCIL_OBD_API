@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NOCIL_VP.Infrastructure.Interfaces.Repositories.Master;
 
@@ -6,6 +7,7 @@ namespace NOCIL_VP.API.Controllers.Master
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class MasterController : ControllerBase
     {
         private IMasterRepository _masterRepository;

@@ -13,5 +13,6 @@ namespace NOCIL_VP.Domain.Core.Entities.Master
         public int Status_Id { get; set; }
         [Required, MaxLength(50)]
         public string Status { get; set; }
+        public bool Is_Deleted { get; set; } = false;
     }
 }

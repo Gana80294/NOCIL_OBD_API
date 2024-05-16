@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "iU1kUJkHB3dhIDxeQZuDYprNoiuCfgPWIqdd2OxSf8k=",
+  "Hash": "VLLNNkHa3XikVMDOAp+06WDXSdU2lNqjNpcNFQVVPSo=",
   "Source": "NOCIL_VP.API",
   "BasePath": "_content/NOCIL_VP.API",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "NOCIL_VP.API\\wwwroot",
       "Source": "NOCIL_VP.API",
-      "ContentRoot": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\wwwroot\\",
+      "ContentRoot": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\wwwroot\\",
       "BasePath": "_content/NOCIL_VP.API",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\ApprovalInfo.html",
+      "Identity": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\ApprovalInfo.html",
       "SourceId": "NOCIL_VP.API",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\wwwroot\\",
+      "ContentRoot": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\wwwroot\\",
       "BasePath": "_content/NOCIL_VP.API",
       "RelativePath": "EmailTemplates/ApprovalInfo.html",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\EmailTemplates\\ApprovalInfo.html"
     },
     {
-      "Identity": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\ApproveRequest.html",
+      "Identity": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\ApproveRequest.html",
       "SourceId": "NOCIL_VP.API",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\wwwroot\\",
+      "ContentRoot": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\wwwroot\\",
       "BasePath": "_content/NOCIL_VP.API",
       "RelativePath": "EmailTemplates/ApproveRequest.html",
       "AssetKind": "All",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\EmailTemplates\\ApproveRequest.html"
     },
     {
-      "Identity": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\RejectionInfoToVendor.html",
+      "Identity": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\RejectionInfoToVendor.html",
       "SourceId": "NOCIL_VP.API",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\wwwroot\\",
+      "ContentRoot": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\wwwroot\\",
       "BasePath": "_content/NOCIL_VP.API",
       "RelativePath": "EmailTemplates/RejectionInfoToVendor.html",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\EmailTemplates\\RejectionInfoToVendor.html"
     },
     {
-      "Identity": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\WelcomeVendor.html",
+      "Identity": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\WelcomeVendor.html",
       "SourceId": "NOCIL_VP.API",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\wwwroot\\",
+      "ContentRoot": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\wwwroot\\",
       "BasePath": "_content/NOCIL_VP.API",
       "RelativePath": "EmailTemplates/WelcomeVendor.html",
       "AssetKind": "All",

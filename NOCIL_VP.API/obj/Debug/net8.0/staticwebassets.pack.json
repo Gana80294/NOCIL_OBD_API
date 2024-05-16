@@ -1,19 +1,19 @@
 {
   "Files": [
     {
-      "Id": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\ApprovalInfo.html",
+      "Id": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\ApprovalInfo.html",
       "PackagePath": "staticwebassets\\EmailTemplates\\ApprovalInfo.html"
     },
     {
-      "Id": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\ApproveRequest.html",
+      "Id": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\ApproveRequest.html",
       "PackagePath": "staticwebassets\\EmailTemplates\\ApproveRequest.html"
     },
     {
-      "Id": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\RejectionInfoToVendor.html",
+      "Id": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\RejectionInfoToVendor.html",
       "PackagePath": "staticwebassets\\EmailTemplates\\RejectionInfoToVendor.html"
     },
     {
-      "Id": "D:\\Exalca\\DotNet\\Projects\\NOCIL_VP\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\WelcomeVendor.html",
+      "Id": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\wwwroot\\EmailTemplates\\WelcomeVendor.html",
       "PackagePath": "staticwebassets\\EmailTemplates\\WelcomeVendor.html"
     },
     {

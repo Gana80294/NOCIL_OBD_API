@@ -53,7 +53,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
         {
             try
             {
-                var oldDoc = this._dbContext.Attchments.FirstOrDefault(x => x.Attachment_Id == attachment.Attachment_Id);
+                var oldDoc = this._dbContext.Attachments.FirstOrDefault(x => x.Attachment_Id == attachment.Attachment_Id);
                 if(oldDoc != null) { File.Delete(oldDoc.File_Path); }
                 Update(attachment);
                 await SaveAsync();
@@ -75,7 +75,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 
         public async Task<AttachmentResponse> GetAttachmentById(int attachmentId)
         {
-            var attachment = (from tb in _dbContext.Attchments
+            var attachment = (from tb in _dbContext.Attachments
                               where tb.Attachment_Id == attachmentId
                               select new AttachmentResponse
                               {

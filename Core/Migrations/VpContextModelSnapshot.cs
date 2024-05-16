@@ -223,6 +223,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<bool>("Is_Deleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("Address_Type_Id");
 
                     b.ToTable("Type_of_Addresses");
@@ -238,6 +241,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("Is_Deleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("Company_Code");
 
@@ -257,6 +263,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<bool>("Is_Deleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Company_Statuses");
@@ -274,6 +283,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("Is_Deleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("Contact_Type_Id");
 
@@ -293,6 +305,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<bool>("Is_Deleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("Department_Id");
 
                     b.ToTable("Departments");
@@ -305,6 +320,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Status_Id"));
+
+                    b.Property<bool>("Is_Deleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -323,6 +341,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Is_Deleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Type_of_Organization")
                         .IsRequired()
@@ -345,6 +366,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<bool>("Is_Deleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("PO_Code");
 
                     b.ToTable("Purchase_Organizations");
@@ -357,6 +381,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Role_Id"));
+
+                    b.Property<bool>("Is_Deleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Role_Name")
                         .IsRequired()
@@ -375,6 +402,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Tanker_Type_Id"));
+
+                    b.Property<bool>("Is_Deleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Tanker_Type")
                         .IsRequired()
@@ -446,6 +476,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("Is_Deleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Vendor_Type")
                         .HasColumnType("nvarchar(max)");
 
@@ -487,7 +520,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("Attchments");
+                    b.ToTable("Attachments");
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.Address", b =>
@@ -875,6 +908,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.Property<int>("Type_of_Org_Id")
                         .HasColumnType("int");
+
+                    b.Property<string>("Unit")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

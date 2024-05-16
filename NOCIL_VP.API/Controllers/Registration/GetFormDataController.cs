@@ -47,7 +47,7 @@ namespace NOCIL_VP.API.Controllers.Registration
                     case ("TransportVendorPersonalData"):
                         return Ok(this._mapper.Map<TransportVendorPersonalData_Dto>(await this._dbContext.Transport_Vendor_Personal_Data.FirstOrDefaultAsync(f => f.Form_Id == formId)));
                     case ("Attachments"):
-                        return Ok(this._mapper.Map<List<AttachmentDto>>(await this._dbContext.Attchments.Where(f => f.Form_Id == formId).ToListAsync()));
+                        return Ok(this._mapper.Map<List<AttachmentDto>>(await this._dbContext.Attachments.Where(f => f.Form_Id == formId).ToListAsync()));
                     case ("Subsideries"):
                         return Ok(this._mapper.Map<List<Subsideries_Dto>>(await this._dbContext.Subsideries.Where(f => f.Form_Id == formId).ToListAsync()));
                     case ("MajorCustomers"):
