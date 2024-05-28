@@ -409,6 +409,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "NOCIL_VP.API.Controllers.Dashboard.NotificationsController",
+    "Method": "GetAllExpiryNotificationsByVendorCode",
+    "RelativePath": "api/Notifications/GetAllExpiryNotificationsByVendorCode",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "NOCIL_VP.API.Controllers.Registration.RegistrationController",
     "Method": "Approve",
     "RelativePath": "api/Registration/Approve",

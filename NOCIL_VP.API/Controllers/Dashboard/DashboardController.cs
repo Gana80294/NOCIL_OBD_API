@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NOCIL_VP.Domain.Core.Dtos;
+using NOCIL_VP.Infrastructure.Data.Enums;
 using NOCIL_VP.Infrastructure.Data.Helpers;
 using NOCIL_VP.Infrastructure.Interfaces.Repositories.Dashboard;
 
@@ -15,38 +16,43 @@ namespace NOCIL_VP.API.Controllers.Dashboard
         private IDashboardRepository _dashboardRepository;
         private EmailHelper _email;
 
-        public DashboardController(IDashboardRepository dashboardRepository, IConfiguration config)
+        public DashboardController(IDashboardRepository dashboardRepository,EmailHelper mail)
         {
             this._dashboardRepository = dashboardRepository;
-            _email = new EmailHelper(config);
+            _email = mail;
         }
 
         #region Others Dashboard
         [HttpGet]
+        [Authorize(Policy = "BuyerPolicy")]
         public async Task<IActionResult> GetInitialData(string employeeId)
         {
             return Ok(await this._dashboardRepository.GetInitialData(employeeId));
         }
 
         [HttpGet]
+        [Authorize(Policy = "BuyerPolicy")]
         public async Task<IActionResult> GetInitiatedData(string employeeId)
         {
             return Ok(await this._dashboardRepository.GetInitiatedData(employeeId));
         }
 
         [HttpGet]
+        [Authorize(Policy = "BuyerPolicy")]
         public async Task<IActionResult> GetPendingData(string employeeId)
         {
             return Ok(await this._dashboardRepository.GetPendingData(employeeId));
         }
 
         [HttpGet]
+        [Authorize(Policy = "BuyerPolicy")]
         public async Task<IActionResult> GetApprovedData(string employeeId)
         {
             return Ok(await this._dashboardRepository.GetApprovedData(employeeId));
         }
 
         [HttpGet]
+        [Authorize(Policy = "BuyerPolicy")]
         public async Task<IActionResult> GetRejectedData(string employeeId)
         {
             return Ok(await this._dashboardRepository.GetRejectedData(employeeId));
@@ -56,42 +62,42 @@ namespace NOCIL_VP.API.Controllers.Dashboard
 
         #region Admin Dashboard
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetAllData()
         {
             return Ok(await this._dashboardRepository.GetAllData());
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetAllInitiatedData()
         {
             return Ok(await this._dashboardRepository.GetAllInitiatedData());
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetAllPendingData()
         {
             return Ok(await this._dashboardRepository.GetAllPendingData());
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetAllApprovedData()
         {
             return Ok(await this._dashboardRepository.GetAllApprovedData());
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetAllRejectedData()
         {
             return Ok(await this._dashboardRepository.GetAllRejectedData());
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetAllSAPData()
         {
             return Ok(await this._dashboardRepository.GetAllSAPData());
@@ -100,6 +106,7 @@ namespace NOCIL_VP.API.Controllers.Dashboard
 
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> SendTestMail()
         {
             SendMail sendMail = new SendMail()

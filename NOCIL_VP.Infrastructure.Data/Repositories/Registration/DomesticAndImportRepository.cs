@@ -21,16 +21,14 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
         private IMapper _mapper;
         private ModelValidator _validator;
         private EmailHelper _emailHelper;
-        private IConfiguration _config;
         private IUpdateFormRepository _updateFormRepo;
 
-        public DomesticAndImportRepository(VpContext context, IMapper mapper, IConfiguration config, IUpdateFormRepository updateFormRepo)
+        public DomesticAndImportRepository(VpContext context, IMapper mapper, EmailHelper mail, IUpdateFormRepository updateFormRepo)
         {
             _dbContext = context;
             _mapper = mapper;
-            _config = config;
             _validator = new ModelValidator();
-            _emailHelper = new EmailHelper(_config);
+            _emailHelper = mail;
             _updateFormRepo = updateFormRepo;
         }
 

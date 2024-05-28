@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ namespace NOCIL_VP.API.Controllers.Registration
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class GetFormDataController : ControllerBase
     {
         private VpContext _dbContext;

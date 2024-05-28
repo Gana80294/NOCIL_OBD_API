@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using NOCIL_VP.Domain.Core.Dtos.Master;
+using NOCIL_VP.Infrastructure.Data.Enums;
 using NOCIL_VP.Infrastructure.Data.Helpers;
 using NOCIL_VP.Infrastructure.Interfaces.Repositories.Reports;
 using NPOI.SS.UserModel;
@@ -12,7 +13,7 @@ namespace NOCIL_VP.API.Controllers.Reports
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "AdminPolicy")]
     public class ReportsController : ControllerBase
     {
         private IReportRepository _reportRepository;

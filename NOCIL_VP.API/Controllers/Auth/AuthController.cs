@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NOCIL_VP.Domain.Core.Dtos.Auth;
 using NOCIL_VP.Infrastructure.Interfaces.Repositories.Auth;
@@ -22,6 +23,7 @@ namespace NOCIL_VP.API.Controllers.Auth
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> UpdatePassword(UpdatePassword updatePassword)
         {
             return Ok(await _authRepository.UpdatePassword(updatePassword));

@@ -1,32 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|d:\\exalca\\dotnet\\nocil_obd_api\\nocil_vp.api\\controllers\\reports\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|solutionrelative:nocil_vp.api\\controllers\\reports\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|d:\\exalca\\dotnet\\nocil_obd_api\\nocil_vp.api\\controllers\\master\\vendorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|solutionrelative:nocil_vp.api\\controllers\\master\\vendorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|d:\\exalca\\dotnet\\nocil_obd_api\\nocil_vp.api\\controllers\\master\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|solutionrelative:nocil_vp.api\\controllers\\master\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|d:\\exalca\\dotnet\\nocil_obd_api\\nocil_vp.api\\controllers\\master\\mastercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|solutionrelative:nocil_vp.api\\controllers\\master\\mastercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|d:\\exalca\\dotnet\\nocil_obd_api\\nocil_vp.api\\controllers\\dashboard\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|solutionrelative:nocil_vp.api\\controllers\\dashboard\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|d:\\exalca\\dotnet\\nocil_obd_api\\nocil_vp.api\\controllers\\dashboard\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37E525C6-D66A-4052-8E34-9CAE24BEDA84}|NOCIL_VP.API\\NOCIL_VP.API.csproj|solutionrelative:nocil_vp.api\\controllers\\dashboard\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -34,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -45,82 +20,8 @@
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ReportsController.cs",
-              "DocumentMoniker": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Reports\\ReportsController.cs",
-              "RelativeDocumentMoniker": "NOCIL_VP.API\\Controllers\\Reports\\ReportsController.cs",
-              "ToolTip": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Reports\\ReportsController.cs",
-              "RelativeToolTip": "NOCIL_VP.API\\Controllers\\Reports\\ReportsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T10:24:27.783Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "VendorsController.cs",
-              "DocumentMoniker": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Master\\VendorsController.cs",
-              "RelativeDocumentMoniker": "NOCIL_VP.API\\Controllers\\Master\\VendorsController.cs",
-              "ToolTip": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Master\\VendorsController.cs",
-              "RelativeToolTip": "NOCIL_VP.API\\Controllers\\Master\\VendorsController.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAAAAkAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T10:23:58.65Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RolesController.cs",
-              "DocumentMoniker": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Master\\RolesController.cs",
-              "RelativeDocumentMoniker": "NOCIL_VP.API\\Controllers\\Master\\RolesController.cs",
-              "ToolTip": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Master\\RolesController.cs",
-              "RelativeToolTip": "NOCIL_VP.API\\Controllers\\Master\\RolesController.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAoAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T10:23:38.369Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MasterController.cs",
-              "DocumentMoniker": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Master\\MasterController.cs",
-              "RelativeDocumentMoniker": "NOCIL_VP.API\\Controllers\\Master\\MasterController.cs",
-              "ToolTip": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Master\\MasterController.cs",
-              "RelativeToolTip": "NOCIL_VP.API\\Controllers\\Master\\MasterController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T10:23:18.047Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NotificationsController.cs",
-              "DocumentMoniker": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Dashboard\\NotificationsController.cs",
-              "RelativeDocumentMoniker": "NOCIL_VP.API\\Controllers\\Dashboard\\NotificationsController.cs",
-              "ToolTip": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Dashboard\\NotificationsController.cs",
-              "RelativeToolTip": "NOCIL_VP.API\\Controllers\\Dashboard\\NotificationsController.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAAABQAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T10:22:40.173Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DashboardController.cs",
-              "DocumentMoniker": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Dashboard\\DashboardController.cs",
-              "RelativeDocumentMoniker": "NOCIL_VP.API\\Controllers\\Dashboard\\DashboardController.cs",
-              "ToolTip": "D:\\Exalca\\DotNet\\NOCIL_OBD_API\\NOCIL_VP.API\\Controllers\\Dashboard\\DashboardController.cs",
-              "RelativeToolTip": "NOCIL_VP.API\\Controllers\\Dashboard\\DashboardController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA0AAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T10:20:04.456Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             }
           ]
         }

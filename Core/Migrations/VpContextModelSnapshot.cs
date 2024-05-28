@@ -947,6 +947,39 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.ToTable("Vendor_Personal_Data");
                 });
 
+            modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.Evaluation.VendorGrade", b =>
+                {
+                    b.Property<int>("GradeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GradeId"));
+
+                    b.Property<int>("FormId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Grade")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("Last_Audit_Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Last_Audited_By")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Vendor_Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("GradeId");
+
+                    b.HasIndex("FormId");
+
+                    b.ToTable("VendorGrades");
+                });
+
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.Form", b =>
                 {
                     b.Property<int>("Form_Id")
@@ -1315,6 +1348,17 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.HasOne("NOCIL_VP.Domain.Core.Entities.Registration.Form", "Forms")
                         .WithMany()
                         .HasForeignKey("Form_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Forms");
+                });
+
+            modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.Evaluation.VendorGrade", b =>
+                {
+                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Registration.Form", "Forms")
+                        .WithMany()
+                        .HasForeignKey("FormId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

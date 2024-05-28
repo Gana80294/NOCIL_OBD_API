@@ -10,5 +10,6 @@ namespace NOCIL_VP.Infrastructure.Interfaces.Repositories.Dashboard
     public interface INotificationsRepository
     {
         Task<List<ExpiryNotificationDto>> GetAllExpiryNotifications();
+        Task<List<ExpiryNotificationDto>> GetExpiryNotificationsByVendorCode(string vCode);
     }
 }

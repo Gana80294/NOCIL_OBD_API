@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using NOCIL_VP.API.Auth;
 using NOCIL_VP.API.Extensions;
+using NOCIL_VP.Domain.Core.Configurations;
 using NOCIL_VP.Domain.Core.Entities;
 using NOCIL_VP.Infrastructure.Data.Filters;
 using System.Text;
@@ -18,6 +19,13 @@ builder.Services.AddCors(p =>
 // Add DB Context
 var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<VpContext>(opts => opts.UseSqlServer(@$"{connectionString}"));
+
+// Add Configuration Settings
+builder.Services.Configure<JwtSetting>(builder.Configuration.GetSection("JWTSecurity"));
+builder.Services.Configure<SmtpSetting>(builder.Configuration.GetSection("SMTPDetails"));
+builder.Services.Configure<OtpSetting>(builder.Configuration.GetSection("OtpDetails"));
+builder.Services.Configure<GstSetting>(builder.Configuration.GetSection("GSTINDetails"));
+builder.Services.Configure<AppSetting>(builder.Configuration.GetSection("AppSettings"));
 
 // Add Authentication
 
@@ -67,6 +75,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddRepositories();
+builder.Services.AddPolicies();
 builder.Services.AddHttpLogging(o => { });
 
 var app = builder.Build();

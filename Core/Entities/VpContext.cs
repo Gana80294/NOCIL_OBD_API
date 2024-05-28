@@ -8,6 +8,7 @@ using NOCIL_VP.Domain.Core.Entities.Registration;
 using NOCIL_VP.Domain.Core.Entities.Registration.Attachments;
 using NOCIL_VP.Domain.Core.Entities.Registration.CommonData;
 using NOCIL_VP.Domain.Core.Entities.Registration.Domestic;
+using NOCIL_VP.Domain.Core.Entities.Registration.Evaluation;
 using NOCIL_VP.Domain.Core.Entities.Registration.Transport;
 
 namespace NOCIL_VP.Domain.Core.Entities
@@ -46,6 +47,7 @@ namespace NOCIL_VP.Domain.Core.Entities
         public DbSet<Bank_Detail> Bank_Details { get; set; }
         public DbSet<CommercialProfile> Commercial_Profile { get; set; }
         public DbSet<NocilRelatedEmployee> NocilRelatedEmployees { get; set; }
+        public DbSet<VendorGrade> VendorGrades { get; set; }
 
 
         // Master tables

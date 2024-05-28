@@ -10,19 +10,11 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories
         private readonly VpContext _dbContext;
         private readonly DbSet<T> _dbSet;
         private bool _disposed = false;
-        private readonly IConfiguration _config;
 
         public Repository(VpContext dbContext)
         {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();
-        }
-
-        public Repository(VpContext dbContext,IConfiguration config)
-        {
-            _dbContext = dbContext;
-            _dbSet = _dbContext.Set<T>();
-            _config = config;   
         }
 
         

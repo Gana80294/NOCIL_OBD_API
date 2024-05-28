@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using NOCIL_VP.Domain.Core.Dtos.Registration;
@@ -25,6 +26,7 @@ namespace NOCIL_VP.API.Controllers.Registration
 
 
         [HttpPost]
+        [Authorize(Policy = "VendorPolicy")]
         public async Task<IActionResult> AttachFiles()
         {
             try
@@ -81,12 +83,14 @@ namespace NOCIL_VP.API.Controllers.Registration
 
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAttachmentById(int attachmentId)
         {
             return Ok(await this._attachmentRepository.GetAttachmentById(attachmentId));
         }
 
         [HttpPost]
+        [Authorize(Policy = "VendorPolicy")]
         public async Task<IActionResult> DeleteAttachmentById(int id)
         {
             var status = await _attachmentRepository.DeleteAttachmentById(id);

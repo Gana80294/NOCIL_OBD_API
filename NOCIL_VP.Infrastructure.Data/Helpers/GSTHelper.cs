@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using NOCIL_VP.Domain.Core.Configurations;
 using NOCIL_VP.Domain.Core.Dtos.Response;
 using NOCIL_VP.Domain.Core.Entities.Registration.CommonData;
 using System;
@@ -13,31 +15,25 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
 {
     public class GSTHelper
     {
-        private readonly IConfiguration _config;
-        string apiKey;
-        string requestApi;
-        public GSTHelper(IConfiguration config)
+        private readonly GstSetting _gstSettings;
+
+
+        public GSTHelper(IOptions<GstSetting> gst)
         {
-            _config = config;
+            _gstSettings = gst.Value;
         }
 
-        public void SetValues()
-        {
-            this.requestApi = _config.GetValue<string>("GSTINDetails:RequestApi");
-            this.apiKey = _config.GetValue<string>("GSTINDetails:apikey");
-        }
 
         public async Task<dynamic> GetGstDetails(string gstin)
         {
             try
             {
-                SetValues();
                 using (HttpClient client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("accept", "application/json");
-                    client.DefaultRequestHeaders.Add("apikey", apiKey);
+                    client.DefaultRequestHeaders.Add("apikey", _gstSettings.apikey);
 
-                    HttpResponseMessage response = await client.GetAsync(requestApi + gstin);
+                    HttpResponseMessage response = await client.GetAsync(_gstSettings.RequestApi + gstin);
 
                     if (response.IsSuccessStatusCode)
                     {
