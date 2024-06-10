@@ -45,7 +45,7 @@ namespace NOCIL_VP.API.Auth
                 throw new UnauthorizedAccessException();
             }
         }
-    
+
         private bool ValidatePermission(string jwtToken)
         {
             try
@@ -53,16 +53,19 @@ namespace NOCIL_VP.API.Auth
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var jwtTokenObj = tokenHandler.ReadJwtToken(jwtToken);
 
-                var employeeId = jwtTokenObj.Claims.FirstOrDefault(c => c.Type == "EmployeeId")!.Value;
+                var employeeId = "";
                 var role = jwtTokenObj.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)!.Value;
-
-                if(!string.IsNullOrWhiteSpace(employeeId) && !string.IsNullOrWhiteSpace(role))
+                if (role != "Vendor")
                 {
-                    var user = this._dbContext.Users.FirstOrDefault(x=>x.Employee_Id==employeeId);
-                    if(user != null) { return true; }
+                    employeeId = jwtTokenObj.Claims.FirstOrDefault(c => c.Type == "EmployeeId")!.Value;
+                    if (!string.IsNullOrWhiteSpace(employeeId) && !string.IsNullOrWhiteSpace(role))
+                    {
+                        var user = this._dbContext.Users.FirstOrDefault(x => x.Employee_Id == employeeId);
+                        if (user != null) { return true; }
+                    }
+                    throw new UnauthorizedAccessException();
                 }
-                throw new UnauthorizedAccessException();
-
+                return true;
             }
             catch (Exception)
             {

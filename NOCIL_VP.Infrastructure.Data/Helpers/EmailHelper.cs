@@ -6,39 +6,26 @@ using System.Net.Mail;
 using System.Text;
 using System.Web;
 using Microsoft.AspNetCore.Hosting;
+using NOCIL_VP.Domain.Core.Configurations;
+using Microsoft.Extensions.Options;
 
 namespace NOCIL_VP.Infrastructure.Data.Helpers
 {
     public class EmailHelper
     {
-        private readonly IConfiguration _config;
-        //global Variables
-        string hostName;
-        string SMTPEmail;
-        string SMTPEmailPassword;
-        int SMTPPort;
-        string siteURL;
-        string siteLink;
+        private readonly SmtpSetting _smtpSettings;
 
-        public EmailHelper(IConfiguration config)
+
+        public EmailHelper(IOptions<SmtpSetting> smtp)
         {
-            _config = config;
+            _smtpSettings = smtp.Value;
         }
 
         #region Initialize Variables
-        public void SetValues()
-        {
-            hostName = _config.GetValue<string>("SMTPDetails:Host");
-            SMTPEmail = _config.GetValue<string>("SMTPDetails:Email");
-            SMTPEmailPassword = _config.GetValue<string>("SMTPDetails:Password");
-            SMTPPort = Int32.Parse(_config.GetValue<string>("SMTPDetails:Port"));
-            siteURL = _config.GetValue<string>("SMTPDetails:SiteURL");
-            siteLink = _config.GetValue<string>("SMTPDetails:SiteLink");
-        }
 
         public MailMessage CreateMailMessage(string toEmail, string subject, string sb)
         {
-            MailMessage reportEmail = new MailMessage(SMTPEmail, toEmail, subject, sb.ToString());
+            MailMessage reportEmail = new MailMessage(_smtpSettings.Email, toEmail, subject, sb.ToString());
             reportEmail.BodyEncoding = UTF8Encoding.UTF8;
             reportEmail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
             reportEmail.IsBodyHtml = true;
@@ -48,13 +35,13 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
         public SmtpClient CreateSmtpClient()
         {
             SmtpClient client = new SmtpClient();
-            client.Port = Convert.ToInt32(SMTPPort);
-            client.Host = hostName;
-            client.EnableSsl = _config.GetValue<bool>("SMTPDetails:EnableSsl");
+            client.Port = Convert.ToInt32(_smtpSettings.Port);
+            client.Host = _smtpSettings.Host;
+            client.EnableSsl = _smtpSettings.EnableSsl;
             client.Timeout = 60000;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = _config.GetValue<bool>("SMTPDetails:UseDefaultCredentials");
-            client.Credentials = new System.Net.NetworkCredential(SMTPEmail.Trim(), SMTPEmailPassword.Trim());
+            client.UseDefaultCredentials = _smtpSettings.UseDefaultCredentials;
+            client.Credentials = new System.Net.NetworkCredential(_smtpSettings.Email.Trim(), _smtpSettings.Password.Trim());
             return client;
         }
         #endregion
@@ -65,7 +52,6 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
             LogWritter.WriteErrorLog($"SendMailToVendors - {JsonConvert.SerializeObject(sendMail)}");
             try
             {
-                SetValues();
                 string subject = "Vendor Onboarding";
                 string mailBody = "";
                 var qParams = new
@@ -80,7 +66,7 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
                 if (sendMail.ToEmail != null)
                 {
                     mailBody = readHtmlString("WelcomeVendor.html");
-                    mailBody = mailBody.Replace("{recepient}", sendMail.Username).Replace("{registerUrl}", siteURL + encodedJson);
+                    mailBody = mailBody.Replace("{recepient}", sendMail.Username).Replace("{registerUrl}", _smtpSettings.SiteURL + encodedJson);
                 }
                 else
                 {
@@ -100,7 +86,6 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
         {
             try
             {
-                SetValues();
                 string subject = "Vendor Onboarding";
                 string mailBody = "";
                 if (approvalMailInfo.ToEmail != null)
@@ -110,7 +95,7 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
                         .Replace("{formId}", approvalMailInfo.Form_Id.ToString())
                         .Replace("{email}", approvalMailInfo.Email)
                         .Replace("{mobile}", approvalMailInfo.Mobile_Number)
-                        .Replace("{url}", siteLink);
+                        .Replace("{url}", _smtpSettings.SiteLink);
                 }
                 else
                 {
@@ -130,7 +115,6 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
         {
             try
             {
-                SetValues();
                 string subject = "Vendor Onboarding";
                 string mailBody = "";
                 var qParams = new
@@ -149,7 +133,7 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
                     mailBody = readHtmlString("RejectionInfoToVendor.html");
                     mailBody = mailBody.Replace("{recepient}", rejectionMailInfo.Username)
                         .Replace("{reason}", rejectionMailInfo.Reason)
-                        .Replace("{url}", siteURL + encodedJson);
+                        .Replace("{url}", _smtpSettings.SiteURL + encodedJson);
                 }
                 else
                 {
@@ -169,7 +153,6 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
         {
             try
             {
-                SetValues();
                 string subject = "Vendor Onboarding";
                 string mailBody = "";
                 if (approvalInfo.ToEmail != null)

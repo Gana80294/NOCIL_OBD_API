@@ -13,18 +13,15 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Master
     public class MasterRepository : IMasterRepository
     {
         private VpContext _dbContext;
-        private IConfiguration _config;
 
-        public MasterRepository(VpContext vpContext, IConfiguration config)
+        public MasterRepository(VpContext vpContext)
         {
             this._dbContext = vpContext;
-            this._config = config;
         }
 
 
         public List<CompanyCode> GetCompanyCodes()
         {
-            var s = this._config.GetConnectionString("Default");
             return this._dbContext.Company_Codes.ToList();
         }
 

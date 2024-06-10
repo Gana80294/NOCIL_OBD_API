@@ -28,28 +28,28 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 {
     public class RegistrationRepository : Repository<Form>, IRegistrationRepository
     {
-        private VpContext _dbContext;
+        private readonly VpContext _dbContext;
 
-        private IDomesticAndImportRepository _domesticRepository;
-        private ITransportRepository _transportRepository;
-        private IServiceRepository _serviceRepository;
+        private readonly IDomesticAndImportRepository _domesticRepository;
+        private readonly ITransportRepository _transportRepository;
+        private readonly IServiceRepository _serviceRepository;
 
-        private EmailHelper _emailHelper;
-        private ModelValidator _validator;
+        private readonly EmailHelper _emailHelper;
+        private readonly ModelValidator _validator;
 
 
         public RegistrationRepository(VpContext context,
-            IConfiguration config,
             IDomesticAndImportRepository domesticRepository,
             ITransportRepository transportRepository,
-            IServiceRepository serviceRepository) : base(context)
+            IServiceRepository serviceRepository,
+            EmailHelper email) : base(context)
         {
             this._dbContext = context;
             this._domesticRepository = domesticRepository;
             this._transportRepository = transportRepository;
             this._serviceRepository = serviceRepository;
             this._validator = new ModelValidator();
-            this._emailHelper = new EmailHelper(config);
+            this._emailHelper = email;
         }
 
         public async Task<ResponseMessage> InitiateRegistration(FormDto formDto)

@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using NOCIL_VP.Domain.Core.Configurations;
 using NOCIL_VP.Domain.Core.Dtos.Auth;
 using NOCIL_VP.Domain.Core.Dtos.Response;
 using NOCIL_VP.Domain.Core.Entities;
@@ -21,15 +23,17 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Auth
 {
     public class AuthRepository : IAuthRepository
     {
-        private VpContext _dbContext;
-        private IConfiguration _config;
-        private OtpHelper _otpHelper;
+        private readonly VpContext _dbContext;
+        private readonly OtpHelper _otpHelper;
+        private readonly JwtSetting _jwtSetting;
+        private readonly AppSetting _appSetting;
 
-        public AuthRepository(VpContext context, IConfiguration configuration)
+        public AuthRepository(VpContext context, OtpHelper otpHelper, IConfiguration config)
         {
             this._dbContext = context;
-            this._config = configuration;
-            this._otpHelper = new OtpHelper(this._config);
+            this._otpHelper = otpHelper;
+            _jwtSetting = config.GetSection("JWTSecurity").Get<JwtSetting>();
+            _appSetting = config.GetSection("AppSettings").Get<AppSetting>();
         }
 
         // User Authentication method
@@ -80,10 +84,9 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Auth
         // Access token generation method
         private string GenerateToken(AuthenticationResponse authenticationResponse)
         {
-            IConfiguration JWTSecurityConfig = this._config.GetSection("JWTSecurity");
-            string securityKey = JWTSecurityConfig.GetValue<string>("securityKey");
-            string issuer = JWTSecurityConfig.GetValue<string>("issuer");
-            string audience = JWTSecurityConfig.GetValue<string>("audience");
+            string securityKey = _jwtSetting.securityKey;
+            string issuer = _jwtSetting.issuer;
+            string audience = _jwtSetting.audience;
 
             //symmetric security key
             var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey));
@@ -94,9 +97,12 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Auth
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, authenticationResponse.DisplayName),
-                new Claim(ClaimTypes.Role, authenticationResponse.Role),
-                new Claim("EmployeeId",authenticationResponse.Employee_Id)
+                new Claim(ClaimTypes.Role, authenticationResponse.Role)
             };
+            if (!string.IsNullOrWhiteSpace(authenticationResponse.Employee_Id) && authenticationResponse.Role != "Vendor")
+            {
+                claims.Add(new Claim("EmployeeId", authenticationResponse.Employee_Id));
+            }
 
             var token = new JwtSecurityToken(
                                 issuer: issuer,
@@ -118,7 +124,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Auth
             bool isOldPasswordCorrect = PasswordEncryptor.VerifyPassword(updatePassword.CurrentPassword, user.Password);
             if (isOldPasswordCorrect)
             {
-                string defaultPassword = _config["DefaultPassword"];
+                string defaultPassword = _appSetting.DefaultPassword;
 
                 if (updatePassword.NewPassword == defaultPassword)
                 {

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using NOCIL_VP.Domain.Core.Configurations;
 using NOCIL_VP.Domain.Core.Entities;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,12 +13,12 @@ namespace NOCIL_VP.API.Auth
     public class AuthMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IConfiguration _configuration;
+        private readonly JwtSetting _jwtSetting;
 
-        public AuthMiddleware(RequestDelegate next, IConfiguration configuration)
+        public AuthMiddleware(RequestDelegate next, IOptions<JwtSetting> setting)
         {
             _next = next;
-            _configuration = configuration;
+            _jwtSetting = setting.Value;
         }
 
         public async Task Invoke(HttpContext httpContext, VpContext context)
@@ -27,7 +29,8 @@ namespace NOCIL_VP.API.Auth
                 || endPoint.Contains("requestotpforforgotpassword")
                 || endPoint.Contains("forgotpassword")
                 || endPoint.Contains("requestotpforvendorlogin")
-                || endPoint.Contains("verifyotpforvendorlogin"))
+                || endPoint.Contains("verifyotpforvendorlogin")
+                || endPoint.Contains("getsingleformdata"))
             {
                 await _next(httpContext);
             }
@@ -36,9 +39,9 @@ namespace NOCIL_VP.API.Auth
                 try
                 {
                     string token = string.Empty;
-                    string issuer = _configuration["JWTSecurity:issuer"]; //Get issuer value from your configuration
-                    string audience = _configuration["JWTSecurity:audience"]; //Get audience value from your configuration
-                    SymmetricSecurityKey signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWTSecurity:securityKey"]));
+                    string issuer = _jwtSetting.issuer; //Get issuer value from your configuration
+                    string audience = _jwtSetting.audience; //Get audience value from your configuration
+                    SymmetricSecurityKey signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSetting.securityKey));
 
                     CustomAuthHandler authHandler = new CustomAuthHandler(context);
                     var header = httpContext.Request.Headers["Authorization"];

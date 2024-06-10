@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using NOCIL_VP.Domain.Core.Configurations;
 using NOCIL_VP.Domain.Core.Dtos.Master;
 using NOCIL_VP.Domain.Core.Entities;
 using NOCIL_VP.Domain.Core.Entities.Mappings;
@@ -15,13 +17,13 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Master
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
-        private VpContext _dbContext;
-        private IConfiguration _config;
+        private readonly VpContext _dbContext;
+        private readonly AppSetting _appSettings;
 
-        public UserRepository(VpContext vpContext, IConfiguration config) : base(vpContext, config)
+        public UserRepository(VpContext vpContext,IOptions<AppSetting> options) : base(vpContext)
         {
-            _config = config;
             _dbContext = vpContext;
+            _appSettings = options.Value;
         }
 
         public async Task<bool> AddUser(UserDto userDto)
@@ -29,7 +31,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Master
             User user = new User
             {
                 Employee_Id = userDto.Employee_Id,
-                Password = PasswordEncryptor.EncryptPassword(_config.GetValue<string>("DefaultPassword")),
+                Password = PasswordEncryptor.EncryptPassword(_appSettings.DefaultPassword),
                 Email = userDto.Email,
                 Mobile_No = userDto.Mobile_No,
                 First_Name = userDto.First_Name,

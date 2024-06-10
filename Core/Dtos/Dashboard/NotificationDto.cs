@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NOCIL_VP.Domain.Core.Dtos.Dashboard
+﻿namespace NOCIL_VP.Domain.Core.Dtos.Dashboard
 {
     public class ExpiryNotificationDto
     {

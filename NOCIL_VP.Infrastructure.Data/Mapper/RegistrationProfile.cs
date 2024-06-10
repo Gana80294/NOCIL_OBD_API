@@ -2,10 +2,12 @@
 using NOCIL_VP.Domain.Core.Dtos.Registration;
 using NOCIL_VP.Domain.Core.Dtos.Registration.CommonData;
 using NOCIL_VP.Domain.Core.Dtos.Registration.Domestic;
+using NOCIL_VP.Domain.Core.Dtos.Registration.Evaluation;
 using NOCIL_VP.Domain.Core.Dtos.Registration.Transport;
 using NOCIL_VP.Domain.Core.Entities.Registration.Attachments;
 using NOCIL_VP.Domain.Core.Entities.Registration.CommonData;
 using NOCIL_VP.Domain.Core.Entities.Registration.Domestic;
+using NOCIL_VP.Domain.Core.Entities.Registration.Evaluation;
 using NOCIL_VP.Domain.Core.Entities.Registration.Transport;
 using System;
 using System.Collections.Generic;
@@ -35,6 +37,7 @@ namespace NOCIL_VP.Infrastructure.Data.Mapper
             CreateMap<AnnualTurnOver_Dto, AnnualTurnOver>().ReverseMap();
             CreateMap<AttachmentDto, Attachment>().ReverseMap();
             CreateMap<NocilRelatedEmployeeDto, NocilRelatedEmployee>().ReverseMap();
+            CreateMap<VendorGradeDto, VendorGrade>().ReverseMap();
         }
     }
 }

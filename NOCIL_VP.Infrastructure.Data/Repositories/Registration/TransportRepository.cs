@@ -19,13 +19,13 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
         private ModelValidator _validator;
         private EmailHelper _emailHelper;
 
-        public TransportRepository(VpContext dbContext, IMapper mapper, IConfiguration config)
+        public TransportRepository(VpContext dbContext, IMapper mapper, EmailHelper email)
         {
             this._dbContext = dbContext;
             _mapper = mapper;
 
             _validator = new ModelValidator();
-            _emailHelper = new EmailHelper(config);
+            _emailHelper = email;
         }
 
 

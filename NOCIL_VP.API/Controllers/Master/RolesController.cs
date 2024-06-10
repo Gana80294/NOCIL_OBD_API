@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NOCIL_VP.Domain.Core.Entities.Master;
+using NOCIL_VP.Infrastructure.Data.Enums;
 using NOCIL_VP.Infrastructure.Interfaces.Repositories.Master;
 
 namespace NOCIL_VP.API.Controllers.Master
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "AdminPolicy")]
     public class RolesController : ControllerBase
     {
         private IRoleRepository _roleRepository;

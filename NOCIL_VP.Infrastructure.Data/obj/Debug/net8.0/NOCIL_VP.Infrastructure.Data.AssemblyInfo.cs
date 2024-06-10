@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NOCIL_VP.Infrastructure.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5d861e9836095ac4358b2af6056661c10fd4693")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+307b0604d3e1455cb074aae86d22f4865915074c")]
 [assembly: System.Reflection.AssemblyProductAttribute("NOCIL_VP.Infrastructure.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NOCIL_VP.Infrastructure.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

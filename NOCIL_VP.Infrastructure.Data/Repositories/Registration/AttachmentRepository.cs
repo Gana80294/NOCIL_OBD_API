@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using NOCIL_VP.Domain.Core.Configurations;
 using NOCIL_VP.Domain.Core.Dtos.Registration;
 using NOCIL_VP.Domain.Core.Dtos.Response;
 using NOCIL_VP.Domain.Core.Entities;
@@ -18,18 +20,13 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
     public class AttachmentRepository : Repository<Attachment>, IAttachmentRepository
     {
         private VpContext _dbContext;
-        private IConfiguration _config;
+        private AppSetting _appSettings;
         private IMapper _mapper;
 
-        private readonly string path;
-
-        public AttachmentRepository(VpContext dbContext, IConfiguration config, IMapper mapper) : base(dbContext, config)
+        public AttachmentRepository(VpContext dbContext, IOptions<AppSetting> config, IMapper mapper) : base(dbContext)
         {
             this._dbContext = dbContext;
-            this._config = config;
             this._mapper = mapper;
-
-            path = _config.GetValue<string>("AttachmentFolderPath");
         }
 
         public async Task<AttachmentDto> AddAttachment(Attachment attachment)
@@ -69,8 +66,8 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
         public async Task<string> SaveFileToLocalFolder(byte[] fileContent, string fileName)
         {
             CreateFolder();
-            await File.WriteAllBytesAsync(Path.Combine(path, fileName), fileContent);
-            return Path.Combine(path, fileName);
+            await File.WriteAllBytesAsync(Path.Combine(_appSettings.AttachmentFolderPath, fileName), fileContent);
+            return Path.Combine(_appSettings.AttachmentFolderPath, fileName);
         }
 
         public async Task<AttachmentResponse> GetAttachmentById(int attachmentId)
@@ -115,9 +112,9 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 
         public void CreateFolder()
         {
-            if (!Directory.Exists(path))
+            if (!Directory.Exists(_appSettings.AttachmentFolderPath))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(_appSettings.AttachmentFolderPath);
             }
         }
 

@@ -23,15 +23,13 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
         private IMapper _mapper;
         private ModelValidator _validator;
         private EmailHelper _emailHelper;
-        private IConfiguration _config;
 
-        public ServiceRepository(VpContext context, IMapper mapper, IConfiguration config)
+        public ServiceRepository(VpContext context, IMapper mapper, EmailHelper email)
         {
             _dbContext = context;
             _mapper = mapper;
-            _config = config;
             _validator = new ModelValidator();
-            _emailHelper = new EmailHelper(_config);
+            _emailHelper = email;
         }
 
         public async Task<bool> SaveServiceVendorDetails(ServiceForm serviceForm, int formId)
