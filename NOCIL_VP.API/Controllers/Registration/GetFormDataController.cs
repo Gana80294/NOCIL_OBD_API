@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NOCIL_VP.Domain.Core.Dtos.Master;
 using NOCIL_VP.Domain.Core.Dtos.Registration;
 using NOCIL_VP.Domain.Core.Dtos.Registration.CommonData;
 using NOCIL_VP.Domain.Core.Dtos.Registration.Domestic;
+using NOCIL_VP.Domain.Core.Dtos.Registration.Evaluation;
 using NOCIL_VP.Domain.Core.Dtos.Registration.Transport;
 using NOCIL_VP.Domain.Core.Entities;
 
@@ -72,7 +74,65 @@ namespace NOCIL_VP.API.Controllers.Registration
                         return BadRequest($"Invalid Table name - {tableName}");
                 }
             }
-            
+
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetVendorProfile(int formId)
+        {
+            var profile = await (from form in _dbContext.Forms
+                           where form.Form_Id == formId
+                           join grade in _dbContext.VendorGrades on form.Form_Id equals grade.FormId
+                           select new
+                           {
+                               form = form,
+                               grade = grade
+                           }).FirstOrDefaultAsync();
+            string since = "";
+            if (profile != null)
+            {
+                switch (profile.form.Vendor_Type_Id)
+                {
+                    case 1:
+                        since = this._dbContext.Vendor_Personal_Data.FirstOrDefault(x => x.Form_Id == formId).Plant_Installation_Year.ToString();
+                        break;
+                    case 2:
+                        since = this._dbContext.Vendor_Personal_Data.FirstOrDefault(x => x.Form_Id == formId).Plant_Installation_Year.ToString();
+                        break;
+                    case 3:
+                        since = this._dbContext.Transport_Vendor_Personal_Data.FirstOrDefault(x => x.Form_Id == formId).Date_of_Establishment.ToString();
+                        break;
+                    case 4:
+                        since = this._dbContext.Vendor_Personal_Data.FirstOrDefault(x => x.Form_Id == formId).Plant_Installation_Year.ToString();
+                        break;
+                    default:
+                        break;
+                }
+
+                var res = new VendorProfileDto()
+                {
+                    Vendor_Name = profile.form.Vendor_Name,
+                    Year = since,
+                    Grade = new VendorGradeDto()
+                    {
+                        FormId = profile.form.Form_Id,
+                        GradeId = profile.grade.GradeId,
+                        Grade = profile.grade.Grade,
+                        Last_Audited_By = profile.grade.Last_Audited_By,
+                        Last_Audit_Date = profile.grade.Last_Audit_Date,
+                        Location = profile.grade.Location,
+                        Vendor_Code = profile.grade.Vendor_Code
+                    }
+                };
+                return Ok(res);
+            }
+            else
+            {
+                return Ok(new VendorProfileDto());
+            }
+
+        }
+
     }
 }

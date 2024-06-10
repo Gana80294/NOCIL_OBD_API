@@ -57,7 +57,7 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
         public TaxPayerDetails FormAddressData(IrisApiSuccessResponse data)
         {
             TaxPayerDetails details = new TaxPayerDetails();
-            details.Name = data.name;
+            details.Name = data.tradename;
             DateTime regDate;
             if (DateTime.TryParseExact(data.registrationDate, "yyyy-mm-dd", null, System.Globalization.DateTimeStyles.None, out regDate))
             {

@@ -309,6 +309,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "NOCIL_VP.API.Controllers.Registration.GetFormDataController",
+    "Method": "GetVendorProfile",
+    "RelativePath": "api/GetFormData/GetVendorProfile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "formId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "NOCIL_VP.API.Controllers.Master.MasterController",
     "Method": "GetAddressTypes",
     "RelativePath": "api/Master/GetAddressTypes",
@@ -679,6 +695,54 @@
       {
         "Name": "userDto",
         "Type": "NOCIL_VP.Domain.Core.Dtos.Master.UserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NOCIL_VP.API.Controllers.Registration.Evaluation.VendorGradeController",
+    "Method": "AddVendorGrade",
+    "RelativePath": "api/VendorGrade/AddVendorGrade",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "grade",
+        "Type": "NOCIL_VP.Domain.Core.Dtos.Registration.Evaluation.VendorGradeDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NOCIL_VP.API.Controllers.Registration.Evaluation.VendorGradeController",
+    "Method": "GetVendorGradeById",
+    "RelativePath": "api/VendorGrade/GetVendorGradeById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "formId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NOCIL_VP.API.Controllers.Registration.Evaluation.VendorGradeController",
+    "Method": "UpdateVendorGrade",
+    "RelativePath": "api/VendorGrade/UpdateVendorGrade",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "grade",
+        "Type": "NOCIL_VP.Domain.Core.Dtos.Registration.Evaluation.VendorGradeDto",
         "IsRequired": true
       }
     ],

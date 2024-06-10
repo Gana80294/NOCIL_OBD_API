@@ -22,7 +22,6 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
         }
 
         #region Initialize Variables
-       
 
         public MailMessage CreateMailMessage(string toEmail, string subject, string sb)
         {
