@@ -59,7 +59,6 @@ namespace NOCIL_VP.API.Controllers.Registration
         }
 
         [HttpGet]
-        [Authorize]
         public IActionResult GetSingleFormData(int form_Id)
         {
             return Ok(_registrationRepository.GetSingleFormData(form_Id));

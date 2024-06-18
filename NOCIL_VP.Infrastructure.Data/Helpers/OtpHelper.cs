@@ -19,22 +19,9 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
     {
         private readonly OtpSetting _otpSettings;
 
-        //string otpRequestApi;
-        //string otpValidateApi;
-        //string customer_Key;
-        //string apiKey;
-        //string tokenKey;
-        //string cookies;
-
         public OtpHelper(IOptions<OtpSetting> config)
         {
             _otpSettings = config.Value;
-            //otpRequestApi = config.GetValue<string>("OtpDetails:OtpRequestApi");
-            //otpValidateApi = config.GetValue<string>("OtpDetails:OtpValidateApi");
-            //customer_Key = _config.GetValue<string>("OtpDetails:CustomerKey");
-            //apiKey = _config.GetValue<string>("OtpDetails:ApiKey");
-            //tokenKey = _config.GetValue<string>("OtpDetails:TokenKey");
-            //cookies = _config.GetValue<string>("OtpDetails:Cookie");
         }
 
 

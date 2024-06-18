@@ -10,7 +10,10 @@ namespace NOCIL_VP.Domain.Core.Entities.Master
     public class User
     {
         [Key]
+        public int Id { get; set; }
+        [Required, MaxLength(20)]
         public string Employee_Id { get; set; }
+        [Required, MaxLength(50)]
         public string First_Name { get; set; }
         public string Middle_Name { get; set; }
         public string Last_Name { get; set; }

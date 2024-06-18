@@ -18,6 +18,7 @@ namespace NOCIL_VP.Domain.Core.Entities.Registration.Domestic
         public int Status_of_Company_Id { get; set; }
         public float Annual_Prod_Capacity { get; set; } = 0;
         public bool RelationToNocil { get; set; }
+        [MaxLength(50)]
         public string Unit { get; set; }
 
 

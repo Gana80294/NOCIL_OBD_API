@@ -28,7 +28,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
             InitialData initialData = new InitialData();
             List<DashboardDto> result = new List<DashboardDto>();
 
-            var initiated = (from form in _dbContext.Forms
+            var initiated = await (from form in _dbContext.Forms
                              where form.Created_By == employeeId && form.Status_Id == (int)FormStatusEnum.Initiated
                              select new DashboardDto
                              {
@@ -39,9 +39,10 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
                                  Mobile = form.Vendor_Mobile,
                                  Name = form.Vendor_Name,
                                  CreatedOn = form.Created_On,
-                                 Status = form.FormStatus.Status
-                             }).ToList();
-            var pending = (from form in _dbContext.Forms
+                                 Status = form.FormStatus.Status,
+                                 PendingWith = "Vendor"
+                             }).ToListAsync();
+            var pending = await (from form in _dbContext.Forms
                            join task in _dbContext.Tasks on form.Form_Id equals task.Form_Id
                            where task.Owner_Id == employeeId && task.Status == "Active"
                            select new DashboardDto
@@ -53,9 +54,10 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
                                Mobile = form.Vendor_Mobile,
                                Name = form.Vendor_Name,
                                CreatedOn = form.Created_On,
-                               Status = form.FormStatus.Status
-                           }).Distinct().ToList();
-            var others = (from form in _dbContext.Forms
+                               Status = form.FormStatus.Status,
+                               PendingWith = task.Role.Role_Name
+                           }).Distinct().ToListAsync();
+            var others = await (from form in _dbContext.Forms
                           join task in _dbContext.Tasks on form.Form_Id equals task.Form_Id
                           where (task.Owner_Id == employeeId && task.Status != "Active") && (form.Status_Id == (int)FormStatusEnum.Rejected || form.Status_Id == (int)FormStatusEnum.Approved)
                           select new DashboardDto
@@ -67,8 +69,9 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
                               Mobile = form.Vendor_Mobile,
                               Name = form.Vendor_Name,
                               CreatedOn = form.Created_On,
-                              Status = form.FormStatus.Status
-                          }).Distinct().ToList();
+                              Status = form.FormStatus.Status,
+                              PendingWith = form.Status_Id == (int)FormStatusEnum.Rejected ? "Vendor" : ""
+                          }).Distinct().ToListAsync();
 
             initialData.Data = pending.ToList();
             initialData.Open = initiated.Count();
@@ -80,7 +83,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
 
         public async Task<List<DashboardDto>> GetInitiatedData(string employeeId)
         {
-            var result = (from form in _dbContext.Forms
+            var result = await (from form in _dbContext.Forms
                           where form.Status_Id == (int)FormStatusEnum.Initiated && form.Created_By == employeeId
                           select new DashboardDto
                           {
@@ -91,14 +94,15 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
                               Mobile = form.Vendor_Mobile,
                               Name = form.Vendor_Name,
                               CreatedOn = form.Created_On,
-                              Status = form.FormStatus.Status
-                          }).Distinct().ToList();
+                              Status = form.FormStatus.Status,
+                              PendingWith = "Vendor"
+                          }).Distinct().ToListAsync();
             return result;
         }
 
         public async Task<List<DashboardDto>> GetPendingData(string employeeId)
         {
-            var result = (from form in _dbContext.Forms
+            var result = await (from form in _dbContext.Forms
                           join task in _dbContext.Tasks on form.Form_Id equals task.Form_Id
                           where form.Status_Id == (int)FormStatusEnum.Pending && task.Owner_Id == employeeId && task.Status == "Active"
                           select new DashboardDto
@@ -110,14 +114,15 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
                               Mobile = form.Vendor_Mobile,
                               Name = form.Vendor_Name,
                               CreatedOn = form.Created_On,
-                              Status = form.FormStatus.Status
-                          }).Distinct().ToList();
+                              Status = form.FormStatus.Status,
+                              PendingWith = task.Role.Role_Name
+                          }).Distinct().ToListAsync();
             return result;
         }
 
         public async Task<List<DashboardDto>> GetApprovedData(string employeeId)
         {
-            var result = (from form in _dbContext.Forms
+            var result = await (from form in _dbContext.Forms
                           join task in _dbContext.Tasks on form.Form_Id equals task.Form_Id
                           where form.Status_Id == (int)FormStatusEnum.Approved && task.Owner_Id == employeeId
                           select new DashboardDto
@@ -129,14 +134,15 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
                               Mobile = form.Vendor_Mobile,
                               Name = form.Vendor_Name,
                               CreatedOn = form.Created_On,
-                              Status = form.FormStatus.Status
-                          }).Distinct().ToList();
+                              Status = form.FormStatus.Status,
+                              PendingWith = ""
+                          }).Distinct().ToListAsync();
             return result;
         }
 
         public async Task<List<DashboardDto>> GetRejectedData(string employeeId)
         {
-            var result = (from form in _dbContext.Forms
+            var result = await (from form in _dbContext.Forms
                           join task in _dbContext.Tasks on form.Form_Id equals task.Form_Id
                           where form.Status_Id == (int)FormStatusEnum.Rejected && task.Owner_Id == employeeId
                           select new DashboardDto
@@ -148,8 +154,9 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
                               Mobile = form.Vendor_Mobile,
                               Name = form.Vendor_Name,
                               CreatedOn = form.Created_On,
-                              Status = form.FormStatus.Status
-                          }).Distinct().ToList();
+                              Status = form.FormStatus.Status,
+                              PendingWith = "Vendor"
+                          }).Distinct().ToListAsync();
             return result;
         }
 
@@ -158,7 +165,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
             InitialData initialData = new InitialData();
             List<DashboardDto> result = new List<DashboardDto>();
 
-            var res = (from form in _dbContext.Forms
+            var res = await (from form in _dbContext.Forms
                        select new DashboardDto
                        {
                            FormId = form.Form_Id,
@@ -169,7 +176,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
                            Name = form.Vendor_Name,
                            CreatedOn = form.Created_On,
                            Status = form.FormStatus.Status
-                       }).ToList();
+                       }).ToListAsync();
 
             initialData.Data = res;
             initialData.Open = res.Count(x=>x.Status == FormStatusEnum.Initiated.ToString());
@@ -183,7 +190,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
     
         public async Task<List<DashboardDto>> GetAllInitiatedData()
         {
-            var result = (from form in _dbContext.Forms
+            var result = await (from form in _dbContext.Forms
                              where form.Status_Id == (int)FormStatusEnum.Initiated
                              select new DashboardDto
                              {
@@ -194,15 +201,18 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
                                  Mobile = form.Vendor_Mobile,
                                  Name = form.Vendor_Name,
                                  CreatedOn = form.Created_On,
-                                 Status = form.FormStatus.Status
-                             }).ToList();
+                                 Status = form.FormStatus.Status,
+                                 PendingWith = "Vendor"
+                             }).ToListAsync();
             return result;
         }
 
         public async Task<List<DashboardDto>> GetAllPendingData()
         {
-            var result = (from form in _dbContext.Forms
+            var result = await (from form in _dbContext.Forms
                           where form.Status_Id == (int)FormStatusEnum.Pending
+                          join task in _dbContext.Tasks on form.Form_Id equals task.Form_Id
+                          where task.Status == "Active"
                           select new DashboardDto
                           {
                               FormId = form.Form_Id,
@@ -212,14 +222,15 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
                               Mobile = form.Vendor_Mobile,
                               Name = form.Vendor_Name,
                               CreatedOn = form.Created_On,
-                              Status = form.FormStatus.Status
-                          }).ToList();
+                              Status = form.FormStatus.Status,
+                              PendingWith = task.Role.Role_Name
+                          }).ToListAsync();
             return result;
         }
 
         public async Task<List<DashboardDto>> GetAllApprovedData()
         {
-            var result = (from form in _dbContext.Forms
+            var result = await (from form in _dbContext.Forms
                           where form.Status_Id == (int)FormStatusEnum.Approved
                           select new DashboardDto
                           {
@@ -230,14 +241,15 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
                               Mobile = form.Vendor_Mobile,
                               Name = form.Vendor_Name,
                               CreatedOn = form.Created_On,
-                              Status = form.FormStatus.Status
-                          }).ToList();
+                              Status = form.FormStatus.Status,
+                              PendingWith = ""
+                          }).ToListAsync();
             return result;
         }
 
         public async Task<List<DashboardDto>> GetAllRejectedData()
         {
-            var result = (from form in _dbContext.Forms
+            var result = await (from form in _dbContext.Forms
                           where form.Status_Id == (int)FormStatusEnum.Rejected
                           select new DashboardDto
                           {
@@ -248,14 +260,15 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
                               Mobile = form.Vendor_Mobile,
                               Name = form.Vendor_Name,
                               CreatedOn = form.Created_On,
-                              Status = form.FormStatus.Status
-                          }).ToList();
+                              Status = form.FormStatus.Status,
+                              PendingWith = "Vendor"
+                          }).ToListAsync();
             return result;
         }
 
         public async Task<List<DashboardDto>> GetAllSAPData()
         {
-            var result = (from form in _dbContext.Forms
+            var result = await (from form in _dbContext.Forms
                           where form.Status_Id == (int)FormStatusEnum.SAP
                           select new DashboardDto
                           {
@@ -266,8 +279,9 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
                               Mobile = form.Vendor_Mobile,
                               Name = form.Vendor_Name,
                               CreatedOn = form.Created_On,
-                              Status = form.FormStatus.Status
-                          }).ToList();
+                              Status = form.FormStatus.Status,
+                              PendingWith = "SAP"
+                          }).ToListAsync();
             return result;
         }
 

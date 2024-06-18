@@ -19,6 +19,7 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration.Transport
         public int Tanker_Type_Id { get; set; }
         [Required]
         public float Capacity_of_Tanker { get; set; }
-
+        [MaxLength(50)]
+        public string Unit { get; set; }
     }
 }

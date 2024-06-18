@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.SqlServer.Server;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using NOCIL_VP.Domain.Core.Dtos;
 using NOCIL_VP.Domain.Core.Dtos.Registration;
 using NOCIL_VP.Domain.Core.Dtos.Response;
@@ -13,14 +9,6 @@ using NOCIL_VP.Domain.Core.Entities.Registration;
 using NOCIL_VP.Infrastructure.Data.Enums;
 using NOCIL_VP.Infrastructure.Data.Helpers;
 using NOCIL_VP.Infrastructure.Interfaces.Repositories.Registration;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Linq;
-using System.Linq.Expressions;
-using NOCIL_VP.Domain.Core.Entities.Registration.CommonData;
-using System.ComponentModel.DataAnnotations.Schema;
-using NOCIL_VP.Domain.Core.Entities.Registration.Transport;
 using NOCIL_VP.Domain.Core.Dtos.Dashboard;
 using NOCIL_VP.Domain.Core.Dtos.Registration.Reason;
 
@@ -123,30 +111,41 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 
             switch (vpId)
             {
-                case 1:
-                    DomesticAndImportForm domesticForm = JsonConvert.DeserializeObject<DomesticAndImportForm>(formData.FormData.ToString());
-                    errors = this._validator.ValidateModel(domesticForm);
-                    if (errors.Count == 0) { submitted = await _domesticRepository.SaveDomesticAndImportVendorDetails(domesticForm, formData.Form_Id); }
+                case (int)VendorTypeEnum.DomesticRM:
+                    DomesticAndImportForm domesticRmForm = JsonConvert.DeserializeObject<DomesticAndImportForm>(formData.FormData.ToString());
+                    errors = this._validator.ValidateModel(domesticRmForm);
+                    if (errors.Count == 0) { submitted = await _domesticRepository.SaveDomesticAndImportVendorDetails(domesticRmForm, formData.Form_Id); }
                     else { throw new ArgumentException(string.Join(", ", errors)); }
                     break;
-                case 2:
+
+                case (int)VendorTypeEnum.DomesticEngg:
+                    DomesticAndImportForm domesticEnggForm = JsonConvert.DeserializeObject<DomesticAndImportForm>(formData.FormData.ToString());
+                    errors = this._validator.ValidateModel(domesticEnggForm);
+                    if (errors.Count == 0) { submitted = await _domesticRepository.SaveDomesticAndImportVendorDetails(domesticEnggForm, formData.Form_Id); }
+                    else { throw new ArgumentException(string.Join(", ", errors)); }
+                    break;
+
+                case (int)VendorTypeEnum.Service:
                     ServiceForm serviceForm = JsonConvert.DeserializeObject<ServiceForm>(formData.FormData.ToString());
                     errors = this._validator.ValidateModel(serviceForm);
                     if (errors.Count == 0) { submitted = await _serviceRepository.SaveServiceVendorDetails(serviceForm, formData.Form_Id); }
                     else { throw new ArgumentException(string.Join(", ", errors)); }
                     break;
-                case 3:
+
+                case (int)VendorTypeEnum.Transport:
                     TransportForm transportForm = JsonConvert.DeserializeObject<TransportForm>(formData.FormData.ToString());
                     errors = this._validator.ValidateModel(transportForm);
                     if (errors.Count == 0) { submitted = await _transportRepository.SaveTransportVendorDetails(transportForm, formData.Form_Id); }
                     else { throw new ArgumentException(string.Join(", ", errors)); }
                     break;
-                case 4:
+
+                case (int)VendorTypeEnum.Import:
                     DomesticAndImportForm importForm = JsonConvert.DeserializeObject<DomesticAndImportForm>(formData.FormData.ToString());
                     errors = this._validator.ValidateModel(importForm);
                     if (errors.Count == 0) { submitted = await _domesticRepository.SaveDomesticAndImportVendorDetails(importForm, formData.Form_Id); }
                     else { throw new ArgumentException(string.Join(", ", errors)); }
                     break;
+
                 default:
                     break;
             }
@@ -192,7 +191,8 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                                 Owner_Id = approvalDto.RmEmployeeId,
                                 Level = oldTask.Level + 1,
                                 StartDate = DateTime.Now,
-                                Status = "Active"
+                                Status = "Active",
+                                Role_Id = approvalDto.RmRoleId
                             };
                             TransactionHistory history = new TransactionHistory
                             {

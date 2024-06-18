@@ -16,6 +16,7 @@ namespace NOCIL_VP.Domain.Core.Dtos.Dashboard
         public string Email { get; set; }
         public DateTime CreatedOn { get; set; }
         public string Status { get; set; }
+        public string PendingWith { get; set; }
     }
 
     public class InitialData

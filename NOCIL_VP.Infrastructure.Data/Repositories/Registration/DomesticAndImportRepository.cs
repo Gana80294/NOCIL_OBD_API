@@ -56,8 +56,9 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                     this._dbContext.Bank_Details.Add(this._mapper.Map<Bank_Detail>(domesticAndImportForm.BankDetail));
 
                     var form = this._dbContext.Forms.Where(f => f.Form_Id == domesticAndImportForm.VendorPersonalData.Form_Id).FirstOrDefault();
+                    var roleId = this._dbContext.User_Role_Mappings.FirstOrDefault(x => x.Employee_Id == form.Created_By).Role_Id;
                     form.Status_Id = (int)FormStatusEnum.Pending;
-                    var workFlow = await this.UpdateWorkflow(formId, form.Created_By);
+                    var workFlow = await this.UpdateWorkflow(formId, form.Created_By, roleId);
 
 
 
@@ -123,7 +124,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 
                     //var form = this._dbContext.Forms.Where(f => f.Form_Id == domesticForm.DomesticVendorPersonalData.Form_Id).FirstOrDefault();
                     var oldTask = this._dbContext.Tasks.Where(f => f.Form_Id == formId && f.Status == "Rejected").FirstOrDefault();
-                    var workFlow = await this.UpdateWorkflow(formId, oldTask.Owner_Id, oldTask.Level);
+                    var workFlow = await this.UpdateWorkflow(formId, oldTask.Owner_Id, oldTask.Role_Id, oldTask.Level);
                     var form = _dbContext.Forms.FirstOrDefault(x => x.Form_Id == formId);
                     form.Status_Id = (int)FormStatusEnum.Pending;
                     if (workFlow)
@@ -165,7 +166,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
             }
         }
 
-        private async Task<bool> UpdateWorkflow(int formId, string Employee_Id, int level = 1)
+        private async Task<bool> UpdateWorkflow(int formId, string Employee_Id, int? roleId, int level = 1)
         {
 
             Tasks task = new Tasks
@@ -176,6 +177,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                 StartDate = DateTime.Now,
                 Level = level,
                 Owner_Id = Employee_Id,
+                Role_Id = roleId
             };
             await _dbContext.AddAsync(task);
             return true;

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NOCIL_VP.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+307b0604d3e1455cb074aae86d22f4865915074c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fde08a7a90c7706f0918768eb13d62a36301ccd1")]
 [assembly: System.Reflection.AssemblyProductAttribute("NOCIL_VP.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NOCIL_VP.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

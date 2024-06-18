@@ -68,7 +68,6 @@ namespace NOCIL_VP.Domain.Core.Entities
 
         // Approval tables
         public DbSet<WorkFlow> WorkFlows { get; set; }
-        public DbSet<FormProcess> Processes { get; set; }
         public DbSet<Tasks> Tasks { get; set; }
 
         // Transaction histories
@@ -79,6 +78,22 @@ namespace NOCIL_VP.Domain.Core.Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User_Role_Mapping>().HasKey(t => new { t.Employee_Id, t.Role_Id });
+            modelBuilder.Entity<User>(u =>
+            {
+                u.HasIndex(e => e.Employee_Id).IsUnique();
+            });
+
+            modelBuilder.Entity<Tasks>()
+                .HasOne(u => u.User)
+                .WithMany()
+                .HasForeignKey(t => t.Owner_Id)
+                .HasPrincipalKey(u => u.Employee_Id);
+
+            modelBuilder.Entity<ForgotPasswordOtpTransaction>()
+                .HasOne(u => u.User)
+                .WithMany()
+                .HasForeignKey(f => f.Employee_Id)
+                .HasPrincipalKey(u => u.Employee_Id);
 
             // Query Filters
             modelBuilder.Entity<AddressType>().HasQueryFilter(x => !x.Is_Deleted);
