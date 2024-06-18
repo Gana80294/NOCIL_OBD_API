@@ -22,35 +22,6 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Approval.FormProcess", b =>
-                {
-                    b.Property<int>("Process_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Process_Id"));
-
-                    b.Property<DateTime?>("Completed_On")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Created_By")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("Created_On")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Form_Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("Process_Id");
-
-                    b.HasIndex("Created_By");
-
-                    b.HasIndex("Form_Id");
-
-                    b.ToTable("Processes");
-                });
-
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Approval.Tasks", b =>
                 {
                     b.Property<long>("Task_Id")
@@ -72,7 +43,10 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Owner_Id")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int?>("Role_Id")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -83,6 +57,10 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.HasKey("Task_Id");
 
                     b.HasIndex("Form_Id");
+
+                    b.HasIndex("Owner_Id");
+
+                    b.HasIndex("Role_Id");
 
                     b.ToTable("Tasks");
                 });
@@ -125,7 +103,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Employee_Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("Requested_On")
                         .HasColumnType("datetime2");
@@ -418,15 +396,25 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.User", b =>
                 {
-                    b.Property<string>("Employee_Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Employee_Id")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("First_Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("Is_Active")
                         .HasColumnType("bit");
@@ -463,7 +451,10 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.Property<string>("Reporting_Manager_EmpId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Employee_Id");
+                    b.HasKey("Id");
+
+                    b.HasIndex("Employee_Id")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -910,7 +901,8 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Unit")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -1048,6 +1040,10 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.Property<int>("Tanker_Type_Id")
                         .HasColumnType("int");
 
+                    b.Property<string>("Unit")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Form_Id");
@@ -1090,23 +1086,6 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.ToTable("Transport_Vendor_Personal_Data");
                 });
 
-            modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Approval.FormProcess", b =>
-                {
-                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.User", "Users")
-                        .WithMany()
-                        .HasForeignKey("Created_By");
-
-                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Registration.Form", "Forms")
-                        .WithMany()
-                        .HasForeignKey("Form_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Forms");
-
-                    b.Navigation("Users");
-                });
-
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Approval.Tasks", b =>
                 {
                     b.HasOne("NOCIL_VP.Domain.Core.Entities.Registration.Form", "Forms")
@@ -1115,7 +1094,20 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.User", "User")
+                        .WithMany()
+                        .HasForeignKey("Owner_Id")
+                        .HasPrincipalKey("Employee_Id");
+
+                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("Role_Id");
+
                     b.Navigation("Forms");
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Approval.WorkFlow", b =>
@@ -1141,7 +1133,8 @@ namespace NOCIL_VP.Domain.Core.Migrations
                 {
                     b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.User", "User")
                         .WithMany()
-                        .HasForeignKey("Employee_Id");
+                        .HasForeignKey("Employee_Id")
+                        .HasPrincipalKey("Employee_Id");
 
                     b.Navigation("User");
                 });

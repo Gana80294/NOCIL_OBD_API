@@ -17,6 +17,8 @@ namespace NOCIL_VP.Domain.Core.Entities.Registration.Transport
         public int Form_Id { get; set; }
         public int Tanker_Type_Id { get; set; }
         public float Capacity_of_Tanker { get; set; }
+        [MaxLength(50)]
+        public string Unit { get; set; }
 
         [ForeignKey("Form_Id")]
         public virtual Form Forms { get; set; } = null;

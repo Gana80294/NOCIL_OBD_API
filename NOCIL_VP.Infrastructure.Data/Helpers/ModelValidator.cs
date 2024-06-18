@@ -1,15 +1,5 @@
-﻿using AutoMapper.Internal;
-using Microsoft.Extensions.Options;
-using Microsoft.SqlServer.Server;
-using Newtonsoft.Json;
-using NOCIL_VP.Domain.Core.Dtos.Registration;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+
 
 namespace NOCIL_VP.Infrastructure.Data.Helpers
 {

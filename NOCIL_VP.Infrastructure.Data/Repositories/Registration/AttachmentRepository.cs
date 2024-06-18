@@ -27,6 +27,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
         {
             this._dbContext = dbContext;
             this._mapper = mapper;
+            this._appSettings = config.Value;
         }
 
         public async Task<AttachmentDto> AddAttachment(Attachment attachment)
