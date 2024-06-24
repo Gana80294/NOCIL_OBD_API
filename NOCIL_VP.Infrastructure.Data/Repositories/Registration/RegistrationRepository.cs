@@ -4,7 +4,6 @@ using NOCIL_VP.Domain.Core.Dtos.Registration;
 using NOCIL_VP.Domain.Core.Dtos.Response;
 using NOCIL_VP.Domain.Core.Entities;
 using NOCIL_VP.Domain.Core.Entities.Approval;
-using NOCIL_VP.Domain.Core.Entities.Logs;
 using NOCIL_VP.Domain.Core.Entities.Registration;
 using NOCIL_VP.Infrastructure.Data.Enums;
 using NOCIL_VP.Infrastructure.Data.Helpers;
@@ -12,8 +11,8 @@ using NOCIL_VP.Infrastructure.Interfaces.Repositories.Registration;
 using NOCIL_VP.Domain.Core.Dtos.Dashboard;
 using NOCIL_VP.Domain.Core.Dtos.Registration.Reason;
 using NOCIL_VP.Domain.Core.Entities.Registration.CommonData;
-using NOCIL_VP.Domain.Core.Entities.Master;
 using AutoMapper;
+using NOCIL_VP.Domain.Core.Entities.Logs;
 
 namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 {
