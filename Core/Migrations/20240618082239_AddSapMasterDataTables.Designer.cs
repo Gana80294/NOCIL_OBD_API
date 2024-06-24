@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NOCIL_VP.Domain.Core.Entities;
 
@@ -11,9 +12,11 @@ using NOCIL_VP.Domain.Core.Entities;
 namespace NOCIL_VP.Domain.Core.Migrations
 {
     [DbContext(typeof(VpContext))]
-    partial class VpContextModelSnapshot : ModelSnapshot
+    [Migration("20240618082239_AddSapMasterDataTables")]
+    partial class AddSapMasterDataTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -736,63 +739,6 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.ToTable("Attachments");
                 });
 
-            modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.AdditionalFields", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Form_Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("GrBased")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Incoterms_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Industry_Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Order_Currency")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Reconciliation_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Schema_Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Search_Term")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SrvBased")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Form_Id");
-
-                    b.HasIndex("Incoterms_Id");
-
-                    b.HasIndex("Industry_Id");
-
-                    b.HasIndex("Reconciliation_Id");
-
-                    b.HasIndex("Schema_Id");
-
-                    b.ToTable("AdditionalFields");
-                });
-
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.Address", b =>
                 {
                     b.Property<int>("Address_Id")
@@ -801,19 +747,11 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Address_Id"));
 
+                    b.Property<string>("AddressData")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Address_Type_Id")
                         .HasColumnType("int");
-
-                    b.Property<string>("City")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.Property<string>("Country_Code")
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("District")
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("Fax")
                         .HasMaxLength(20)
@@ -821,33 +759,6 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.Property<int>("Form_Id")
                         .HasColumnType("int");
-
-                    b.Property<string>("House_No")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.Property<string>("Postal_Code")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<int>("Region_Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Street_2")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.Property<string>("Street_3")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.Property<string>("Street_4")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("Tel")
                         .HasMaxLength(20)
@@ -861,11 +772,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Address_Type_Id");
 
-                    b.HasIndex("Country_Code");
-
                     b.HasIndex("Form_Id");
-
-                    b.HasIndex("Region_Id");
 
                     b.ToTable("Addresses");
                 });
@@ -1244,25 +1151,15 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.Property<int>("Form_Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("GSTVenClass_Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Organization_Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Plant_Installation_Year")
                         .HasColumnType("int");
 
-                    b.Property<int>("Title_Id")
-                        .HasColumnType("int");
-
                     b.HasKey("Personal_Info_Id");
 
                     b.HasIndex("Form_Id");
-
-                    b.HasIndex("GSTVenClass_Id");
-
-                    b.HasIndex("Title_Id");
 
                     b.ToTable("Vendor_Personal_Data");
                 });
@@ -1395,9 +1292,6 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.Property<int>("Form_Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("GSTVenClass_Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name_of_Transporter")
                         .HasColumnType("nvarchar(max)");
 
@@ -1410,16 +1304,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.Property<int>("No_of_Own_Vehicles")
                         .HasColumnType("int");
 
-                    b.Property<int>("Title_Id")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Form_Id");
-
-                    b.HasIndex("GSTVenClass_Id");
-
-                    b.HasIndex("Title_Id");
 
                     b.ToTable("Transport_Vendor_Personal_Data");
                 });
@@ -1520,49 +1407,6 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.Navigation("Forms");
                 });
 
-            modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.AdditionalFields", b =>
-                {
-                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Registration.Form", "Forms")
-                        .WithMany()
-                        .HasForeignKey("Form_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.Incoterms", "Incoterms")
-                        .WithMany()
-                        .HasForeignKey("Incoterms_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.Industry", "Industry")
-                        .WithMany()
-                        .HasForeignKey("Industry_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.ReconciliationAccount", "ReconciliationAccount")
-                        .WithMany()
-                        .HasForeignKey("Reconciliation_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.SchemaGroup", "SchemaGroup")
-                        .WithMany()
-                        .HasForeignKey("Schema_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Forms");
-
-                    b.Navigation("Incoterms");
-
-                    b.Navigation("Industry");
-
-                    b.Navigation("ReconciliationAccount");
-
-                    b.Navigation("SchemaGroup");
-                });
-
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.Address", b =>
                 {
                     b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.AddressType", "AddressTypes")
@@ -1571,30 +1415,15 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("Country_Code")
-                        .HasPrincipalKey("Code");
-
                     b.HasOne("NOCIL_VP.Domain.Core.Entities.Registration.Form", "Forms")
                         .WithMany()
                         .HasForeignKey("Form_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.Region", "Region")
-                        .WithMany()
-                        .HasForeignKey("Region_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("AddressTypes");
 
-                    b.Navigation("Country");
-
                     b.Navigation("Forms");
-
-                    b.Navigation("Region");
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.AnnualTurnOver", b =>
@@ -1750,23 +1579,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.GSTVenClass", "GSTVenClass")
-                        .WithMany()
-                        .HasForeignKey("GSTVenClass_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.Title", "Title")
-                        .WithMany()
-                        .HasForeignKey("Title_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Forms");
-
-                    b.Navigation("GSTVenClass");
-
-                    b.Navigation("Title");
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.Evaluation.VendorGrade", b =>
@@ -1840,23 +1653,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.GSTVenClass", "GSTVenClass")
-                        .WithMany()
-                        .HasForeignKey("GSTVenClass_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.Title", "Title")
-                        .WithMany()
-                        .HasForeignKey("Title_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Forms");
-
-                    b.Navigation("GSTVenClass");
-
-                    b.Navigation("Title");
                 });
 #pragma warning restore 612, 618
         }

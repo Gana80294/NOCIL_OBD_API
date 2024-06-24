@@ -18,5 +18,15 @@ namespace NOCIL_VP.Infrastructure.Interfaces.Repositories.Master
         public List<CompanyStatus> GetCompanyStatuses();
         public List<AddressType> GetAddressTypes();
         public List<ContactType> GetContactTypes();
+
+        public List<Title> GetTitle();
+        public List<ReconciliationAccount> GetReconciliationAccounts();
+        public List<TaxBase> GetTaxBases();
+        public List<Industry> GetIndustry();
+        public List<Incoterms> GetIncoterms();
+        public List<SchemaGroup> GetSchemaGroups();
+        public List<GSTVenClass> GetGSTVenClass();
+        public List<Country> GetCountry();
+        public List<Region> GetRegionByCompanyCode();
     }
 }

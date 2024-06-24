@@ -38,6 +38,7 @@ namespace NOCIL_VP.Infrastructure.Data.Mapper
             CreateMap<AttachmentDto, Attachment>().ReverseMap();
             CreateMap<NocilRelatedEmployeeDto, NocilRelatedEmployee>().ReverseMap();
             CreateMap<VendorGradeDto, VendorGrade>().ReverseMap();
+            CreateMap<AdditionalFields_Dto, AdditionalFields>().ReverseMap();
         }
     }
 }

@@ -14,9 +14,15 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration.Transport
         public int Id { get; set; }
         [Required]
         public int Form_Id { get; set; }
+
+        public int Title_Id { get; set; }
+
         [Required]
         public string Name_of_Transporter { get; set; }
         public DateTime Date_of_Establishment { get; set; }
+
+        public int GSTVenClass_Id { get; set; }
+
         [Required]
         public int No_of_Own_Vehicles { get; set; }
         [Required]

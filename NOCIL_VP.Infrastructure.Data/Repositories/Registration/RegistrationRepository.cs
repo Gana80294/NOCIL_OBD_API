@@ -11,6 +11,9 @@ using NOCIL_VP.Infrastructure.Data.Helpers;
 using NOCIL_VP.Infrastructure.Interfaces.Repositories.Registration;
 using NOCIL_VP.Domain.Core.Dtos.Dashboard;
 using NOCIL_VP.Domain.Core.Dtos.Registration.Reason;
+using NOCIL_VP.Domain.Core.Entities.Registration.CommonData;
+using NOCIL_VP.Domain.Core.Entities.Master;
+using AutoMapper;
 
 namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 {
@@ -21,15 +24,18 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
         private readonly IDomesticAndImportRepository _domesticRepository;
         private readonly ITransportRepository _transportRepository;
         private readonly IServiceRepository _serviceRepository;
+        private readonly IMapper _mapper;
 
         private readonly EmailHelper _emailHelper;
         private readonly ModelValidator _validator;
+
 
 
         public RegistrationRepository(VpContext context,
             IDomesticAndImportRepository domesticRepository,
             ITransportRepository transportRepository,
             IServiceRepository serviceRepository,
+            IMapper mapper,
             EmailHelper email) : base(context)
         {
             this._dbContext = context;
@@ -38,6 +44,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
             this._serviceRepository = serviceRepository;
             this._validator = new ModelValidator();
             this._emailHelper = email;
+            this._mapper = mapper;
         }
 
         public async Task<ResponseMessage> InitiateRegistration(FormDto formDto)
@@ -179,8 +186,21 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                     oldTask.Status = "Completed";
                     oldTask.EndDate = DateTime.Now;
 
+
                     if (oldTask.Level < maxLevl)
                     {
+
+                        if (oldTask.Level == 1)
+                        {
+                            if (approvalDto.AdditionalFields == null)
+                            {
+                                throw new Exception("Additional Fields are required ");
+                            }
+
+                            AdditionalFields additionalFields = this._mapper.Map<AdditionalFields>(approvalDto.AdditionalFields);
+                            _dbContext.AdditionalFields.Add(additionalFields);
+                        }
+
                         if (workFlow.FirstOrDefault(x => x.Level == oldTask.Level + 1).Role_Id == approvalDto.RmRoleId)
                         {
                             // Create Database entries
@@ -257,7 +277,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                         {
                             Task_Id = 0,
                             Form_Id = approvalDto.Form_Id,
-                            Owner_Id = "",
+                            Owner_Id = null,
                             Level = oldTask.Level + 1,
                             StartDate = DateTime.Now,
                             Status = "SAP"
@@ -308,6 +328,59 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                     throw ex;
                 }
             }
+        }
+
+        public SAPVendorCreationPayload SAPCreationPayload(int Form_Id)
+        {
+            var sapPayload = (from form in _dbContext.Forms
+                              where form.Form_Id == Form_Id
+                              join formId in _dbContext.Vendor_Personal_Data on form.Form_Id equals formId.Form_Id
+                              join gstVenCLass in _dbContext.GSTVenClass on formId.GSTVenClass_Id equals gstVenCLass.Id
+                              join title in _dbContext.Titles on formId.Title_Id equals title.Id
+                              join organization in _dbContext.Vendor_Personal_Data on title.Id equals organization.Title_Id
+                              join searchTerm in _dbContext.AdditionalFields on form.Form_Id equals searchTerm.Form_Id
+                              join address in _dbContext.Addresses on form.Form_Id equals address.Form_Id
+                              join contact in _dbContext.Contacts on form.Form_Id equals contact.Form_Id
+                              join panNumber in _dbContext.Commercial_Profile on form.Form_Id equals panNumber.Form_Id
+                              join industry in _dbContext.Industry on searchTerm.Industry_Id equals industry.Id
+                              join incoterms in _dbContext.Incoterms on searchTerm.Incoterms_Id equals incoterms.Id
+                              join reconciliation in _dbContext.ReconciliationAccounts on searchTerm.Reconciliation_Id equals reconciliation.Id
+                              join schema in _dbContext.SchemaGroups on searchTerm.Schema_Id equals schema.Id
+                              select new SAPVendorCreationPayload
+                              {
+                                  Company_code = form.CompanyCode.Company_Code,
+                                  Title = title.Title_Name,
+                                  Name = organization.Organization_Name,
+                                  Search_term = searchTerm.Search_Term,
+                                  Street_House_number = address.House_No,
+                                  Street_2 = address.Street_2,
+                                  Street_3 = address.Street_3,
+                                  Street_4 = address.Street_4,
+                                  District = address.District,
+                                  Postal_Code = address.Postal_Code,
+                                  City = address.City,
+                                  Country = address.Country.Code,
+                                  Region = address.Region.Code,
+                                  Language = searchTerm.Language,
+                                  Telephone = address.Tel,
+                                  Fax = address.Fax,
+                                  Mobile_Phone = contact.Mobile_Number,
+                                  E_Mail = contact.Email_Id,
+                                  Tax_Number_3 = panNumber.GSTIN,
+                                  Industry = industry.Code,
+                                  Pan_Number = panNumber.PAN,
+                                  GST_Ven_Class = gstVenCLass.Code,
+                                  Recon_account = reconciliation.Code,
+                                  Order_currency = searchTerm.Order_Currency,
+                                  Incoterms = incoterms.Code,
+                                  Incoterms_Text = incoterms.Description,
+                                  Schema_Group_Vendor = schema.Code,
+                                  GR_based_Inv_Verif = searchTerm.GrBased,
+                                  SRV_based_Inv_Verif = searchTerm.SrvBased
+
+                              }).FirstOrDefault();
+
+            return sapPayload; 
         }
 
         public async Task<ResponseMessage> RejectForm(RejectDto rejectDto)

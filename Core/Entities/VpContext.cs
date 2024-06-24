@@ -49,6 +49,8 @@ namespace NOCIL_VP.Domain.Core.Entities
         public DbSet<NocilRelatedEmployee> NocilRelatedEmployees { get; set; }
         public DbSet<VendorGrade> VendorGrades { get; set; }
 
+        public DbSet<AdditionalFields> AdditionalFields { get; set; }
+
 
         // Master tables
         public DbSet<CompanyCode> Company_Codes { get; set; }
@@ -61,6 +63,19 @@ namespace NOCIL_VP.Domain.Core.Entities
         public DbSet<ContactType> Type_of_Contacts { get; set; }
         public DbSet<CompanyStatus> Company_Statuses { get; set; }
         public DbSet<OrganizationType> Organization_Types { get; set; }
+
+        public DbSet<Title> Titles { get; set; }
+        public DbSet<ReconciliationAccount> ReconciliationAccounts { get; set; }
+        public DbSet<TaxBase> TaxBases { get; set; }
+        public DbSet<Industry> Industry { get; set; }
+        public DbSet<Incoterms> Incoterms { get; set; }
+        public DbSet<SchemaGroup> SchemaGroups { get; set; }
+        public DbSet<GSTVenClass> GSTVenClass { get; set; }
+        public DbSet<Country> Country { get; set; }
+        public DbSet<Region> Region { get; set; }
+
+
+
 
 
         // Mapping Tables
@@ -95,6 +110,15 @@ namespace NOCIL_VP.Domain.Core.Entities
                 .HasForeignKey(f => f.Employee_Id)
                 .HasPrincipalKey(u => u.Employee_Id);
 
+            modelBuilder.Entity<Country>(c =>
+            {
+                c.HasIndex(c => c.Code).IsUnique();
+            });
+
+            modelBuilder.Entity<Region>().HasOne(c => c.Country).WithMany().HasForeignKey(r => r.Country_Code).HasPrincipalKey(c => c.Code);
+            modelBuilder.Entity<Address>().HasOne(c => c.Country).WithMany().HasForeignKey(r => r.Country_Code).HasPrincipalKey(c => c.Code);
+
+
             // Query Filters
             modelBuilder.Entity<AddressType>().HasQueryFilter(x => !x.Is_Deleted);
             modelBuilder.Entity<VendorType>().HasQueryFilter(x => !x.Is_Deleted);
@@ -108,6 +132,17 @@ namespace NOCIL_VP.Domain.Core.Entities
             modelBuilder.Entity<CompanyStatus>().HasQueryFilter(x => !x.Is_Deleted);
             modelBuilder.Entity<CompanyCode>().HasQueryFilter(x => !x.Is_Deleted);
             modelBuilder.Entity<User>().HasQueryFilter(x => x.Is_Active);
+
+            modelBuilder.Entity<Title>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<ReconciliationAccount>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<TaxBase>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<Industry>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<Incoterms>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<SchemaGroup>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<GSTVenClass>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<Country>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<Region>().HasQueryFilter(x => !x.Is_Deleted);
+
         }
 
     }
