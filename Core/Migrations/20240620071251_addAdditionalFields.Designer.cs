@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NOCIL_VP.Domain.Core.Entities;
 
@@ -11,9 +12,11 @@ using NOCIL_VP.Domain.Core.Entities;
 namespace NOCIL_VP.Domain.Core.Migrations
 {
     [DbContext(typeof(VpContext))]
-    partial class VpContextModelSnapshot : ModelSnapshot
+    [Migration("20240620071251_addAdditionalFields")]
+    partial class addAdditionalFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -69,5 +69,59 @@ namespace NOCIL_VP.API.Controllers.Master
         {
             return Ok(this._masterRepository.GetContactTypes());
         }
+
+        [HttpGet]
+        public IActionResult GetTitle()
+        {
+            return Ok(this._masterRepository.GetTitle());
+        }
+
+        [HttpGet]
+        public IActionResult GetReconciliationAccounts()
+        {
+            return Ok(this._masterRepository.GetReconciliationAccounts());
+        }
+
+        [HttpGet]
+        public IActionResult GetTaxBases()
+        {
+            return Ok(this._masterRepository.GetTaxBases());
+        }
+
+        [HttpGet]
+        public IActionResult GetIndustry()
+        {
+            return Ok(this._masterRepository.GetIndustry());
+        }
+
+        [HttpGet]
+        public IActionResult GetIncoterms()
+        {
+            return Ok(this._masterRepository.GetIncoterms());
+        }
+
+        [HttpGet]
+        public IActionResult GetSchemaGroups()
+        {
+            return Ok(this._masterRepository.GetSchemaGroups());
+        }
+
+        [HttpGet]
+        public IActionResult GetGSTVenClass()
+        {
+            return Ok(this._masterRepository.GetGSTVenClass());
+        }
+
+        [HttpGet]
+        public IActionResult GetCountry()
+        {
+            return Ok(this._masterRepository.GetCountry());
+        }
+
+        [HttpGet]
+        public IActionResult GetRegionByCompanyCode()
+        { 
+            return Ok(this._masterRepository.GetRegionByCompanyCode());
+        }
     }
 }

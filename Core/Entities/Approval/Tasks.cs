@@ -17,7 +17,7 @@ namespace NOCIL_VP.Domain.Core.Entities.Approval
         public int Form_Id { get; set;}
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public string Owner_Id { get; set; }
+        public string? Owner_Id { get; set; }
         public int? Role_Id { get; set; }
         public int Level { get; set; }
         public string Status { get; set; }

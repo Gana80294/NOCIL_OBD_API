@@ -64,5 +64,50 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Master
         {
             return this._dbContext.Type_of_Contacts.ToList();
         }
+
+        public List<Title> GetTitle()
+        {
+            return this._dbContext.Titles.ToList();
+        }
+
+        public List<ReconciliationAccount> GetReconciliationAccounts()
+        {
+            return this._dbContext.ReconciliationAccounts.ToList();
+        }
+
+        public List<TaxBase> GetTaxBases()
+        {
+            return this._dbContext.TaxBases.ToList();
+        }
+
+        public List<Industry> GetIndustry()
+        {
+            return this._dbContext.Industry.ToList();
+        }
+
+        public List<Incoterms> GetIncoterms()
+        {
+            return this._dbContext.Incoterms.ToList();
+        }
+
+        public List<SchemaGroup> GetSchemaGroups()
+        {
+            return this._dbContext.SchemaGroups.ToList();
+        }
+
+        public List<GSTVenClass> GetGSTVenClass()
+        {
+            return this._dbContext.GSTVenClass.ToList();
+        }
+
+        public List<Country> GetCountry()
+        {
+            return this._dbContext.Country.ToList();
+        }
+
+        public List<Region> GetRegionByCompanyCode()
+        {
+            return this._dbContext.Region.ToList();
+        }
     }
 }

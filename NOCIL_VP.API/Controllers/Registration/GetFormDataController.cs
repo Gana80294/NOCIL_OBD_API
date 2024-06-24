@@ -57,7 +57,28 @@ namespace NOCIL_VP.API.Controllers.Registration
                     case ("MajorCustomers"):
                         return Ok(this._mapper.Map<List<MajorCustomer_Dto>>(await this._dbContext.MajorCustomers.Where(f => f.Form_Id == formId).ToListAsync()));
                     case ("Addresses"):
-                        return Ok(this._mapper.Map<List<Address_Dto>>(await this._dbContext.Addresses.Where(f => f.Form_Id == formId).ToListAsync()));
+                        //return Ok(this._mapper.Map<List<Address_Dto>>(await this._dbContext.Addresses.Where(f => f.Form_Id == formId).ToListAsync()));
+                        return Ok(this._dbContext.Addresses.Where(f => f.Form_Id == formId).Select(x => new Address_Dto
+                        {
+                            Address_Id = x.Address_Id,
+                            Form_Id = x.Form_Id,
+                            Address_Type_Id = x.Address_Type_Id,
+                            House_No = x.House_No,
+                            Street_2 = x.Street_2,
+                            Street_3 = x.Street_3,
+                            Street_4 = x.Street_4,
+                            District = x.District,
+                            Postal_Code = x.Postal_Code,
+                            City = x.City,
+                            Country_Code = x.Country.Code,
+                            Region_Id = x.Region_Id,
+                            Country_Name = x.Country.Name,
+                            Region_Name = x.Region.Name,
+                            Tel = x.Tel,
+                            Fax = x.Fax,
+                            Website = x.Website
+
+                        }));
                     case ("Contacts"):
                         return Ok(this._mapper.Map<List<Contact_Dto>>(await this._dbContext.Contacts.Where(f => f.Form_Id == formId).ToListAsync()));
                     case ("VendorBranches"):
@@ -70,6 +91,8 @@ namespace NOCIL_VP.API.Controllers.Registration
                         return Ok(this._mapper.Map<List<TankerDetail_Dto>>(await this._dbContext.Tanker_Details.Where(f => f.Form_Id == formId).ToListAsync()));
                     case ("NocilRelatedEmployees"):
                         return Ok(this._mapper.Map<List<NocilRelatedEmployeeDto>>(await this._dbContext.NocilRelatedEmployees.Where(f => f.Form_Id == formId).ToListAsync()));
+                    case ("AdditionalFields"):
+                        return Ok(this._mapper.Map<AdditionalFields_Dto>(await this._dbContext.AdditionalFields.FirstOrDefaultAsync(f => f.Form_Id == formId)));
                     default:
                         return BadRequest($"Invalid Table name - {tableName}");
                 }
@@ -82,13 +105,13 @@ namespace NOCIL_VP.API.Controllers.Registration
         public async Task<IActionResult> GetVendorProfile(int formId)
         {
             var profile = await (from form in _dbContext.Forms
-                           where form.Form_Id == formId
-                           join grade in _dbContext.VendorGrades on form.Form_Id equals grade.FormId
-                           select new
-                           {
-                               form = form,
-                               grade = grade
-                           }).FirstOrDefaultAsync();
+                                 where form.Form_Id == formId
+                                 join grade in _dbContext.VendorGrades on form.Form_Id equals grade.FormId
+                                 select new
+                                 {
+                                     form = form,
+                                     grade = grade
+                                 }).FirstOrDefaultAsync();
             string since = "";
             if (profile != null)
             {
