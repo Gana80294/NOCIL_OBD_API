@@ -37,5 +37,8 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration.CommonData
 
         [Required]
         public string Search_Term { get; set; }
+
+        public string PO_Code {  get; set; }
+        public int AccountGroup_Id {  get; set; }
     }
 }

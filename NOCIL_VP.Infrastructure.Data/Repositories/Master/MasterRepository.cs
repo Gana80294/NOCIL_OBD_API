@@ -109,5 +109,12 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Master
         {
             return this._dbContext.Region.ToList();
         }
+
+        public List<VendorAccountGroup> GetVendorAccountGroup()
+        {
+            return this._dbContext.VendorAccountGroups.ToList();
+        }
+
+       
     }
 }

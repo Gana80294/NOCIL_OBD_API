@@ -12,8 +12,8 @@ using NOCIL_VP.Domain.Core.Entities;
 namespace NOCIL_VP.Domain.Core.Migrations
 {
     [DbContext(typeof(VpContext))]
-    [Migration("20240620071251_addAdditionalFields")]
-    partial class addAdditionalFields
+    [Migration("20240624070933_addPurchaseOrg")]
+    partial class addPurchaseOrg
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -739,6 +739,67 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.ToTable("Attachments");
                 });
 
+            modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.AdditionalFields", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Form_Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("GrBased")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Incoterms_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Industry_Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Order_Currency")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PO_Code")
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<int>("Reconciliation_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Schema_Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Search_Term")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SrvBased")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Form_Id");
+
+                    b.HasIndex("Incoterms_Id");
+
+                    b.HasIndex("Industry_Id");
+
+                    b.HasIndex("PO_Code");
+
+                    b.HasIndex("Reconciliation_Id");
+
+                    b.HasIndex("Schema_Id");
+
+                    b.ToTable("AdditionalFields");
+                });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.Address", b =>
                 {
@@ -1467,7 +1528,54 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.Navigation("Forms");
                 });
 
-          
+            modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.AdditionalFields", b =>
+                {
+                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Registration.Form", "Forms")
+                        .WithMany()
+                        .HasForeignKey("Form_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.Incoterms", "Incoterms")
+                        .WithMany()
+                        .HasForeignKey("Incoterms_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.Industry", "Industry")
+                        .WithMany()
+                        .HasForeignKey("Industry_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.PurchaseOrganization", "PurchaseOrganization")
+                        .WithMany()
+                        .HasForeignKey("PO_Code");
+
+                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.ReconciliationAccount", "ReconciliationAccount")
+                        .WithMany()
+                        .HasForeignKey("Reconciliation_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.SchemaGroup", "SchemaGroup")
+                        .WithMany()
+                        .HasForeignKey("Schema_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Forms");
+
+                    b.Navigation("Incoterms");
+
+                    b.Navigation("Industry");
+
+                    b.Navigation("PurchaseOrganization");
+
+                    b.Navigation("ReconciliationAccount");
+
+                    b.Navigation("SchemaGroup");
+                });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.Address", b =>
                 {
