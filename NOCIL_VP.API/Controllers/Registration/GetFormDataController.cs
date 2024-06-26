@@ -143,7 +143,7 @@ namespace NOCIL_VP.API.Controllers.Registration
                     case 4:
                         personalData = this._dbContext.Transport_Vendor_Personal_Data.Where(x => x.Form_Id == formId).Select(x => new
                         {
-                            since = x.Date_of_Establishment.ToString(),
+                            since = x.Date_of_Establishment.Year.ToString(),
                             name = x.Name_of_Transporter
                         }).FirstOrDefault();
                         break;
