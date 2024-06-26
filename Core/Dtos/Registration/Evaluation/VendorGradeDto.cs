@@ -12,7 +12,7 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration.Evaluation
         public int FormId { get; set; }
         public string Vendor_Code { get; set; }
         public float Grade { get; set; }
-        public DateTime Last_Audit_Date { get; set; }
+        public DateTime? Last_Audit_Date { get; set; }
         public string Last_Audited_By { get; set; }
         public string Location { get; set; }
     }
