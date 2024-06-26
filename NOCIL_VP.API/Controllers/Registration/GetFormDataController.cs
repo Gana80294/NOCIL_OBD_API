@@ -107,27 +107,52 @@ namespace NOCIL_VP.API.Controllers.Registration
             var profile = await (from form in _dbContext.Forms
                                  where form.Form_Id == formId
                                  join grade in _dbContext.VendorGrades on form.Form_Id equals grade.FormId
+                                 into grades
                                  select new
                                  {
                                      form = form,
-                                     grade = grade
+                                     grade = grades.FirstOrDefault(),
                                  }).FirstOrDefaultAsync();
-            string since = "";
+            var personalData = new { since = "", name = "" };
             if (profile != null)
             {
                 switch (profile.form.Vendor_Type_Id)
                 {
                     case 1:
-                        since = this._dbContext.Vendor_Personal_Data.FirstOrDefault(x => x.Form_Id == formId).Plant_Installation_Year.ToString();
+
+                        personalData = this._dbContext.Vendor_Personal_Data.Where(x => x.Form_Id == formId).Select(x => new
+                        {
+                            since = x.Plant_Installation_Year.ToString(),
+                            name = x.Organization_Name
+                        }).FirstOrDefault();
                         break;
                     case 2:
-                        since = this._dbContext.Vendor_Personal_Data.FirstOrDefault(x => x.Form_Id == formId).Plant_Installation_Year.ToString();
+                        personalData = this._dbContext.Vendor_Personal_Data.Where(x => x.Form_Id == formId).Select(x => new
+                        {
+                            since = x.Plant_Installation_Year.ToString(),
+                            name = x.Organization_Name
+                        }).FirstOrDefault();
                         break;
                     case 3:
-                        since = this._dbContext.Transport_Vendor_Personal_Data.FirstOrDefault(x => x.Form_Id == formId).Date_of_Establishment.ToString();
+                        personalData = this._dbContext.Vendor_Personal_Data.Where(x => x.Form_Id == formId).Select(x => new
+                        {
+                            since = x.Plant_Installation_Year.ToString(),
+                            name = x.Organization_Name
+                        }).FirstOrDefault();
                         break;
                     case 4:
-                        since = this._dbContext.Vendor_Personal_Data.FirstOrDefault(x => x.Form_Id == formId).Plant_Installation_Year.ToString();
+                        personalData = this._dbContext.Transport_Vendor_Personal_Data.Where(x => x.Form_Id == formId).Select(x => new
+                        {
+                            since = x.Date_of_Establishment.ToString(),
+                            name = x.Name_of_Transporter
+                        }).FirstOrDefault();
+                        break;
+                    case 5:
+                        personalData = this._dbContext.Vendor_Personal_Data.Where(x => x.Form_Id == formId).Select(x => new
+                        {
+                            since = x.Plant_Installation_Year.ToString(),
+                            name = x.Organization_Name
+                        }).FirstOrDefault();
                         break;
                     default:
                         break;
@@ -135,9 +160,9 @@ namespace NOCIL_VP.API.Controllers.Registration
 
                 var res = new VendorProfileDto()
                 {
-                    Vendor_Name = profile.form.Vendor_Name,
-                    Year = since,
-                    Grade = new VendorGradeDto()
+                    Vendor_Name = personalData?.name,
+                    Year = personalData?.since,
+                    Grade = profile.grade != null ? new VendorGradeDto()
                     {
                         FormId = profile.form.Form_Id,
                         GradeId = profile.grade.GradeId,
@@ -146,7 +171,7 @@ namespace NOCIL_VP.API.Controllers.Registration
                         Last_Audit_Date = profile.grade.Last_Audit_Date,
                         Location = profile.grade.Location,
                         Vendor_Code = profile.grade.Vendor_Code
-                    }
+                    } : new VendorGradeDto()
                 };
                 return Ok(res);
             }

@@ -345,9 +345,11 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                               join incoterms in _dbContext.Incoterms on searchTerm.Incoterms_Id equals incoterms.Id
                               join reconciliation in _dbContext.ReconciliationAccounts on searchTerm.Reconciliation_Id equals reconciliation.Id
                               join schema in _dbContext.SchemaGroups on searchTerm.Schema_Id equals schema.Id
+                              join initiator in _dbContext.Users on form.Created_By equals initiator.Employee_Id
                               select new SAPVendorCreationPayload
                               {
                                   Company_code = form.CompanyCode.Company_Code,
+                                  Purchasing_org = searchTerm.PO_Code,
                                   Title = title.Title_Name,
                                   Name = organization.Organization_Name,
                                   Search_term = searchTerm.Search_Term,
@@ -367,8 +369,10 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                                   E_Mail = contact.Email_Id,
                                   Tax_Number_3 = panNumber.GSTIN,
                                   Industry = industry.Code,
+                                  Initiators_name = $"{initiator.First_Name} {initiator.Middle_Name} {initiator.Last_Name}".TrimEnd(),
                                   Pan_Number = panNumber.PAN,
                                   GST_Ven_Class = gstVenCLass.Code,
+                                  First_name = $"{initiator.First_Name} {initiator.Middle_Name} {initiator.Last_Name}".TrimEnd(),
                                   Recon_account = reconciliation.Code,
                                   Order_currency = searchTerm.Order_Currency,
                                   Incoterms = incoterms.Code,
@@ -379,7 +383,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 
                               }).FirstOrDefault();
 
-            return sapPayload; 
+            return sapPayload;
         }
 
         public async Task<ResponseMessage> RejectForm(RejectDto rejectDto)

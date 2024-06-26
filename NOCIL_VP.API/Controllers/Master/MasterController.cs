@@ -123,5 +123,12 @@ namespace NOCIL_VP.API.Controllers.Master
         { 
             return Ok(this._masterRepository.GetRegionByCompanyCode());
         }
+
+        [HttpGet]
+        public IActionResult GetVendorAccountGroup()
+        {
+            return Ok(this._masterRepository.GetVendorAccountGroup());
+        }
+
     }
 }

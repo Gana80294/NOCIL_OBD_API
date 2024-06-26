@@ -681,6 +681,28 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.VendorAccountGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Is_Deleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VendorAccountGroups");
+                });
+
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.VendorType", b =>
                 {
                     b.Property<int>("Id")
@@ -744,6 +766,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AccountGroup_Id")
+                        .HasColumnType("int");
+
                     b.Property<int>("Form_Id")
                         .HasColumnType("int");
 
@@ -764,6 +789,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.Property<string>("Order_Currency")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PO_Code")
+                        .HasColumnType("nvarchar(10)");
+
                     b.Property<int>("Reconciliation_Id")
                         .HasColumnType("int");
 
@@ -780,11 +808,15 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AccountGroup_Id");
+
                     b.HasIndex("Form_Id");
 
                     b.HasIndex("Incoterms_Id");
 
                     b.HasIndex("Industry_Id");
+
+                    b.HasIndex("PO_Code");
 
                     b.HasIndex("Reconciliation_Id");
 
@@ -1522,6 +1554,12 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.AdditionalFields", b =>
                 {
+                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.VendorAccountGroup", "VendorAccountGroup")
+                        .WithMany()
+                        .HasForeignKey("AccountGroup_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("NOCIL_VP.Domain.Core.Entities.Registration.Form", "Forms")
                         .WithMany()
                         .HasForeignKey("Form_Id")
@@ -1539,6 +1577,10 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .HasForeignKey("Industry_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.PurchaseOrganization", "PurchaseOrganization")
+                        .WithMany()
+                        .HasForeignKey("PO_Code");
 
                     b.HasOne("NOCIL_VP.Domain.Core.Entities.Master.ReconciliationAccount", "ReconciliationAccount")
                         .WithMany()
@@ -1558,9 +1600,13 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.Navigation("Industry");
 
+                    b.Navigation("PurchaseOrganization");
+
                     b.Navigation("ReconciliationAccount");
 
                     b.Navigation("SchemaGroup");
+
+                    b.Navigation("VendorAccountGroup");
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.Address", b =>

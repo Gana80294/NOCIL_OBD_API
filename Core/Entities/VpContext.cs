@@ -73,8 +73,7 @@ namespace NOCIL_VP.Domain.Core.Entities
         public DbSet<GSTVenClass> GSTVenClass { get; set; }
         public DbSet<Country> Country { get; set; }
         public DbSet<Region> Region { get; set; }
-
-
+        public DbSet<VendorAccountGroup> VendorAccountGroups { get; set; }
 
 
 
@@ -142,6 +141,7 @@ namespace NOCIL_VP.Domain.Core.Entities
             modelBuilder.Entity<GSTVenClass>().HasQueryFilter(x => !x.Is_Deleted);
             modelBuilder.Entity<Country>().HasQueryFilter(x => !x.Is_Deleted);
             modelBuilder.Entity<Region>().HasQueryFilter(x => !x.Is_Deleted);
+            modelBuilder.Entity<VendorAccountGroup>().HasQueryFilter(x=> !x.Is_Deleted);
 
         }
 

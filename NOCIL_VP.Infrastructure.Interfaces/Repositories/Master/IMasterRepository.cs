@@ -28,5 +28,7 @@ namespace NOCIL_VP.Infrastructure.Interfaces.Repositories.Master
         public List<GSTVenClass> GetGSTVenClass();
         public List<Country> GetCountry();
         public List<Region> GetRegionByCompanyCode();
+        public List<VendorAccountGroup> GetVendorAccountGroup();
+
     }
 }

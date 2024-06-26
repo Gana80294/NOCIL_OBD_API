@@ -30,7 +30,7 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration
         public string E_Mail { get; set; }
         public string Tax_Number_3 { get; set; }
         public string Industry { get; set; }
-        public string Initiators_Name { get; set; }
+        public string Initiators_name { get; set; }
         public string Pan_Number { get; set; }
         public string GST_Ven_Class { get; set; }
         public string First_name { get; set; }
