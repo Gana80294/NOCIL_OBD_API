@@ -11,6 +11,7 @@ using NOCIL_VP.Domain.Core.Dtos.Registration.Domestic;
 using NOCIL_VP.Domain.Core.Dtos.Registration.Evaluation;
 using NOCIL_VP.Domain.Core.Dtos.Registration.Transport;
 using NOCIL_VP.Domain.Core.Entities;
+using Org.BouncyCastle.Asn1.X509.SigI;
 
 namespace NOCIL_VP.API.Controllers.Registration
 {
@@ -182,5 +183,88 @@ namespace NOCIL_VP.API.Controllers.Registration
 
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetVendorByCode(string VendorCode)
+        {
+            try
+            {
+                var forms = (from form in _dbContext.Forms
+                           where form.Vendor_Code == VendorCode
+                           select new
+                           {
+                               FormId = form.Form_Id,
+                               VT_Id = form.Vendor_Type_Id,
+                               Vendor_Type = form.VendorType.Vendor_Type
+                           }).ToList().FirstOrDefault();
+
+                var res = new
+                {
+                    FormId = 0,
+                    Vendor_Name = "",
+                    VT_Id = 0,
+                    Vendor_Type = ""
+                };
+                if (forms != null)
+                {
+                    switch (forms.VT_Id)
+                    {
+                        case 1:
+
+                            res = this._dbContext.Vendor_Personal_Data.Where(x => x.Form_Id == forms.FormId).Select(x => new
+                            {
+                                FormId = forms.FormId,
+                                Vendor_Name = x.Organization_Name,
+                                VT_Id = forms.VT_Id,
+                                Vendor_Type = forms.Vendor_Type
+                            }).FirstOrDefault();
+                            break;
+                        case 2:
+                            res = this._dbContext.Vendor_Personal_Data.Where(x => x.Form_Id == forms.FormId).Select(x => new
+                            {
+                                FormId = forms.FormId,
+                                Vendor_Name = x.Organization_Name,
+                                VT_Id = forms.VT_Id,
+                                Vendor_Type = forms.Vendor_Type
+                            }).FirstOrDefault();
+                            break;
+                        case 3:
+                            res = this._dbContext.Vendor_Personal_Data.Where(x => x.Form_Id == forms.FormId).Select(x => new
+                            {
+                                FormId = forms.FormId,
+                                Vendor_Name = x.Organization_Name,
+                                VT_Id = forms.VT_Id,
+                                Vendor_Type = forms.Vendor_Type
+                            }).FirstOrDefault();
+                            break;
+                        case 4:
+                            res = this._dbContext.Transport_Vendor_Personal_Data.Where(x => x.Form_Id == forms.FormId).Select(x => new
+                            {
+                                FormId = forms.FormId,
+                                Vendor_Name = x.Name_of_Transporter,
+                                VT_Id = forms.VT_Id,
+                                Vendor_Type = forms.Vendor_Type
+                            }).FirstOrDefault();
+                            break;
+                        case 5:
+                            res = this._dbContext.Vendor_Personal_Data.Where(x => x.Form_Id == forms.FormId).Select(x => new
+                            {
+                                FormId = forms.FormId,
+                                Vendor_Name = x.Organization_Name,
+                                VT_Id = forms.VT_Id,
+                                Vendor_Type = forms.Vendor_Type
+                            }).FirstOrDefault();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
