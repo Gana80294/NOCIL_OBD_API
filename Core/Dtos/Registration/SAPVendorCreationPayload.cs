@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using System.Xml;
 
 namespace NOCIL_VP.Domain.Core.Dtos.Registration
 {
@@ -12,7 +14,9 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration
         public string Purchasing_org { get; set; }
         public string Account_grp { get; set; }
         public string Title { get; set; }
-        public string Name { get; set; }
+        public string Name1 { get; set; }
+        public string Name2 { get; set; }
+        public string Name3 { get; set; }
         public string Search_term { get; set; }
         public string Street_House_number { get; set; }
         public string Street_2 { get; set; }
@@ -34,6 +38,7 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration
         public string Pan_Number { get; set; }
         public string GST_Ven_Class { get; set; }
         public string First_name { get; set; }
+        public string Contact_person { get; set; }
         public string Recon_account { get; set; }
         public string Order_currency { get; set; }
         public string Incoterms { get; set; }
@@ -41,5 +46,8 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration
         public string Schema_Group_Vendor { get; set; }
         public string GR_based_Inv_Verif { get; set; }
         public string SRV_based_Inv_Verif { get; set; }
+
+
     }
+
 }

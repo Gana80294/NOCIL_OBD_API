@@ -58,7 +58,7 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
                 {
                     Form_Id = sendMail.Form_Id,
                     V_Id = sendMail.Vendor_Type_Id,
-                    Status = ""
+                    Status = "Initiated"
                 };
                 string jsonString = JsonConvert.SerializeObject(qParams);
                 string encodedJson = HttpUtility.UrlEncode(jsonString);
@@ -133,7 +133,7 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
                     mailBody = readHtmlString("RejectionInfoToVendor.html");
                     mailBody = mailBody.Replace("{recepient}", rejectionMailInfo.Username)
                         .Replace("{reason}", rejectionMailInfo.Reason)
-                        .Replace("{url}", _smtpSettings.SiteURL + encodedJson);
+                        .Replace("{url}", _smtpSettings.SiteURL + encodedJson);   
                 }
                 else
                 {
@@ -147,6 +147,12 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
             {
                 throw ex;
             }
+        }
+
+
+        public async Task SendRejectionMailInfoToBuyers()
+        {
+
         }
 
         public async Task SendApprovalInfoMail(ApprovalInfo approvalInfo)

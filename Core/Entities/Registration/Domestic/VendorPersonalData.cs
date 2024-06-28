@@ -19,7 +19,7 @@ namespace NOCIL_VP.Domain.Core.Entities.Registration.Domestic
         public int Plant_Installation_Year { get; set; }
 
         public int Title_Id { get; set; }
-        public int GSTVenClass_Id { get; set; }
+        public int? GSTVenClass_Id { get; set; }
 
         [ForeignKey("Form_Id")]
         public virtual Form Forms { get; set; } = null;
