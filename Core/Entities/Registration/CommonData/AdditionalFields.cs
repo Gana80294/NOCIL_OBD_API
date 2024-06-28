@@ -18,17 +18,17 @@ namespace NOCIL_VP.Domain.Core.Entities.Registration.CommonData
 
         public int Industry_Id { get; set; }
 
-        public int Incoterms_Id { get; set; }
+        public int? Incoterms_Id { get; set; }
         public int Reconciliation_Id { get; set; }
 
-        public int Schema_Id { get; set; }
+        public int? Schema_Id { get; set; }
 
         public int AccountGroup_Id { get; set; }
 
         [Required]
         public string Language { get; set; }
 
-        public string Order_Currency { get; set; }
+        public string? Order_Currency { get; set; }
         [Required]
         public string GrBased { get; set; }
         [Required]

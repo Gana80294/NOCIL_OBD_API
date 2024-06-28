@@ -102,7 +102,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Auth
             if (!string.IsNullOrWhiteSpace(authenticationResponse.Employee_Id) && authenticationResponse.Role != "Vendor")
             {
                 claims.Add(new Claim("EmployeeId", authenticationResponse.Employee_Id));
-            }
+            } 
 
             var token = new JwtSecurityToken(
                                 issuer: issuer,

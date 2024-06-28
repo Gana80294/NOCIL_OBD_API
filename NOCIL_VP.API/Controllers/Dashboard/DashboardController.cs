@@ -16,7 +16,7 @@ namespace NOCIL_VP.API.Controllers.Dashboard
         private IDashboardRepository _dashboardRepository;
         private EmailHelper _email;
 
-        public DashboardController(IDashboardRepository dashboardRepository,EmailHelper mail)
+        public DashboardController(IDashboardRepository dashboardRepository, EmailHelper mail)
         {
             this._dashboardRepository = dashboardRepository;
             _email = mail;

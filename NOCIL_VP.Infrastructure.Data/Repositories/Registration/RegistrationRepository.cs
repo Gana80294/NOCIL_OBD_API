@@ -1,18 +1,18 @@
-﻿using Newtonsoft.Json;
+﻿using AutoMapper;
+using Newtonsoft.Json;
 using NOCIL_VP.Domain.Core.Dtos;
+using NOCIL_VP.Domain.Core.Dtos.Dashboard;
 using NOCIL_VP.Domain.Core.Dtos.Registration;
+using NOCIL_VP.Domain.Core.Dtos.Registration.Reason;
 using NOCIL_VP.Domain.Core.Dtos.Response;
 using NOCIL_VP.Domain.Core.Entities;
 using NOCIL_VP.Domain.Core.Entities.Approval;
+using NOCIL_VP.Domain.Core.Entities.Logs;
 using NOCIL_VP.Domain.Core.Entities.Registration;
+using NOCIL_VP.Domain.Core.Entities.Registration.CommonData;
 using NOCIL_VP.Infrastructure.Data.Enums;
 using NOCIL_VP.Infrastructure.Data.Helpers;
 using NOCIL_VP.Infrastructure.Interfaces.Repositories.Registration;
-using NOCIL_VP.Domain.Core.Dtos.Dashboard;
-using NOCIL_VP.Domain.Core.Dtos.Registration.Reason;
-using NOCIL_VP.Domain.Core.Entities.Registration.CommonData;
-using AutoMapper;
-using NOCIL_VP.Domain.Core.Entities.Logs;
 
 namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 {
@@ -338,8 +338,9 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                               join title in _dbContext.Titles on formId.Title_Id equals title.Id
                               join organization in _dbContext.Vendor_Personal_Data on title.Id equals organization.Title_Id
                               join searchTerm in _dbContext.AdditionalFields on form.Form_Id equals searchTerm.Form_Id
+                              join accountGrp in _dbContext.VendorAccountGroups on searchTerm.AccountGroup_Id equals accountGrp.Id
                               join address in _dbContext.Addresses on form.Form_Id equals address.Form_Id
-                              join contact in _dbContext.Contacts on form.Form_Id equals contact.Form_Id
+                              join contact in _dbContext.Contacts on form.Form_Id equals contact.Form_Id into joinContact
                               join panNumber in _dbContext.Commercial_Profile on form.Form_Id equals panNumber.Form_Id
                               join industry in _dbContext.Industry on searchTerm.Industry_Id equals industry.Id
                               join incoterms in _dbContext.Incoterms on searchTerm.Incoterms_Id equals incoterms.Id
@@ -350,8 +351,11 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                               {
                                   Company_code = form.CompanyCode.Company_Code,
                                   Purchasing_org = searchTerm.PO_Code,
+                                  Account_grp = accountGrp.Code,
                                   Title = title.Title_Name,
-                                  Name = organization.Organization_Name,
+                                  Name1 = organization.Organization_Name,
+                                  Name2 = organization.Organization_Name,
+                                  Name3 = organization.Organization_Name,
                                   Search_term = searchTerm.Search_Term,
                                   Street_House_number = address.House_No,
                                   Street_2 = address.Street_2,
@@ -365,14 +369,15 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                                   Language = searchTerm.Language,
                                   Telephone = address.Tel,
                                   Fax = address.Fax,
-                                  Mobile_Phone = contact.Mobile_Number,
-                                  E_Mail = contact.Email_Id,
+                                  //Mobile_Phone = ,
+                                  //E_Mail = contactdetails.Email_Id,
                                   Tax_Number_3 = panNumber.GSTIN,
                                   Industry = industry.Code,
                                   Initiators_name = $"{initiator.First_Name} {initiator.Middle_Name} {initiator.Last_Name}".TrimEnd(),
                                   Pan_Number = panNumber.PAN,
                                   GST_Ven_Class = gstVenCLass.Code,
                                   First_name = $"{initiator.First_Name} {initiator.Middle_Name} {initiator.Last_Name}".TrimEnd(),
+                                  //Contact_person = contactdetails.Name,
                                   Recon_account = reconciliation.Code,
                                   Order_currency = searchTerm.Order_Currency,
                                   Incoterms = incoterms.Code,
@@ -383,7 +388,121 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 
                               }).FirstOrDefault();
 
+            var contactQuery = (from form in _dbContext.Forms
+                                where form.Form_Id == Form_Id
+                                join contact in _dbContext.Contacts on form.Form_Id equals contact.Form_Id into JoinContact
+                                select new
+                                {
+                                    JoinContact
+                                });
+
+            OrganizationNameForSAPPayload(sapPayload);
+            //ContactDetailsForSAPPayload(joinContact);
             return sapPayload;
+
+        }
+
+        private string GenerateVendorSoapPayload(SAPVendorCreationPayload request)
+        {
+            var soapRequestXml = @$"
+           <soap:Envelope xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">
+           <soap:Header>
+           <wsse:Security soap:mustUnderstand = ""1""
+           xmlns: wsse = ""http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"" />
+           </soap:Header>
+            <soap:Body>
+                <ZmmRfcVendorCreate xmlns: tns =""urn:sap-com:document:sap:soap:functions:mc-style"">
+                 <ImVendorData>
+                   <item>
+                    <CompanyCode> {request.Company_code} </CompanyCode>
+                    <PurchasingOrg> {request.Purchasing_org} </PurchasingOrg>
+                    <AccountGrp> {request.Account_grp} </AccountGrp>
+                    <Name1> {request.Name1} </Name1>
+                    <Name2> {request.Name2} </Name2>
+                    <Name3> {request.Name3} </Name3>
+                    <SearchTerm> {request.Search_term} </SearchTerm>
+                    <Street2> {request.Street_2} </Street2>
+                    <Street3> {request.Street_3} </Street3>
+                    <StreetHouseNumber> {request.Street_House_number} </StreetHouseNumber>
+                    <Street4>{request.Street_4}</Street4>
+                    <Street5></Street5>
+                    <City>{request.City}</City>
+                    <PostalCode>{request.Postal_Code}</PostalCode>
+                    <District>{request.District}</District>
+                    <Country>{request.Country}</Country>
+                    <Region>{request.Region}</Region>
+                    <Language>{request.Language}</Language>
+                    <Telephone>{request.Telephone}</Telephone>
+                    <TelExtens></TelExtens>
+                    <Fax>{request.Fax}</Fax>
+                    <MobilePhone>{request.Mobile_Phone}</MobilePhone>
+                    <EMail>{request.E_Mail}</EMail>
+                    <TaxNumber3>{request.Tax_Number_3}</TaxNumber3>
+                    <Industry>{request.Industry}</Industry>
+                    <InitiatorsName>{request.Initiators_name}</InitiatorsName>
+                    <PanNumber>{request.Pan_Number}</PanNumber>
+                    <GstVenClass>{request.GST_Ven_Class}</GstVenClass>
+                    <FirstName>{request.First_name}</FirstName>
+                    <CpName> {request.Contact_person} </CpName>
+                    <ReconAccount>{request.Recon_account}</ReconAccount>
+                    <OrderCurrency>{request.Order_currency}</OrderCurrency>
+                    <IncotermsText>{request.Incoterms}</Incoterms>
+                    <IncotermsText>{request.City}</IncotermsText>
+                    <SchemaGroupVendor>{request.Schema_Group_Vendor}</SchemaGroupVendor>
+                    <GrBasedInvVerif>{request.GR_based_Inv_Verif}</GrBasedInvVerif>
+                    <SrvBasedInvVerif>{request.SRV_based_Inv_Verif}</SrvBasedInvVerif>
+                    <VendorCode></VendorCode>  
+                    <Message></Message>
+                   </item>
+                 </ImVendorData>
+                </ZmmRfcVendorCreate>
+            </soap:Body>
+        </soap:Envelope>
+            ";
+
+            return soapRequestXml;
+
+        }
+
+
+        public void OrganizationNameForSAPPayload(SAPVendorCreationPayload sapPayload)
+        {
+            string OrgName = sapPayload.Name1;
+            sapPayload.Name1 = OrgName;
+            sapPayload.Name2 = string.Empty;
+            sapPayload.Name3 = string.Empty;
+            if (!string.IsNullOrEmpty(OrgName))
+            {
+                int maxlength = 40;
+                int length = OrgName.Length;
+                if (length > maxlength)
+                {
+                    sapPayload.Name1 = OrgName.Substring(0, maxlength);
+                    if (length > 40)
+                    {
+                        sapPayload.Name2 = OrgName.Substring(maxlength, Math.Min(length - maxlength, maxlength) + maxlength);
+                    }
+                    if (length > 80)
+                    {
+                        sapPayload.Name3 = OrgName.Substring(maxlength * 2, Math.Min(length - maxlength, maxlength) + maxlength * 2);
+                    }
+                }
+            }
+        }
+
+        public void ContactDetailsForSAPPayload(IEnumerable<Contact> joinContact)
+        {
+            int contactTypeId = 1;
+            var contactDetails = (from contactType in _dbContext.Type_of_Contacts
+                                  join contact in joinContact on contactType.Contact_Type_Id equals contact.Contact_Type_Id into joinContactDetails
+                                  from contact in joinContactDetails.DefaultIfEmpty()
+                                  where contact.Contact_Type_Id == contactTypeId
+                                  select new
+                                  {
+                                      contact.Name,
+                                      contact.Email_Id,
+                                      contact.Mobile_Number
+                                  });
         }
 
         public async Task<ResponseMessage> RejectForm(RejectDto rejectDto)
