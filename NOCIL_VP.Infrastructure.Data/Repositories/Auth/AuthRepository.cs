@@ -104,6 +104,16 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Auth
                 claims.Add(new Claim("EmployeeId", authenticationResponse.Employee_Id));
             }
 
+            if(!string.IsNullOrWhiteSpace(authenticationResponse.Employee_Id) && authenticationResponse.Role == "Vendor")
+            {
+                claims.Add(new Claim("VendorCode", authenticationResponse.Employee_Id));
+            }
+
+            if (string.IsNullOrWhiteSpace(authenticationResponse.Employee_Id) && authenticationResponse.Role == "Vendor")
+            {
+                claims.Add(new Claim("VendorCode", "not_registered"));
+            }
+
             var token = new JwtSecurityToken(
                                 issuer: issuer,
                                 audience: audience,
