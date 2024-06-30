@@ -13,6 +13,7 @@ using NOCIL_VP.Domain.Core.Entities.Registration.CommonData;
 using NOCIL_VP.Infrastructure.Data.Enums;
 using NOCIL_VP.Infrastructure.Data.Helpers;
 using NOCIL_VP.Infrastructure.Interfaces.Repositories.Registration;
+using Microsoft.EntityFrameworkCore;
 
 namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 {
@@ -532,31 +533,9 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 
                     _dbContext.TransactionHistories.Add(history);
 
-
-                    DashboardDto formDetails = (from form in _dbContext.Forms
-                                                where form.Form_Id == rejectDto.Form_Id
-                                                select new DashboardDto
-                                                {
-                                                    FormId = form.Form_Id,
-                                                    VendorTypeId = form.Vendor_Type_Id,
-                                                    VendorType = form.VendorType.Vendor_Type,
-                                                    Email = form.Vendor_Mail,
-                                                    Mobile = form.Vendor_Mobile,
-                                                    Name = form.Vendor_Name,
-                                                    CreatedOn = form.Created_On,
-                                                    Status = form.FormStatus.Status
-                                                }).FirstOrDefault();
-
-                    // Send mail to vendor with proper reject reason code
-                    var rejectMailDto = new RejectionMailInfo()
-                    {
-                        Form_Id = rejectDto.Form_Id,
-                        Reason = rejectDto.Reason,
-                        Vendor_Type_Id = formDetails.VendorTypeId,
-                        ToEmail = formDetails.Email,
-                        Username = formDetails.Name
-                    };
-                    await this._emailHelper.SendRejectionInfoMail(rejectMailDto);
+                    var rejectToVendor = await GetRejectionMailInfoToVendor(rejectDto);
+                    var rejectToBuyer = await GetRejectionMailInfoToBuyer(oldTask, rejectDto);
+                    await this._emailHelper.SendRejectionInfoMail(rejectToVendor);
 
                     await _dbContext.SaveChangesAsync();
                     await transaction.CommitAsync();
@@ -564,13 +543,88 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 
                     return ResponseWritter.WriteSuccessResponse("Form Rejected Successfully");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     await transaction.RollbackAsync();
                     transaction.Dispose();
-                    throw ex;
+                    throw;
                 }
             }
+        }
+
+        public async Task<RejectionMailInfoToVendor> GetRejectionMailInfoToVendor(RejectDto rejectDto)
+        {
+            DashboardDto formDetails = await (from form in _dbContext.Forms
+                                              where form.Form_Id == rejectDto.Form_Id
+                                              select new DashboardDto
+                                              {
+                                                  FormId = form.Form_Id,
+                                                  VendorTypeId = form.Vendor_Type_Id,
+                                                  VendorType = form.VendorType.Vendor_Type,
+                                                  Email = form.Vendor_Mail,
+                                                  Mobile = form.Vendor_Mobile,
+                                                  Name = form.Vendor_Name,
+                                                  CreatedOn = form.Created_On,
+                                                  Status = form.FormStatus.Status
+                                              }).FirstOrDefaultAsync();
+
+            var rejectMailDto = new RejectionMailInfoToVendor()
+            {
+                Form_Id = rejectDto.Form_Id,
+                Reason = rejectDto.Reason,
+                Vendor_Type_Id = formDetails.VendorTypeId,
+                ToEmail = formDetails.Email,
+                Username = formDetails.Name
+            };
+
+            return rejectMailDto;
+        }
+
+        public async Task<List<RejectionMailInfoToBuyer>> GetRejectionMailInfoToBuyer(Tasks oldTask, RejectDto rejectDto)
+        {
+            var rejectedBy = $"{oldTask.User.First_Name} {oldTask.User.Middle_Name} {oldTask.User.Last_Name}";
+            var res1 = await (from form in _dbContext.Forms
+                              where form.Form_Id == rejectDto.Form_Id
+                              join task in _dbContext.Tasks on form.Form_Id equals task.Form_Id
+                              select new
+                              {
+                                  TaskId = task.Task_Id,
+                                  EmployeeId = task.Owner_Id,
+                                  Recepient = task.Owner_Id != null ? task.User.First_Name : "",
+                                  RoleId = task.Role_Id,
+                                  Level = task.Level,
+                                  ToEmail = task.User.Email,
+                                  VendorMail = task.Forms.Vendor_Mail,
+                                  VendorMobile = task.Forms.Vendor_Mobile,
+                                  VendorName = task.Forms.Vendor_Name
+                              }).OrderByDescending(x => x.TaskId).ToListAsync();
+
+            var res2 = new List<dynamic>();
+
+            foreach (var r in res1)
+            {
+                if (r.Level == 1)
+                {
+                    res2.Add(r);
+                    break;
+                }
+                if (r.Level != oldTask.Level) res2.Add(r);
+            }
+
+            var recepients = (from r in res2
+                              select new RejectionMailInfoToBuyer
+                              {
+                                  Form_Id = r.Form_Id,
+                                  Reason = rejectDto.Reason,
+                                  Recepient = r.Recepient,
+                                  RejectedBy = rejectedBy,
+                                  ToEmail = r.ToEmail,
+                                  VendorMail = r.VendorMail,
+                                  VendorMobile = r.VendorMobile,
+                                  VendorName = r.VendorName
+                              }).Distinct().ToList();
+
+            return recepients;
         }
 
         public async Task<ResponseMessage> UpdateForm(FormSubmitTemplate formData)

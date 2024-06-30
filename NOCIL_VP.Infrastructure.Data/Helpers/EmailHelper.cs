@@ -111,7 +111,7 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
             }
         }
 
-        public async Task SendRejectionInfoMail(RejectionMailInfo rejectionMailInfo)
+        public async Task SendRejectionInfoMail(RejectionMailInfoToVendor rejectionMailInfo)
         {
             try
             {
