@@ -31,7 +31,7 @@ namespace NOCIL_VP.Domain.Core.Dtos
         public string ApprovedBy { get; set; }
     }
 
-    public class RejectionMailInfo
+    public class RejectionMailInfoToVendor
     {
         public int Form_Id { get; set; }
         public string Username { get; set; }
@@ -40,4 +40,18 @@ namespace NOCIL_VP.Domain.Core.Dtos
         public string Reason { get; set; }
 
     }
+
+    public class RejectionMailInfoToBuyer
+    {
+        public int Form_Id { get; set; }
+        public string Recepient { get; set; }
+        public string ToEmail { get; set; }
+        public string RejectedBy { get; set; }
+        public string Reason { get; set; }
+        public string VendorMail { get; set; }
+        public string VendorMobile { get; set; }
+        public string VendorName { get; set; }
+
+    }
+
 }
