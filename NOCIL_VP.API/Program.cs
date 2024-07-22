@@ -121,7 +121,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
-app.UseAuthMiddleware();
+//app.UseAuthMiddleware();
 
 app.UseAuthorization();
 

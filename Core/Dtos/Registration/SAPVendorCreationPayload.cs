@@ -5,9 +5,39 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.Xml;
+using NOCIL_VP.Domain.Core.Entities.Registration.CommonData;
 
 namespace NOCIL_VP.Domain.Core.Dtos.Registration
 {
+
+    public class SAPVendorCreationDto
+    {
+        public string Company_code { get; set; }
+        public string Purchasing_org { get; set; }
+        public string Account_grp { get; set; }
+        public string Title { get; set; }
+        public string Name1 { get; set; }
+        public string Name2 { get; set; }
+        public string Name3 { get; set; }
+        public string Search_term { get; set; }
+        public List<Address> Addresses { get; set; }
+        public string Language { get; set; }
+        public List<Contact> Contacts { get; set; }
+        public string Tax_Number_3 { get; set; }
+        public string Industry { get; set; }
+        public string Initiators_name { get; set; }
+        public string Pan_Number { get; set; }
+        public string GST_Ven_Class { get; set; }
+        public string Recon_account { get; set; }
+        public string Order_currency { get; set; }
+        public string Incoterms { get; set; }
+        public string Incoterms_Text { get; set; }
+        public string Schema_Group_Vendor { get; set; }
+        public string GR_based_Inv_Verif { get; set; }
+        public string SRV_based_Inv_Verif { get; set; }
+
+    }
+
     public class SAPVendorCreationPayload
     {
         public string Company_code { get; set; }

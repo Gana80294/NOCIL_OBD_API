@@ -15,6 +15,14 @@ namespace NOCIL_VP.Domain.Core.Dtos
         public int Vendor_Type_Id { get; set; }
     }
 
+    public class WecomeApprovedVendorMail 
+    {
+        public string Recepient { get; set; }
+        public string ToEmail { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+    }
+
     public class ApprovalMailInfo
     {
         public string Email { get; set; }
@@ -29,6 +37,16 @@ namespace NOCIL_VP.Domain.Core.Dtos
         public string UserName { get; set; }
         public string ToEmail { get; set; }
         public string ApprovedBy { get; set; }
+    }
+
+    public class VendorCreationNotification
+    {
+        public string Recepient { get; set; }
+        public string ToMail { get; set; }
+        public string VendorName { get; set; }
+        public string VendorMail { get; set; }
+        public string VendorMobile { get; set; }
+        public string VendorCode { get; set; }
     }
 
     public class RejectionMailInfoToVendor
@@ -53,5 +71,6 @@ namespace NOCIL_VP.Domain.Core.Dtos
         public string VendorName { get; set; }
 
     }
+
 
 }

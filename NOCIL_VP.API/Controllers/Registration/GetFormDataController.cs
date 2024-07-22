@@ -101,7 +101,6 @@ namespace NOCIL_VP.API.Controllers.Registration
 
         }
 
-
         [HttpGet]
         public async Task<IActionResult> GetVendorProfile(int formId)
         {

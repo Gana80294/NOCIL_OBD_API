@@ -45,7 +45,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Master
             user_Role_Mapping.Employee_Id = userDto.Employee_Id;
             user_Role_Mapping.Role_Id = userDto.Role_Id;
             _dbContext.User_Role_Mappings.Add(user_Role_Mapping);
-            var saved = Save();
+            var saved = await SaveAsync();
             return saved;
         }
 

@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Creaiton</title>
+    <style>
+        p {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif;">
+    <div style="display:flex;flex-direction:column;">
+        <div style="height: 40px; background-color: #3ebe34; color: white; display: flex; justify-content: center; align-items: center;">
+            <h3 style="margin:0px;">NOCIL - Vendor Onboarding</h3>
+        </div>
+    </div>
+    <div style="margin-top:20px;">
+        <p style="font-weight: 600;"> Dear {recepient},</p>
+        <br />
+        <p style="text-indent:30px;font-weight:500">The following vendor has been onboarded successfully.</p>
+        <p style="text-indent:30px;font-weight:500">Vendor Information:</p>
+        <table style="margin-left:100px">
+            <tr>
+                <td style="text-align:left;padding-right:20px">Vendor Name</td>
+                <td style="text-align:left;">{vendorname}</td>
+            </tr>
+            <tr>
+                <td style="text-align:left;padding-right:20px">Vendor Mail</td>
+                <td style="text-align:left;">{vendormail}</td>
+            </tr>
+            <tr>
+                <td style="text-align:left;padding-right:20px">Vendor Mobile</td>
+                <td style="text-align:left;">{vendormobile}</td>
+            </tr>
+            <tr>
+                <td style="text-align:left;padding-right:20px">Vendor Code</td>
+                <td style="text-align:left;">{vendorcode}</td>
+            </tr>
+        </table>
+        <br /><br />
+        <p style='margin-bottom:0px !important;'>Regards,</p>
+        <p>Admin</p>
+    </div>
+</body>
+</html>
