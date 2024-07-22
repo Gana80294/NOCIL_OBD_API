@@ -58,7 +58,7 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
                 {
                     Form_Id = sendMail.Form_Id,
                     V_Id = sendMail.Vendor_Type_Id,
-                    Status = ""
+                    Status = "Initiated"
                 };
                 string jsonString = JsonConvert.SerializeObject(qParams);
                 string encodedJson = HttpUtility.UrlEncode(jsonString);
@@ -81,7 +81,36 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
                 throw ex;
             }
         }
+        public async Task SendWelcomeMailToVendors(WecomeApprovedVendorMail mail)
+        {
+            LogWritter.WriteErrorLog($"SendMailToVendors - {JsonConvert.SerializeObject(mail)}");
+            try
+            {
+                string subject = "NOCIL - Vendor Onboarding";
+                string mailBody = "";
 
+
+                if (mail.ToEmail != null)
+                {
+                    mailBody = readHtmlString("WelcomeApprovedVendor.html");
+                    mailBody = mailBody.Replace("{recepient}", mail.Recepient)
+                        .Replace("{registerUrl}", _smtpSettings.SiteLink)
+                        .Replace("{username}", mail.Username)
+                        .Replace("{password}", mail.Password);
+                }
+                else
+                {
+                    throw new Exception("To Email not found!!!");
+                }
+                SmtpClient client = CreateSmtpClient();
+                MailMessage mailMessage = CreateMailMessage(mail.ToEmail, subject, mailBody);
+                await client.SendMailAsync(mailMessage);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         public async Task SendApprovalRequestMail(ApprovalMailInfo approvalMailInfo)
         {
             try
@@ -110,8 +139,7 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
                 throw ex;
             }
         }
-
-        public async Task SendRejectionInfoMail(RejectionMailInfo rejectionMailInfo)
+        public async Task SendRejectionInfoMailToVendor(RejectionMailInfoToVendor rejectionMailInfo)
         {
             try
             {
@@ -148,7 +176,34 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
                 throw ex;
             }
         }
-
+        public async Task SendRejectionMailInfoToBuyers(List<RejectionMailInfoToBuyer> rejectionMailInfo)
+        {
+            try
+            {
+                string subject = "Vendor Onboarding";
+                string mailBody = "";
+                foreach (var info in rejectionMailInfo)
+                {
+                    if (info.ToEmail != null)
+                    {
+                        mailBody = readHtmlString("RejectionInfoToBuyer.html");
+                        mailBody = mailBody.Replace("{recepient}", info.Recepient)
+                            .Replace("{reason}", info.Reason)
+                            .Replace("{rejectedby}", info.RejectedBy)
+                            .Replace("{formId}", info.Form_Id.ToString())
+                            .Replace("{vendorName}", info.VendorName)
+                            .Replace("{vendorMail}", info.VendorMail);
+                    }
+                    SmtpClient client = CreateSmtpClient();
+                    MailMessage mailMessage = CreateMailMessage(info.ToEmail, subject, mailBody);
+                    await client.SendMailAsync(mailMessage);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         public async Task SendApprovalInfoMail(ApprovalInfo approvalInfo)
         {
             try
@@ -172,6 +227,35 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+        
+        public async Task SendVendorCreationNotification(VendorCreationNotification mail)
+        {
+            try
+            {
+                string subject = "Vendor Onboarding";
+                string mailBody = "";
+                if (mail.ToMail != null)
+                {
+                    mailBody = readHtmlString("VendorCreationNotification.html");
+                    mailBody = mailBody.Replace("{recepient}", mail.Recepient)
+                        .Replace("{vendorname}", mail.VendorName)
+                        .Replace("{vendormail}", mail.VendorMail)
+                        .Replace("{vendormobile}", mail.VendorMobile)
+                        .Replace("{vendorcode}", mail.VendorCode);
+                }
+                else
+                {
+                    throw new Exception("To Email not found!!!");
+                }
+                SmtpClient client = CreateSmtpClient();
+                MailMessage mailMessage = CreateMailMessage(mail.ToMail, subject, mailBody);
+                await client.SendMailAsync(mailMessage);
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
         #endregion

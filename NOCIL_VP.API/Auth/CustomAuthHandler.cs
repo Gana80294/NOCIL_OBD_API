@@ -53,14 +53,28 @@ namespace NOCIL_VP.API.Auth
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var jwtTokenObj = tokenHandler.ReadJwtToken(jwtToken);
 
-                var employeeId = "";
+
                 var role = jwtTokenObj.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)!.Value;
                 if (role != "Vendor")
                 {
-                    employeeId = jwtTokenObj.Claims.FirstOrDefault(c => c.Type == "EmployeeId")!.Value;
+                    string employeeId = jwtTokenObj.Claims.FirstOrDefault(c => c.Type == "EmployeeId")!.Value;
                     if (!string.IsNullOrWhiteSpace(employeeId) && !string.IsNullOrWhiteSpace(role))
                     {
                         var user = this._dbContext.Users.FirstOrDefault(x => x.Employee_Id == employeeId);
+                        if (user != null) { return true; }
+                    }
+                    throw new UnauthorizedAccessException();
+                }
+                else
+                {
+                    string vendorCode = jwtTokenObj.Claims.FirstOrDefault(c => c.Type == "VendorCode")!.Value;
+                    if (!string.IsNullOrWhiteSpace(vendorCode) && !string.IsNullOrWhiteSpace(role))
+                    {
+                        if (vendorCode == "not_registered")
+                        {
+                            return true;
+                        }
+                        var user = this._dbContext.Users.FirstOrDefault(x => x.Employee_Id == vendorCode);
                         if (user != null) { return true; }
                     }
                     throw new UnauthorizedAccessException();

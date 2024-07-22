@@ -67,8 +67,7 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
             {
                 details.RegistrationDate = (DateTime?)null;
             }
-            details.Addresses = new List<string>();
-            details.Addresses.Add(BuildAddressDataFromObject(data.pradr));
+            details.Addresses = [BuildAddressDataFromObject(data.pradr)];
             foreach (var item in data.adadr)
             {
                 var adAddress = BuildAddressDataFromObject(item);
@@ -77,18 +76,20 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
             return details;
         }
 
-        public string BuildAddressDataFromObject(IrisApiAddress item)
+        public TaxPayerAddress BuildAddressDataFromObject(IrisApiAddress item)
         {
-            var add = "";
-            add += !string.IsNullOrEmpty(item.flno) ? item.flno+", " : "";
-            add += !string.IsNullOrEmpty(item.bno) ? item.bno + ", " : "";
-            add += !string.IsNullOrEmpty(item.bnm) ? item.bnm + ", " : "";
-            add += !string.IsNullOrEmpty(item.st) ? item.st + ", " : "";
-            add += !string.IsNullOrEmpty(item.loc) ? item.loc + ", " : "";
-            add += !string.IsNullOrEmpty(item.district) ? item.district + ", " : "";
-            add += !string.IsNullOrEmpty(item.stcd) ? item.stcd + ", " : "";
-            add += !string.IsNullOrEmpty(item.pncd) ? item.pncd : "";
-            return add.Trim();
+            var add = new TaxPayerAddress()
+            {
+                House_No = item.bno,
+                Street_2 = item.st,
+                Street_3 = item.loc,
+                Street_4 = $"{item.bnm},{item.flno}".Trim(),
+                Street_5 = "",
+                City = item.city,
+                District = item.district,
+                Postal_Code = item.pncd,
+            };
+            return add;
         }
     }
 }

@@ -83,5 +83,11 @@ namespace NOCIL_VP.API.Controllers.Registration
             return BadRequest(ResponseWritter.WriteErrorResponse("Unable to get the address details"));
         }
 
+        [HttpGet]
+        public IActionResult GetCompleteFormForSAP(int formId)
+        {
+            return Ok(this._registrationRepository.GetCompleteFormDetailsForSAP(formId));
+        }
+
     }
 }

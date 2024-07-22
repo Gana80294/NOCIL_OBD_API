@@ -53,6 +53,20 @@ namespace NOCIL_VP.Domain.Core.Dtos.Response
     {
         public string Name { get; set; }
         public DateTime? RegistrationDate { get; set; }
-        public List<string> Addresses { get; set; }
+        public List<TaxPayerAddress> Addresses { get; set; }
+    }
+
+    public class TaxPayerAddress
+    {
+        public string House_No { get; set; }
+        public string Street_2 { get; set; }
+        public string Street_3 { get; set; }
+        public string Street_4 { get; set; }
+        public string Street_5 { get; set; }
+        public string City { get; set; }
+        public string Postal_Code { get; set; }
+        public string District { get; set; }
+        public string Country_Code { get; set; }
+        public string Region_Id { get; set; }
     }
 }

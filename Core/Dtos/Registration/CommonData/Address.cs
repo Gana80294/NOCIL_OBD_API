@@ -16,7 +16,7 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration.CommonData
         public int Form_Id { get; set; }
         [Required]
         public int Address_Type_Id { get; set; }
-        [Required, MaxLength(60)]
+        [Required, MaxLength(35)]
         public string House_No { get; set; }
 
         [Required, MaxLength(40)]
@@ -27,11 +27,11 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration.CommonData
 
         [Required, MaxLength(40)]
         public string Street_4 { get; set; }
-        [MaxLength(8)]
+        [MaxLength(35)]
         public string District { get; set; }
         [MaxLength(10)]
         public string Postal_Code { get; set; }
-        [MaxLength(40)]
+        [MaxLength(35)]
         public string City { get; set; }
 
         public string Country_Code { get; set; }
@@ -41,7 +41,7 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration.CommonData
         public string Country_Name {  get; set; }
         public string Region_Name {  get; set; }
 
-        [MaxLength(20)]
+        [MaxLength(16)]
         public string Tel { get; set; }
         [MaxLength(20)]
         public string Fax { get; set; }

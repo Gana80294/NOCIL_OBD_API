@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NOCIL_VP.Domain.Core.Entities;
 
@@ -11,9 +12,11 @@ using NOCIL_VP.Domain.Core.Entities;
 namespace NOCIL_VP.Domain.Core.Migrations
 {
     [DbContext(typeof(VpContext))]
-    partial class VpContextModelSnapshot : ModelSnapshot
+    [Migration("20240627035631_addNullableProperties")]
+    partial class addNullableProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -837,27 +840,27 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("City")
-                        .HasMaxLength(35)
-                        .HasColumnType("nvarchar(35)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("Country_Code")
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("District")
-                        .HasMaxLength(35)
-                        .HasColumnType("nvarchar(35)");
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("Fax")
-                        .HasMaxLength(31)
-                        .HasColumnType("nvarchar(31)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("Form_Id")
                         .HasColumnType("int");
 
                     b.Property<string>("House_No")
                         .IsRequired()
-                        .HasMaxLength(35)
-                        .HasColumnType("nvarchar(35)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Postal_Code")
                         .HasMaxLength(10)
@@ -882,8 +885,8 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("Tel")
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Website")
                         .HasMaxLength(100)

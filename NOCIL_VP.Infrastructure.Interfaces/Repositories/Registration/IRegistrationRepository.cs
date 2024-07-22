@@ -20,5 +20,7 @@ namespace NOCIL_VP.Infrastructure.Interfaces.Repositories.Registration
         Task<ResponseMessage> UpdateForm(FormSubmitTemplate formData);
         DashboardDto GetSingleFormData(int form_Id);
         ReasonDto GetRejectedReasons(int form_Id);
+
+        SAPVendorCreationPayload GetCompleteFormDetailsForSAP(int Form_Id);
     }
 }
