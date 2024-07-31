@@ -19,6 +19,6 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration.Domestic
         public int Plant_Installation_Year { get; set; }
 
         public int Title_Id { get; set; }
-        public int GSTVenClass_Id { get; set; }
+        public int? GSTVenClass_Id { get; set; }
     }
 }

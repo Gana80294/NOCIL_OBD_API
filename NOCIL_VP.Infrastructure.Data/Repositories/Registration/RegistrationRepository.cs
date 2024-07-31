@@ -189,18 +189,24 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                     else { throw new ArgumentException(string.Join(", ", errors)); }
                     break;
                 case 2:
+                    DomesticAndImportForm domesticForm1 = JsonConvert.DeserializeObject<DomesticAndImportForm>(formData.FormData.ToString());
+                    errors = this._validator.ValidateModel(domesticForm1);
+                    if (errors.Count == 0) { submitted = await _domesticRepository.UpdateDomesticAndImportVendorDetails(domesticForm1, formData.Form_Id); }
+                    else { throw new ArgumentException(string.Join(", ", errors)); }
+                    break;
+                case 3:
                     ServiceForm serviceForm = JsonConvert.DeserializeObject<ServiceForm>(formData.FormData.ToString());
                     errors = this._validator.ValidateModel(serviceForm);
                     if (errors.Count == 0) { submitted = await _serviceRepository.UpdateServiceVendorDetails(serviceForm, formData.Form_Id); }
                     else { throw new ArgumentException(string.Join(", ", errors)); }
                     break;
-                case 3:
+                case 4:
                     TransportForm transportForm = JsonConvert.DeserializeObject<TransportForm>(formData.FormData.ToString());
                     errors = this._validator.ValidateModel(transportForm);
                     if (errors.Count == 0) { submitted = await _transportRepository.UpdateTransportVendorDetails(transportForm, formData.Form_Id); }
                     else { throw new ArgumentException(string.Join(", ", errors)); }
                     break;
-                case 4:
+                case 5:
                     DomesticAndImportForm importForm = JsonConvert.DeserializeObject<DomesticAndImportForm>(formData.FormData.ToString());
                     errors = this._validator.ValidateModel(importForm);
                     if (errors.Count == 0) { submitted = await _domesticRepository.UpdateDomesticAndImportVendorDetails(importForm, formData.Form_Id); }
@@ -260,7 +266,12 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
             {
                 try
                 {
-                    var oldTask = _dbContext.Tasks.Where(x => x.Form_Id == rejectDto.Form_Id && x.Owner_Id == rejectDto.Employee_Id && x.Status == "Active").FirstOrDefault();
+                    var oldTask = _dbContext.Tasks
+                                  .Include(x => x.User) 
+                                  .FirstOrDefault(x => x.Form_Id == rejectDto.Form_Id &&
+                                    x.Owner_Id == rejectDto.Employee_Id &&
+                                    x.Status == "Active");
+                    //var oldTask = _dbContext.Tasks.Where(x => x.Form_Id == rejectDto.Form_Id && x.Owner_Id == rejectDto.Employee_Id && x.Status == "Active").FirstOrDefault();
                     if (oldTask != null)
                     {
                         oldTask.Status = "Rejected";
@@ -338,6 +349,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                               select new
                               {
                                   TaskId = task.Task_Id,
+                                  Form_Id=task.Forms.Form_Id,
                                   EmployeeId = task.Owner_Id,
                                   Recepient = task.Owner_Id != null ? task.User.First_Name : "",
                                   RoleId = task.Role_Id,
@@ -478,7 +490,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                             };
 
                             await this._emailHelper.SendApprovalRequestMail(approval);
-                            await this._emailHelper.SendApprovalInfoMail(approvalInfo);
+                            //await this._emailHelper.SendApprovalInfoMail(approvalInfo);
 
                         }
                         else
