@@ -47,7 +47,6 @@ namespace NOCIL_VP.API.Extensions
             services.AddScoped<ExcelHelper>();
             services.AddScoped<VendorService>();
 
-            services.AddHttpClient<VendorService>();
 
             return services;
         }
