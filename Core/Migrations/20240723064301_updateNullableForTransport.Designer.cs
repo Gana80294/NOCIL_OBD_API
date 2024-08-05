@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NOCIL_VP.Domain.Core.Entities;
 
@@ -11,9 +12,11 @@ using NOCIL_VP.Domain.Core.Entities;
 namespace NOCIL_VP.Domain.Core.Migrations
 {
     [DbContext(typeof(VpContext))]
-    partial class VpContextModelSnapshot : ModelSnapshot
+    [Migration("20240723064301_updateNullableForTransport")]
+    partial class updateNullableForTransport
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1421,6 +1424,9 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("Date_of_Establishment")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("Form_Id")
                         .HasColumnType("int");
 
@@ -1440,9 +1446,6 @@ namespace NOCIL_VP.Domain.Core.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Title_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Year_of_Establishment")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

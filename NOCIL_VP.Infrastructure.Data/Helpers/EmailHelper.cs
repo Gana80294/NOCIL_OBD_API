@@ -186,13 +186,14 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
                 {
                     if (info.ToEmail != null)
                     {
-                        mailBody = readHtmlString("RejectionInfoToBuyer.html");
+                        mailBody = readHtmlString("RejectionInfoToBuyers.html");
                         mailBody = mailBody.Replace("{recepient}", info.Recepient)
                             .Replace("{reason}", info.Reason)
                             .Replace("{rejectedby}", info.RejectedBy)
                             .Replace("{formId}", info.Form_Id.ToString())
                             .Replace("{vendorName}", info.VendorName)
-                            .Replace("{vendorMail}", info.VendorMail);
+                            .Replace("{vendorMail}", info.VendorMail)
+                            .Replace("{vendorMobile}", info.VendorMobile);
                     }
                     SmtpClient client = CreateSmtpClient();
                     MailMessage mailMessage = CreateMailMessage(info.ToEmail, subject, mailBody);
