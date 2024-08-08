@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NOCIL_VP.Domain.Core.Entities;
 
@@ -11,9 +12,11 @@ using NOCIL_VP.Domain.Core.Entities;
 namespace NOCIL_VP.Domain.Core.Migrations
 {
     [DbContext(typeof(VpContext))]
-    partial class VpContextModelSnapshot : ModelSnapshot
+    [Migration("20240805101355_addGPSRegistered")]
+    partial class addGPSRegistered
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1459,30 +1462,6 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.ToTable("Transport_Vendor_Personal_Data");
                 });
 
-            modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.Transport.VehicleDetails", b =>
-                {
-                    b.Property<int>("VehicleTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VehicleTypeId"));
-
-                    b.Property<float>("Capacity")
-                        .HasColumnType("real");
-
-                    b.Property<int>("Form_Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Vehicle_Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("VehicleTypeId");
-
-                    b.HasIndex("Form_Id");
-
-                    b.ToTable("Vehicle_Details");
-                });
-
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Approval.Tasks", b =>
                 {
                     b.HasOne("NOCIL_VP.Domain.Core.Entities.Registration.Form", "Forms")
@@ -1922,17 +1901,6 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.Navigation("GSTVenClass");
 
                     b.Navigation("Title");
-                });
-
-            modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.Transport.VehicleDetails", b =>
-                {
-                    b.HasOne("NOCIL_VP.Domain.Core.Entities.Registration.Form", "Forms")
-                        .WithMany()
-                        .HasForeignKey("Form_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Forms");
                 });
 #pragma warning restore 612, 618
         }

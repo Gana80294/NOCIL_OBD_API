@@ -9,6 +9,7 @@ using NOCIL_VP.Domain.Core.Entities.Registration.Transport;
 using NOCIL_VP.Infrastructure.Data.Enums;
 using NOCIL_VP.Infrastructure.Data.Helpers;
 using NOCIL_VP.Infrastructure.Interfaces.Repositories.Registration;
+using NPOI.OpenXmlFormats.Dml.Diagram;
 
 namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 {
@@ -37,6 +38,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                 {
                     this._dbContext.Transport_Vendor_Personal_Data.Add(this._mapper.Map<TransportVendorPersonalData>(transportForm.TransportVendorPersonalData));
                     this._dbContext.Tanker_Details.AddRange(this._mapper.Map<List<TankerDetail>>(transportForm.TankerDetails));
+                    this._dbContext.Vehicle_Details.AddRange(this._mapper.Map<List<VehicleDetails>>(transportForm.VehicleDetails));
                     this._dbContext.Bank_Details.Add(this._mapper.Map<Bank_Detail>(transportForm.BankDetail));
                     this._dbContext.Commercial_Profile.Add(this._mapper.Map<CommercialProfile>(transportForm.CommercialProfile));
                     this._dbContext.Addresses.AddRange(this._mapper.Map<List<Address>>(transportForm.Addresses));
@@ -94,6 +96,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                 {
                     this._dbContext.Transport_Vendor_Personal_Data.Update(this._mapper.Map<TransportVendorPersonalData>(transportForm.TransportVendorPersonalData));
                     this._dbContext.Tanker_Details.UpdateRange(this._mapper.Map<List<TankerDetail>>(transportForm.TankerDetails));
+                    this._dbContext.Vehicle_Details.UpdateRange(this._mapper.Map<List<VehicleDetails>>(transportForm.VehicleDetails));
                     this._dbContext.Bank_Details.Update(this._mapper.Map<Bank_Detail>(transportForm.BankDetail));
                     this._dbContext.Commercial_Profile.Update(this._mapper.Map<CommercialProfile>(transportForm.CommercialProfile));
                     this._dbContext.VendorBranches.UpdateRange(this._mapper.Map<List<VendorBranch>>(transportForm.VendorBranches));

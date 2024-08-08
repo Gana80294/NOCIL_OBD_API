@@ -35,6 +35,7 @@ namespace NOCIL_VP.Domain.Core.Entities
         public DbSet<VendorOrganizationProfile> Vendor_Organization_Profile { get; set; }
         public DbSet<TransportVendorPersonalData> Transport_Vendor_Personal_Data { get; set; }
         public DbSet<TankerDetail> Tanker_Details { get; set; }
+        public DbSet<VehicleDetails> Vehicle_Details { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<VendorBranch> VendorBranches { get; set; }
