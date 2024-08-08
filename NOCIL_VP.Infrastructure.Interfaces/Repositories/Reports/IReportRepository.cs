@@ -11,6 +11,8 @@ namespace NOCIL_VP.Infrastructure.Interfaces.Repositories.Reports
     {
         Task<List<VendorMasterDto>> GetAllVendorsByType(bool type);
         Task<List<VendorMasterDto>> GetAllTransportVendors();
+        Task<List<VendorMasterDto>> SearchAllVendors(VendorReportDto reportDto);
+
         void CreateFolder();
     }
 }
