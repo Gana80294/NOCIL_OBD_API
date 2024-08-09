@@ -25,6 +25,7 @@ namespace NOCIL_VP.Infrastructure.Data.Mapper
             CreateMap<VendorOrganizationProfile_Dto, VendorOrganizationProfile>().ReverseMap();
             CreateMap<TransportVendorPersonalData_Dto,TransportVendorPersonalData>().ReverseMap();
             CreateMap<TankerDetail_Dto, TankerDetail>().ReverseMap();
+            CreateMap<VehicleDetails,VehicleDetails_Dto>().ReverseMap();
             CreateMap<TechnicalProfile_Dto, TechnicalProfile>().ReverseMap();
             CreateMap<Subsideries_Dto, Subsideries>().ReverseMap();
             CreateMap<MajorCustomer_Dto, MajorCustomer>().ReverseMap();

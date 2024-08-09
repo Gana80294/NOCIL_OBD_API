@@ -21,5 +21,7 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration.Transport
         public float Capacity_of_Tanker { get; set; }
         [MaxLength(50)]
         public string Unit { get; set; }
+
+        public bool IsGPSRegistered { get; set; }
     }
 }

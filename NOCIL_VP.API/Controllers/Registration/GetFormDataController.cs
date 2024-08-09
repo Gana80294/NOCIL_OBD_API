@@ -90,6 +90,8 @@ namespace NOCIL_VP.API.Controllers.Registration
                         return Ok(this._mapper.Map<List<AnnualTurnOver_Dto>>(await this._dbContext.Annual_TurnOver.Where(f => f.Form_Id == formId).ToListAsync()));
                     case ("TankerDetails"):
                         return Ok(this._mapper.Map<List<TankerDetail_Dto>>(await this._dbContext.Tanker_Details.Where(f => f.Form_Id == formId).ToListAsync()));
+                    case ("VehicleDetails"):
+                        return Ok(this._mapper.Map<List<VehicleDetails_Dto>>(await this._dbContext.Vehicle_Details.Where(f => f.Form_Id == formId).ToListAsync()));
                     case ("NocilRelatedEmployees"):
                         return Ok(this._mapper.Map<List<NocilRelatedEmployeeDto>>(await this._dbContext.NocilRelatedEmployees.Where(f => f.Form_Id == formId).ToListAsync()));
                     case ("AdditionalFields"):

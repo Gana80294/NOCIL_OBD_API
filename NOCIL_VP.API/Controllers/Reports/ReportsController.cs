@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using NOCIL_VP.Domain.Core.Dtos.Master;
+using NOCIL_VP.Domain.Core.Dtos.Registration;
 using NOCIL_VP.Infrastructure.Data.Enums;
 using NOCIL_VP.Infrastructure.Data.Helpers;
 using NOCIL_VP.Infrastructure.Interfaces.Repositories.Reports;
@@ -56,6 +57,12 @@ namespace NOCIL_VP.API.Controllers.Reports
             workbook.Write(stream);
             byte[] fileByteArray = stream.ToArray();
             return File(fileByteArray, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileNm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SearchAllVendors(VendorReportDto reportDto)
+        {
+            return Ok(await _reportRepository.SearchAllVendors(reportDto));
         }
     }
 }
