@@ -27,6 +27,6 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration.Transport
         public int No_of_Own_Vehicles { get; set; }
         [Required]
         public int No_of_Drivers { get; set; }
-        public string Nicerglobe_Registration { get; set; }
+        public bool Nicerglobe_Registration { get; set; }
     }
 }
