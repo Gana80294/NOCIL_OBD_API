@@ -21,6 +21,7 @@ namespace NOCIL_VP.Domain.Core.Dtos.Registration.CommonData
         [MaxLength(15, ErrorMessage = "GSTIN number sould be 10 charecter length")]
         [RegularExpression(@"^([0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[0-9A-Z]{2})+$", ErrorMessage = "Invalid GST number format")]
         public string GSTIN { get; set; }
+        public bool Is_MSME_Type { get; set; }
         public string MSME_Type { get; set; }
         public string MSME_Number { get; set; }
         public string ServiceCategory { get; set; }
