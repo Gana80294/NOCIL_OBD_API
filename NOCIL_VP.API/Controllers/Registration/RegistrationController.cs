@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using NOCIL_VP.Domain.Core.Dtos;
 using NOCIL_VP.Domain.Core.Dtos.Registration;
 using NOCIL_VP.Domain.Core.Dtos.Response;
 using NOCIL_VP.Infrastructure.Data.Enums;

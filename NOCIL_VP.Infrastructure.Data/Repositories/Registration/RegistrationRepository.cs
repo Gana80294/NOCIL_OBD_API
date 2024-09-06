@@ -267,7 +267,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                 try
                 {
                     var oldTask = _dbContext.Tasks
-                                  .Include(x => x.User) 
+                                  .Include(x => x.User)
                                   .FirstOrDefault(x => x.Form_Id == rejectDto.Form_Id &&
                                     x.Owner_Id == rejectDto.Employee_Id &&
                                     x.Status == "Active");
@@ -349,7 +349,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                               select new
                               {
                                   TaskId = task.Task_Id,
-                                  Form_Id=task.Forms.Form_Id,
+                                  Form_Id = task.Forms.Form_Id,
                                   EmployeeId = task.Owner_Id,
                                   Recepient = task.Owner_Id != null ? task.User.First_Name : "",
                                   RoleId = task.Role_Id,
@@ -1282,5 +1282,30 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
         }
 
         #endregion
+
+        public async Task<ResponseMessage> RequestForEdit(RequestEditDto requestDto)
+        {
+            using (var transaction = _dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    var user = this._dbContext.Users.FirstOrDefault(x => x.Employee_Id == requestDto.Employee_Id);
+                    var form = this._dbContext.Forms.FirstOrDefault(x => x.Form_Id == requestDto.Form_Id);
+
+                    await _dbContext.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                    transaction.Dispose();
+
+                    return ResponseWritter.WriteSuccessResponse("");
+                }
+                catch (Exception)
+                {
+                    await transaction.RollbackAsync();
+                    transaction.Dispose();
+                    throw;
+                }
+            }
+        }
+
     }
 }

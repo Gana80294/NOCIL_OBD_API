@@ -59,6 +59,15 @@ namespace NOCIL_VP.Domain.Core.Dtos
 
     }
 
+    public class RequestForEditMailToVendor
+    {
+        public int Form_Id { get; set; }
+        public string Username { get; set; }
+        public string ToEmail { get; set; }
+        public string Reason { get; set; }
+
+    }
+
     public class RejectionMailInfoToBuyer
     {
         public int Form_Id { get; set; }

@@ -259,6 +259,35 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
                 throw;
             }
         }
+
+
+        public async Task SendRequestForEditMailToVendors(RequestForEditMailToVendor requestMail)
+        {
+            try
+            {
+                string subject = "Requesting For Edit";
+                string mailBody = "";
+                if (requestMail.ToEmail != null)
+                {
+                    mailBody = readHtmlString("ApproveRequest.html");
+                    mailBody = mailBody.Replace("{recepient}", requestMail.Username)
+                        .Replace("{formId}", requestMail.Form_Id.ToString())
+                        .Replace("{email}", requestMail.ToEmail);
+                }
+                else
+                {
+                    throw new Exception("To Email not found!!!");
+                }
+
+                SmtpClient client = CreateSmtpClient();
+                MailMessage mailMessage = CreateMailMessage(requestMail.ToEmail, subject, mailBody);
+                await client.SendMailAsync(mailMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         #endregion
 
 
