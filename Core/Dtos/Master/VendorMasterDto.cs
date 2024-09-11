@@ -15,5 +15,7 @@ namespace NOCIL_VP.Domain.Core.Dtos.Master
         public string Vendor_Type { get; set; }
         public int Form_Id { get; set; }
         public int VT_Id { get; set; }
+        public string? Doc_Type { get; set; }
+        public DateTime? Expiry_Date { get; set; }
     }
 }

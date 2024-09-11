@@ -49,10 +49,6 @@ namespace NOCIL_VP.API.Controllers.Reports
             string dtstr = dt.ToString("ddMMyyyyHHmmss");
             var FileNm = $"{type}_Vendors_{dtstr}.xlsx";
 
-            //_reportRepository.CreateFolder();
-            //var FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "TempFolder", FileNm);
-            //FileStream stream = new FileStream(FilePath, FileMode.Create, FileAccess.Write);
-
             MemoryStream stream = new MemoryStream();
             workbook.Write(stream);
             byte[] fileByteArray = stream.ToArray();
@@ -63,6 +59,44 @@ namespace NOCIL_VP.API.Controllers.Reports
         public async Task<IActionResult> SearchAllVendors(VendorReportDto reportDto)
         {
             return Ok(await _reportRepository.SearchAllVendors(reportDto));
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> DownloadFilteredVendors(VendorReportDto reportDto)
+        {
+            var data = new List<VendorMasterDto>();
+            data = await _reportRepository.SearchAllVendors(reportDto);
+            IWorkbook workbook = new XSSFWorkbook();
+            ISheet sheet = _excelHelper.CreateNPOIworksheetForVendorMaster(data, workbook);
+            DateTime dt = DateTime.Today;
+            string dtstr = dt.ToString("ddMMyyyyHHmmss");
+            var FileNm = $"Filtered_Vendors_{dtstr}.xlsx";
+
+            MemoryStream stream = new MemoryStream();
+            workbook.Write(stream);
+            byte[] fileByteArray = stream.ToArray();
+            return File(fileByteArray, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileNm);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DownloadVendorByExpiry()
+        {
+            var data = new List<VendorMasterDto>();
+            data = await _reportRepository.DownloadVendorByExpiry();
+
+            IWorkbook workbook = new XSSFWorkbook();
+            ISheet sheet = _excelHelper.CreateNPOIworksheetForExpiryVendor(data, workbook);
+            DateTime dt = DateTime.Today;
+            string dtstr = dt.ToString("ddMMyyyyHHmmss");
+            var FileNm = $"Expiry_Vendors_{dtstr}.xlsx";
+
+            MemoryStream stream = new MemoryStream();
+            workbook.Write(stream);
+            byte[] fileByteArray = stream.ToArray();
+            return File(fileByteArray, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileNm);
+
+
         }
     }
 }
