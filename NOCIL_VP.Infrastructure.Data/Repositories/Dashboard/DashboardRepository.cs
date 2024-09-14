@@ -104,7 +104,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
         {
             var result = await (from form in _dbContext.Forms
                           join task in _dbContext.Tasks on form.Form_Id equals task.Form_Id
-                          where form.Status_Id == (int)FormStatusEnum.Pending && task.Owner_Id == employeeId && task.Status == "Active"
+                          where (form.Status_Id == (int)FormStatusEnum.Pending && task.Status == "Active") || (form.Status_Id == (int)FormStatusEnum.EditApprovalPending) && task.Owner_Id == employeeId 
                           select new DashboardDto
                           {
                               FormId = form.Form_Id,

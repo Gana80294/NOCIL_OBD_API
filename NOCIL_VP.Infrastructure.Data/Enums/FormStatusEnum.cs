@@ -6,6 +6,10 @@
         Pending=2,
         SAP=3,
         Approved = 4,
-        Rejected = 5
+        Rejected = 5,
+        EditRequested = 6,
+        EditReqApproved = 7,
+        EditReqRejected = 8,
+        EditApprovalPending = 9
     }
 }
