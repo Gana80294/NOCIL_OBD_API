@@ -261,26 +261,100 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
         }
 
 
-        public async Task SendRequestForEditMailToVendors(RequestForEditMailToVendor requestMail)
+        public async Task SendRequestToEditMail(SendRequestToEditMail sendMail)
         {
             try
             {
-                string subject = "Requesting For Edit";
+                string subject = "Vendor Onboarding";
                 string mailBody = "";
-                if (requestMail.ToEmail != null)
+                var qParams = new
                 {
-                    mailBody = readHtmlString("ApproveRequest.html");
-                    mailBody = mailBody.Replace("{recepient}", requestMail.Username)
-                        .Replace("{formId}", requestMail.Form_Id.ToString())
-                        .Replace("{email}", requestMail.ToEmail);
+                    Form_Id = sendMail.Form_Id,
+                    V_Id = sendMail.Vendor_Type_Id,
+                    Status = "Initiated"
+                };
+                string jsonString = JsonConvert.SerializeObject(qParams);
+                string encodedJson = HttpUtility.UrlEncode(jsonString);
+
+                if (sendMail.ToEmail != null)
+                {
+                    mailBody = readHtmlString("EditRequestTemplate.html");
+                    mailBody = mailBody.Replace("{recepient}", sendMail.Username).Replace("{registerUrl}", _smtpSettings.SiteLink).Replace("{applicant}", sendMail.VendorCode).Replace("{reason}", sendMail.Reason);
                 }
                 else
                 {
                     throw new Exception("To Email not found!!!");
                 }
-
                 SmtpClient client = CreateSmtpClient();
-                MailMessage mailMessage = CreateMailMessage(requestMail.ToEmail, subject, mailBody);
+                MailMessage mailMessage = CreateMailMessage(sendMail.ToEmail, subject, mailBody);
+                await client.SendMailAsync(mailMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SendAcceptEditReqMail(SendMail sendMail)
+        {
+            try
+            {
+                string subject = "Vendor Onboarding";
+                string mailBody = "";
+                var qParams = new
+                {
+                    Form_Id = sendMail.Form_Id,
+                    V_Id = sendMail.Vendor_Type_Id,
+                    Status = "EditReqApproved"
+                };
+                string jsonString = JsonConvert.SerializeObject(qParams);
+                string encodedJson = HttpUtility.UrlEncode(jsonString);
+
+                if (sendMail.ToEmail != null)
+                {
+                    mailBody = readHtmlString("EditRequestApproved.html");
+                    mailBody = mailBody.Replace("{recepient}", sendMail.Username).Replace("{registerUrl}", _smtpSettings.SiteURL + encodedJson);
+                }
+                else
+                {
+                    throw new Exception("To Email not found!!!");
+                }
+                SmtpClient client = CreateSmtpClient();
+                MailMessage mailMessage = CreateMailMessage(sendMail.ToEmail, subject, mailBody);
+                await client.SendMailAsync(mailMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SendRejectEditReqMail(SendRequestRejectToEditMail mail)
+        {
+            try
+            {
+                string subject = "Vendor Onboarding";
+                string mailBody = "";
+                //var qParams = new
+                //{
+                //    Form_Id = sendMail.Form_Id,
+                //    V_Id = sendMail.Vendor_Type_Id,
+                //    Status = "Initiated"
+                //};
+                //string jsonString = JsonConvert.SerializeObject(qParams);
+                //string encodedJson = HttpUtility.UrlEncode(jsonString);
+
+                if (mail.ToEmail != null)
+                {
+                    mailBody = readHtmlString("EditRequestRejected.html");
+                    mailBody = mailBody.Replace("{recepient}", mail.Username).Replace("{reason}", mail.Reason);
+                }
+                else
+                {
+                    throw new Exception("To Email not found!!!");
+                }
+                SmtpClient client = CreateSmtpClient();
+                MailMessage mailMessage = CreateMailMessage(mail.ToEmail, subject, mailBody);
                 await client.SendMailAsync(mailMessage);
             }
             catch (Exception ex)

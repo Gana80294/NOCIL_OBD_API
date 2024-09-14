@@ -39,6 +39,7 @@ namespace NOCIL_VP.API.Extensions
             services.AddScoped<IReportRepository, ReportRepository>();
             services.AddScoped<INotificationsRepository, NotificationsRepository>();
             services.AddScoped<IVendorGradeRepository, VendorGradeRepository>();
+            services.AddScoped<IEditRequestRepository, EditRequestRepository>();
 
 
             services.AddScoped<OtpHelper>();

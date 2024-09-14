@@ -87,6 +87,8 @@ namespace NOCIL_VP.Domain.Core.Entities
 
         // Transaction histories
         public DbSet<TransactionHistory> TransactionHistories { get; set; }
+        public DbSet<EditRequestHistory> EditRequestHistories { get; set; }
+
 
 
 

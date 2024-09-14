@@ -1,4 +1,5 @@
 ﻿using NOCIL_VP.Domain.Core.Dtos.Registration;
+using NOCIL_VP.Domain.Core.Dtos.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
