@@ -31,9 +31,9 @@ namespace NOCIL_VP.API.Controllers.Registration
         }
 
         [HttpPost]
-        public async Task<IActionResult> RejectEditRequest(int formId, string reason)
+        public async Task<IActionResult> RejectEditRequest(RejectDto reject)
         {
-            return Ok(await _editReqRepository.RejectEditRequest(formId, reason));
+            return Ok(await _editReqRepository.RejectEditRequest(reject));
         }
 
         [HttpGet]
@@ -59,6 +59,13 @@ namespace NOCIL_VP.API.Controllers.Registration
         {
             return Ok(await _editReqRepository.RejectForm(rejectDto));
         }
+
+        [HttpGet]
+        public IActionResult GetEditRejectedReason(int form_Id)
+        {
+            return Ok(_editReqRepository.GetEditRejectedReason(form_Id));
+        }
+
 
     }
 }

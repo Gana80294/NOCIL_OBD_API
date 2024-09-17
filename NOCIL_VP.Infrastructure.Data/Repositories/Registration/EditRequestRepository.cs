@@ -23,6 +23,7 @@ using NOCIL_VP.Domain.Core.Dtos.Master;
 using NOCIL_VP.Domain.Core.Entities.Approval;
 using NOCIL_VP.Domain.Core.Entities.Registration.CommonData;
 using SAP_VENDOR_CREATE_SERVICE;
+using NOCIL_VP.Domain.Core.Dtos.Registration.Reason;
 
 namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 {
@@ -123,17 +124,19 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                     await _emailHelper.SendAcceptEditReqMail(sendMail);
                     form.Status_Id = (int)FormStatusEnum.EditReqApproved;
 
-                    var history = new EditRequestHistory()
-                    {
-                        Log_Id = 0,
-                        Form_Id = formId,
-                        //VendorCode = data.VendorCode,
-                        RequestedOn = DateTime.Now,
-                        IsApproved = false,
-                        Status = FormStatusEnum.EditReqApproved.ToString(),
-                        Message = "Edit Request Approved"
-                    };
-                    await _dbContext.EditRequestHistories.AddAsync(history);
+                    //var history = new EditRequestHistory()
+                    //{
+                    //    Log_Id = 0,
+                    //    Form_Id = formId,
+                    //VendorCode = data.VendorCode,
+                    //    RequestedOn = DateTime.Now,
+                    //    IsApproved = false,
+                    //    Status = FormStatusEnum.EditReqApproved.ToString(),
+                    //    Message = "Edit Request Approved"
+                    //};
+                    //await _dbContext.EditRequestHistories.AddAsync(history);
+                    var task = _dbContext.Tasks.Where(x => x.Form_Id == formId).OrderByDescending(x => x.Task_Id).FirstOrDefault();
+                    task.Status = "Rejected";
                     await _dbContext.SaveChangesAsync();
                     transaction.Commit();
                     transaction.Dispose();
@@ -148,20 +151,20 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
             }
         }
 
-        public async Task<ResponseMessage> RejectEditRequest(int formId, string reason)
+        public async Task<ResponseMessage> RejectEditRequest(RejectDto reject)
         {
 
             using (var transaction = _dbContext.Database.BeginTransaction())
             {
                 try
                 {
-                    var form = _dbContext.Forms.FirstOrDefault(x => x.Form_Id == formId);
+                    var form = _dbContext.Forms.FirstOrDefault(x => x.Form_Id == reject.Form_Id);
                     var sendMail = new SendRequestRejectToEditMail()
                     {
                         ToEmail = form.Vendor_Mail,
                         Username = form.Vendor_Name,
                         VendorCode = form.Vendor_Code,
-                        Reason = reason
+                        Reason = reject.Reason
                     };
                     await _emailHelper.SendRejectEditReqMail(sendMail);
                     form.Status_Id = (int)FormStatusEnum.EditReqRejected;
@@ -169,12 +172,13 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                     var history = new EditRequestHistory()
                     {
                         Log_Id = 0,
-                        Form_Id = formId,
+                        Form_Id = reject.Form_Id,
                         //VendorCode = data.VendorCode,
                         RequestedOn = DateTime.Now,
                         IsApproved = false,
-                        Status = FormStatusEnum.EditReqApproved.ToString(),
-                        Message = "Edit Request Rejected"
+                        Status = FormStatusEnum.EditReqRejected.ToString(),
+                        Message = reject.Reason,
+                        RejectedBy = reject.Employee_Id,
                     };
                     await _dbContext.EditRequestHistories.AddAsync(history);
                     await _dbContext.SaveChangesAsync();
@@ -254,6 +258,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
             }
             var form = _dbContext.Forms.FirstOrDefault(x => x.Form_Id == formData.Form_Id);
             form.Status_Id = (int)FormStatusEnum.EditApprovalPending;
+            _dbContext.SaveChanges();
 
             if (submitted) return ResponseWritter.WriteSuccessResponse("Form Upated Successfully");
             else throw new Exception("Workflow for this vendor type is not defined");
@@ -325,6 +330,8 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                             // Add to database
                             _dbContext.Tasks.Add(task);
                             _dbContext.TransactionHistories.Add(history);
+                            var form = _dbContext.Forms.FirstOrDefault(x => x.Form_Id == approvalDto.Form_Id);
+                            form.Status_Id = (int)FormStatusEnum.EditApprovalPending;
                             await _dbContext.SaveChangesAsync();
 
 
@@ -370,102 +377,64 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                         }
 
                     }
-                    //else if (oldTask.Level == maxLevl)
-                    //{
-                    //    // Add and Update entries
-                    //    Tasks sapTask = new Tasks
-                    //    {
-                    //        Task_Id = 0,
-                    //        Form_Id = approvalDto.Form_Id,
-                    //        Owner_Id = null,
-                    //        Level = oldTask.Level + 1,
-                    //        StartDate = DateTime.Now,
-                    //        Status = "SAP"
-                    //    };
-                    //    List<TransactionHistory> histories = new List<TransactionHistory>()
-                    //    {
-                    //        new TransactionHistory{ Log_Id = 0,Form_Id = approvalDto.Form_Id,Logged_Date = DateTime.Now, Message = $"Form {approvalDto.Form_Id} is approved by {approvalDto.EmployeeId}"},
-                    //        new TransactionHistory { Log_Id = 0,Form_Id = approvalDto.Form_Id,Logged_Date = DateTime.Now, Message = $"Form {approvalDto.Form_Id} is moved to SAP"}
-                    //    };
-                    //    var form = this._dbContext.Forms.FirstOrDefault(x => x.Form_Id == approvalDto.Form_Id);
-                    //    form.Status_Id = (int)FormStatusEnum.SAP;
+                    else if (oldTask.Level == maxLevl)
+                    {
+                        // Add and Update entries
+                        Tasks sapTask = new Tasks
+                        {
+                            Task_Id = 0,
+                            Form_Id = approvalDto.Form_Id,
+                            Owner_Id = null,
+                            Level = oldTask.Level + 1,
+                            StartDate = DateTime.Now,
+                            Status = "Completed"
+                        };
+                        List<TransactionHistory> histories = new List<TransactionHistory>()
+                        {
+                            new TransactionHistory{ Log_Id = 0,Form_Id = approvalDto.Form_Id,Logged_Date = DateTime.Now, Message = $"Form {approvalDto.Form_Id} is approved by {approvalDto.EmployeeId}"},
+                            new TransactionHistory { Log_Id = 0,Form_Id = approvalDto.Form_Id,Logged_Date = DateTime.Now, Message = $"Form {approvalDto.Form_Id} is moved to SAP"}
+                        };
+                        var form1 = this._dbContext.Forms.FirstOrDefault(x => x.Form_Id == approvalDto.Form_Id);
+                        form1.Status_Id = (int)FormStatusEnum.Approved;
 
-                    //    // Save Changes
-                    //    _dbContext.Tasks.Add(sapTask);
-                    //    _dbContext.TransactionHistories.AddRange(histories);
-                    //    await _dbContext.SaveChangesAsync();
-                    //    try
-                    //    {
-                    //        // Call SAP functions
-                    //        //var sapResponse = await CallSAPCreateVendor(approvalDto.Form_Id);
-                    //        //ZmmRfcVendorCreateResponse sapVendorCodeResponse = _soapParser.ParseSoapResponse(sapResponse);
+                        // Save Changes
+                        _dbContext.Tasks.Add(sapTask);
+                        _dbContext.TransactionHistories.AddRange(histories);
+                        await _dbContext.SaveChangesAsync();
 
-                    //        ZMM_RFC_VENDOR_CREATEResponse sapVendorCodeResponse = await GetVendorCreateResponse(approvalDto.Form_Id);
+                        var edit = new EditRequestHistory()
+                        {
+                            Log_Id = 0,
+                            Form_Id = approvalDto.Form_Id,
+                            RequestedOn = DateTime.Now,
+                            IsApproved = true,
+                            Status = FormStatusEnum.Approved.ToString(),
+                            Message = "Completed"
+                        };
+                        await _dbContext.EditRequestHistories.AddAsync(edit);
+                        await _dbContext.SaveChangesAsync();
 
-                    //        if (sapVendorCodeResponse != null && sapVendorCodeResponse.EX_VENDOR_DATA.Length > 0)
-                    //        {
-                    //            if (string.IsNullOrEmpty(sapVendorCodeResponse.EX_VENDOR_DATA[0].VENDOR_CODE))
-                    //            {
-                    //                throw new Exception("Vendor code not generated in SAP. " + sapVendorCodeResponse.EX_VENDOR_DATA[0].MESSAGE);
-                    //            }
-                    //            else
-                    //            {
-                    //                form.Vendor_Code = sapVendorCodeResponse.EX_VENDOR_DATA[0].VENDOR_CODE;
-                    //                form.Status_Id = (int)FormStatusEnum.Approved;
+                        // Send mail
+                        var approvedBy = (from user in _dbContext.Users
+                                          where user.Employee_Id == approvalDto.EmployeeId
+                                          join urMap in _dbContext.User_Role_Mappings on user.Employee_Id equals urMap.Employee_Id
+                                          join role in _dbContext.Roles on urMap.Role_Id equals role.Role_Id
+                                          select role).FirstOrDefault();
 
-                    //                var role = this._dbContext.Roles.FirstOrDefault(x => x.Role_Name.ToLower() == "vendor");
-                    //                var user = new UserDto()
-                    //                {
-                    //                    Employee_Id = sapVendorCodeResponse.EX_VENDOR_DATA[0].VENDOR_CODE,
-                    //                    First_Name = sapVendorCodeResponse.EX_VENDOR_DATA[0].NAME1,
-                    //                    Middle_Name = sapVendorCodeResponse.EX_VENDOR_DATA[0].NAME2,
-                    //                    Last_Name = sapVendorCodeResponse.EX_VENDOR_DATA[0].NAME3,
-                    //                    Email = form.Vendor_Mail,
-                    //                    Mobile_No = form.Vendor_Mobile,
-                    //                    IsActive = true,
-                    //                    Role_Id = role != null ? role.Role_Id : 10,
-                    //                    Reporting_Manager_EmpId = null
-                    //                };
-                    //                await this._userRepository.AddUser(user);
-                    //                await _dbContext.SaveChangesAsync();
-
-                    //                await SendSuccessVendorCreationMails(form, sapVendorCodeResponse);
-                    //            }
-                    //        }
-                    //        else
-                    //        {
-                    //            throw new Exception("SAP Response is Empty");
-                    //        }
-                    //    }
-                    //    catch (Exception ex)
-                    //    {
-                    //        throw new Exception("Error during SAP Vendor creation: " + ex.Message, ex);
-                    //    }
-
-
-                    //    // Send mail
-                    //    //var approvedBy = (from user in _dbContext.Users
-                    //    //                  where user.Employee_Id == approvalDto.EmployeeId
-                    //    //                  join urMap in _dbContext.User_Role_Mappings on user.Employee_Id equals urMap.Employee_Id
-                    //    //                  join role in _dbContext.Roles on urMap.Role_Id equals role.Role_Id
-                    //    //                  select role).FirstOrDefault();
-
-                    //    //var approval = new ApprovalInfo()
-                    //    //{
-                    //    //    ToEmail = form.Vendor_Mail,
-                    //    //    ApprovedBy = approvedBy.Role_Name,
-                    //    //    UserName = form.Vendor_Name,
-                    //    //};
-                    //    //await this._emailHelper.SendApprovalInfoMail(approval);
-                    //}
+                        var approval = new ApprovalInfo()
+                        {
+                            ToEmail = form1.Vendor_Mail,
+                            ApprovedBy = approvedBy.Role_Name,
+                            UserName = form1.Vendor_Name,
+                        };
+                        await this._emailHelper.SendApprovalInfoMail(approval);
+                    }
                     else
                     {
                         throw new Exception("Unable to find the approval matrix");
                     }
                     await transaction.CommitAsync();
                     transaction.Dispose();
-                    var form = _dbContext.Forms.FirstOrDefault(x => x.Form_Id == approvalDto.Form_Id);
-                    form.Status_Id = (int)FormStatusEnum.EditApprovalPending;
 
                     return ResponseWritter.WriteSuccessResponse($"Form {approvalDto.Form_Id} is approved by {approvalDto.EmployeeId}");
                 }
@@ -512,6 +481,18 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 
                     _dbContext.TransactionHistories.Add(history);
 
+                    var edit = new EditRequestHistory()
+                    {
+                        Log_Id = 0,
+                        Form_Id = rejectDto.Form_Id,
+                        RequestedOn = DateTime.Now,
+                        IsApproved = false,
+                        Status = FormStatusEnum.EditReqRejected.ToString(),
+                        Message = rejectDto.Reason,
+                        RejectedBy = rejectDto.Employee_Id
+                    };
+
+                    await _dbContext.EditRequestHistories.AddAsync(edit);
                     var rejectToVendor = await GetRejectionMailInfoToVendor(rejectDto);
                     var rejectToBuyer = await GetRejectionMailInfoToBuyer(oldTask, rejectDto);
                     await this._emailHelper.SendRejectionInfoMailToVendor(rejectToVendor);
@@ -522,6 +503,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                     transaction.Dispose();
                     var form = _dbContext.Forms.FirstOrDefault(x => x.Form_Id == formData.Form_Id);
                     form.Status_Id = (int)FormStatusEnum.EditReqRejected;
+                    _dbContext.SaveChanges();
 
                     return ResponseWritter.WriteSuccessResponse("Form Rejected Successfully");
                 }
@@ -609,6 +591,32 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
 
             return recepients;
         }
+
+
+
+        public List<ReasonDetailDto> GetEditRejectedReason(int formId)
+        {
+            try
+            {
+                var res = (from form in _dbContext.EditRequestHistories
+                           where form.Form_Id == formId && form.Status == "EditReqRejected"
+                           join joinuser in _dbContext.Users on form.RejectedBy equals joinuser.Employee_Id into users
+                           from user in users.DefaultIfEmpty()
+                           orderby form.Log_Id
+                           select new ReasonDetailDto
+                           {
+                               RejectedBy = $"{user.First_Name} {user.Middle_Name} {user.Last_Name}".TrimEnd(),
+                               //RejectedOn = task.EndDate,
+                               Reason = form.Message
+                           }).ToList();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }
