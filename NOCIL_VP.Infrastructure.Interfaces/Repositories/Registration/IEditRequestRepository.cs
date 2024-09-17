@@ -1,6 +1,7 @@
 ﻿using NOCIL_VP.Domain.Core.Dtos;
 using NOCIL_VP.Domain.Core.Dtos.Dashboard;
 using NOCIL_VP.Domain.Core.Dtos.Registration;
+using NOCIL_VP.Domain.Core.Dtos.Registration.Reason;
 using NOCIL_VP.Domain.Core.Dtos.Response;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,11 @@ namespace NOCIL_VP.Infrastructure.Interfaces.Repositories.Registration
     {
         Task<ResponseMessage> RequestForEdit(RequestForEdit data);
         Task<ResponseMessage> AcceptEditRequest(int formId);
-        Task<ResponseMessage> RejectEditRequest(int formId, string reason);
+        Task<ResponseMessage> RejectEditRequest(RejectDto reject);
         Task<List<DashboardDto>> GetEditRequestData(string employeeId);
         Task<ResponseMessage> UpdateForm(FormSubmitTemplate formData);
         Task<ResponseMessage> RejectForm(RejectDto rejectDto);
         Task<ResponseMessage> ApproveForm(ApprovalDto approvalDto);
+        List<ReasonDetailDto> GetEditRejectedReason(int formId);
     }
 }

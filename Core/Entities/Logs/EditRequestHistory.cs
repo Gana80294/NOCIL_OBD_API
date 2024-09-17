@@ -19,6 +19,7 @@ namespace NOCIL_VP.Domain.Core.Entities.Logs
         public bool IsApproved { get; set; }
         public string Status { get; set; }
         public string Message { get; set; }
+        public string RejectedBy { get; set; }
 
         [ForeignKey("Form_Id")]
         public virtual Form Forms { get; set; }

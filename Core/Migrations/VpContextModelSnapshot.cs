@@ -62,7 +62,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Role_Id");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("Tasks", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Approval.WorkFlow", b =>
@@ -91,7 +91,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Vendor_Type_Id");
 
-                    b.ToTable("WorkFlows");
+                    b.ToTable("WorkFlows", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Auth.ForgotPasswordOtpTransaction", b =>
@@ -118,7 +118,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Employee_Id");
 
-                    b.ToTable("ForgotPasswordOtpTransactions");
+                    b.ToTable("ForgotPasswordOtpTransactions", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Auth.OtpTransaction", b =>
@@ -148,7 +148,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("OtpTransactions");
+                    b.ToTable("OtpTransactions", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Logs.TransactionHistory", b =>
@@ -172,7 +172,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("TransactionHistories");
+                    b.ToTable("TransactionHistories", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Mappings.User_Role_Mapping", b =>
@@ -185,7 +185,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Employee_Id", "Role_Id");
 
-                    b.ToTable("User_Role_Mappings");
+                    b.ToTable("User_Role_Mappings", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.AddressType", b =>
@@ -206,7 +206,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Address_Type_Id");
 
-                    b.ToTable("Type_of_Addresses");
+                    b.ToTable("Type_of_Addresses", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.CompanyCode", b =>
@@ -225,7 +225,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Company_Code");
 
-                    b.ToTable("Company_Codes");
+                    b.ToTable("Company_Codes", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.CompanyStatus", b =>
@@ -246,7 +246,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Company_Statuses");
+                    b.ToTable("Company_Statuses", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.ContactType", b =>
@@ -267,7 +267,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Contact_Type_Id");
 
-                    b.ToTable("Type_of_Contacts");
+                    b.ToTable("Type_of_Contacts", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.Country", b =>
@@ -295,7 +295,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.HasIndex("Code")
                         .IsUnique();
 
-                    b.ToTable("Country");
+                    b.ToTable("Country", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.Department", b =>
@@ -316,7 +316,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Department_Id");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Departments", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.FormStatus", b =>
@@ -337,7 +337,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Status_Id");
 
-                    b.ToTable("Form_Statuses");
+                    b.ToTable("Form_Statuses", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.GSTVenClass", b =>
@@ -361,7 +361,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("GSTVenClass");
+                    b.ToTable("GSTVenClass", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.Incoterms", b =>
@@ -385,7 +385,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Incoterms");
+                    b.ToTable("Incoterms", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.Industry", b =>
@@ -409,7 +409,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Industry");
+                    b.ToTable("Industry", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.OrganizationType", b =>
@@ -430,7 +430,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Organization_Types");
+                    b.ToTable("Organization_Types", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.PurchaseOrganization", b =>
@@ -449,7 +449,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("PO_Code");
 
-                    b.ToTable("Purchase_Organizations");
+                    b.ToTable("Purchase_Organizations", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.ReconciliationAccount", b =>
@@ -473,7 +473,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReconciliationAccounts");
+                    b.ToTable("ReconciliationAccounts", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.Region", b =>
@@ -502,7 +502,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Country_Code");
 
-                    b.ToTable("Region");
+                    b.ToTable("Region", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.Role", b =>
@@ -523,7 +523,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Role_Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.SchemaGroup", b =>
@@ -547,7 +547,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SchemaGroups");
+                    b.ToTable("SchemaGroups", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.TankerType", b =>
@@ -568,7 +568,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Tanker_Type_Id");
 
-                    b.ToTable("Type_of_Tankers");
+                    b.ToTable("Type_of_Tankers", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.TaxBase", b =>
@@ -592,7 +592,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TaxBases");
+                    b.ToTable("TaxBases", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.Title", b =>
@@ -613,7 +613,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Titles");
+                    b.ToTable("Titles", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.User", b =>
@@ -678,7 +678,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
                     b.HasIndex("Employee_Id")
                         .IsUnique();
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.VendorAccountGroup", b =>
@@ -700,7 +700,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("VendorAccountGroups");
+                    b.ToTable("VendorAccountGroups", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Master.VendorType", b =>
@@ -719,7 +719,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Type_of_Vendors");
+                    b.ToTable("Type_of_Vendors", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.Attachments.Attachment", b =>
@@ -755,7 +755,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("Attachments");
+                    b.ToTable("Attachments", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.AdditionalFields", b =>
@@ -822,7 +822,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Schema_Id");
 
-                    b.ToTable("AdditionalFields");
+                    b.ToTable("AdditionalFields", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.Address", b =>
@@ -899,7 +899,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Region_Id");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.AnnualTurnOver", b =>
@@ -929,7 +929,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("Annual_TurnOver");
+                    b.ToTable("Annual_TurnOver", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.Bank_Detail", b =>
@@ -978,7 +978,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("Bank_Details");
+                    b.ToTable("Bank_Details", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.CommercialProfile", b =>
@@ -1022,7 +1022,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("Commercial_Profile");
+                    b.ToTable("Commercial_Profile", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.Contact", b =>
@@ -1062,7 +1062,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.MajorCustomer", b =>
@@ -1088,7 +1088,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("MajorCustomers");
+                    b.ToTable("MajorCustomers", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.NocilRelatedEmployee", b =>
@@ -1114,7 +1114,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("NocilRelatedEmployees");
+                    b.ToTable("NocilRelatedEmployees", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.ProprietorOrPartner", b =>
@@ -1138,7 +1138,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("Proprietor_or_Partners");
+                    b.ToTable("Proprietor_or_Partners", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.Subsideries", b =>
@@ -1160,7 +1160,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("Subsideries");
+                    b.ToTable("Subsideries", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.TechnicalProfile", b =>
@@ -1193,7 +1193,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("Technical_Profile");
+                    b.ToTable("Technical_Profile", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.CommonData.VendorBranch", b =>
@@ -1227,7 +1227,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("VendorBranches");
+                    b.ToTable("VendorBranches", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.Domestic.VendorOrganizationProfile", b =>
@@ -1265,7 +1265,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Type_of_Org_Id");
 
-                    b.ToTable("Vendor_Organization_Profile");
+                    b.ToTable("Vendor_Organization_Profile", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.Domestic.VendorPersonalData", b =>
@@ -1299,7 +1299,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Title_Id");
 
-                    b.ToTable("Vendor_Personal_Data");
+                    b.ToTable("Vendor_Personal_Data", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.Evaluation.VendorGrade", b =>
@@ -1332,7 +1332,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("FormId");
 
-                    b.ToTable("VendorGrades");
+                    b.ToTable("VendorGrades", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.Form", b =>
@@ -1383,7 +1383,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Vendor_Type_Id");
 
-                    b.ToTable("Forms");
+                    b.ToTable("Forms", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.Transport.TankerDetail", b =>
@@ -1416,7 +1416,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Tanker_Type_Id");
 
-                    b.ToTable("Tanker_Details");
+                    b.ToTable("Tanker_Details", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.Transport.TransportVendorPersonalData", b =>
@@ -1459,7 +1459,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Title_Id");
 
-                    b.ToTable("Transport_Vendor_Personal_Data");
+                    b.ToTable("Transport_Vendor_Personal_Data", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Registration.Transport.VehicleDetails", b =>
@@ -1483,7 +1483,7 @@ namespace NOCIL_VP.Domain.Core.Migrations
 
                     b.HasIndex("Form_Id");
 
-                    b.ToTable("Vehicle_Details");
+                    b.ToTable("Vehicle_Details", (string)null);
                 });
 
             modelBuilder.Entity("NOCIL_VP.Domain.Core.Entities.Approval.Tasks", b =>
