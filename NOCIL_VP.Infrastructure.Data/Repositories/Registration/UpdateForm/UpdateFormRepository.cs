@@ -21,8 +21,8 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration.UpdateForm
 
         public async Task<bool> UpdateNocilRelatedEmployees(List<NocilRelatedEmployee> entities, int formId)
         {
-            var allRecords = _dbContext.NocilRelatedEmployees.Where(x => x.Form_Id == formId).ToList();
-            var existing = allRecords.Where(x => entities.Any(y => y.Id == x.Id)).ToList();
+            var allRecords = _dbContext.NocilRelatedEmployees.AsNoTracking().Where(x => x.Form_Id == formId).ToList();
+            var existing = entities.Where(x => allRecords.Any(y => y.Id == x.Id)).ToList();
             var newRecords = entities.Where(x => x.Id == 0).ToList();
             var delete = allRecords.Where(x => existing.All(y => y.Id != x.Id)).ToList();
 
@@ -44,8 +44,8 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration.UpdateForm
 
         public async Task<bool> UpdateAddress(List<Address> entities, int formId)
         {
-            var allRecords = _dbContext.Addresses.Where(x => x.Form_Id == formId).ToList();
-            var existing = allRecords.Where(x => entities.Any(y => y.Address_Id == x.Address_Id)).ToList();
+            var allRecords = _dbContext.Addresses.AsNoTracking().Where(x => x.Form_Id == formId).ToList();
+            var existing = entities.Where(x => allRecords.Any(y => y.Address_Id == x.Address_Id)).ToList();
             var newRecords = entities.Where(x => x.Address_Id == 0).ToList();
             var delete = allRecords.Where(x => existing.All(y => y.Address_Id != x.Address_Id)).ToList();
 
@@ -67,8 +67,8 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration.UpdateForm
 
         public async Task<bool> UpdateContacts(List<Contact> entities, int formId)
         {
-            var allRecords = _dbContext.Contacts.Where(x => x.Form_Id == formId).ToList();
-            var existing = allRecords.Where(x => entities.Any(y => y.Contact_Id == x.Contact_Id)).ToList();
+            var allRecords = _dbContext.Contacts.AsNoTracking().Where(x => x.Form_Id == formId).ToList();
+            var existing = entities.Where(x => allRecords.Any(y => y.Contact_Id == x.Contact_Id)).ToList();
             var newRecords = entities.Where(x => x.Contact_Id == 0).ToList();
             var delete = allRecords.Where(x => existing.All(y => y.Contact_Id != x.Contact_Id)).ToList();
 
@@ -90,8 +90,8 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration.UpdateForm
 
         public async Task<bool> UpdateVendorBranches(List<VendorBranch> entities, int formId)
         {
-            var allRecords = _dbContext.VendorBranches.Where(x => x.Form_Id == formId).ToList();
-            var existing = allRecords.Where(x => entities.Any(y => y.Branch_Id == x.Branch_Id)).ToList();
+            var allRecords = _dbContext.VendorBranches.AsNoTracking().Where(x => x.Form_Id == formId).ToList();
+            var existing = entities.Where(x => allRecords.Any(y => y.Branch_Id == x.Branch_Id)).ToList();
             var newRecords = entities.Where(x => x.Branch_Id == 0).ToList();
             var delete = allRecords.Where(x => existing.All(y => y.Branch_Id != x.Branch_Id)).ToList();
 
@@ -113,8 +113,8 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration.UpdateForm
 
         public async Task<bool> UpdateProprietors(List<ProprietorOrPartner> entities, int formId)
         {
-            var allRecords = _dbContext.Proprietor_or_Partners.Where(x => x.Form_Id == formId).ToList();
-            var existing = allRecords.Where(x => entities.Any(y => y.Id == x.Id)).ToList();
+            var allRecords = _dbContext.Proprietor_or_Partners.AsNoTracking().Where(x => x.Form_Id == formId).ToList();
+            var existing = entities.Where(x => allRecords.Any(y => y.Id == x.Id)).ToList();
             var newRecords = entities.Where(x => x.Id == 0).ToList();
             var delete = allRecords.Where(x => existing.All(y => y.Id != x.Id)).ToList();
 
@@ -136,8 +136,8 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration.UpdateForm
 
         public async Task<bool> UpdateAnnualTurnOvers(List<AnnualTurnOver> entities, int formId)
         {
-            var allRecords = _dbContext.Annual_TurnOver.Where(x => x.Form_Id == formId).ToList();
-            var existing = allRecords.Where(x => entities.Any(y => y.TurnOver_Id == x.TurnOver_Id)).ToList();
+            var allRecords = _dbContext.Annual_TurnOver.AsNoTracking().Where(x => x.Form_Id == formId).ToList();
+            var existing = entities.Where(x => allRecords.Any(y => y.TurnOver_Id == x.TurnOver_Id)).ToList();
             var newRecords = entities.Where(x => x.TurnOver_Id == 0).ToList();
             var delete = allRecords.Where(x => existing.All(y => y.TurnOver_Id != x.TurnOver_Id)).ToList();
 
@@ -159,8 +159,8 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration.UpdateForm
 
         public async Task<bool> UpdateSubsideries(List<Subsideries> entities, int formId)
         {
-            var allRecords = _dbContext.Subsideries.Where(x => x.Form_Id == formId).ToList();
-            var existing = allRecords.Where(x => entities.Any(y => y.Id == x.Id)).ToList();
+            var allRecords = _dbContext.Subsideries.AsNoTracking().Where(x => x.Form_Id == formId).ToList();
+            var existing = entities.Where(x => allRecords.Any(y => y.Id == x.Id)).ToList();
             var newRecords = entities.Where(x => x.Id == 0).ToList();
             var delete = allRecords.Where(x => existing.All(y => y.Id != x.Id)).ToList();
 
@@ -182,8 +182,8 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration.UpdateForm
 
         public async Task<bool> UpdateMajorCustomers(List<MajorCustomer> entities, int formId)
         {
-            var allRecords = _dbContext.MajorCustomers.Where(x => x.Form_Id == formId).ToList();
-            var existing = allRecords.Where(x => entities.Any(y => y.Id == x.Id)).ToList();
+            var allRecords = _dbContext.MajorCustomers.AsNoTracking().Where(x => x.Form_Id == formId).ToList();
+            var existing = entities.Where(x => allRecords.Any(y => y.Id == x.Id)).ToList();
             var newRecords = entities.Where(x => x.Id == 0).ToList();
             var delete = allRecords.Where(x => existing.All(y => y.Id != x.Id)).ToList();
 

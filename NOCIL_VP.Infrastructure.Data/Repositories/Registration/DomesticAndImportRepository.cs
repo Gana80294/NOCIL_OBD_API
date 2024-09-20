@@ -123,10 +123,10 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                     await _updateFormRepo.UpdateMajorCustomers(this._mapper.Map<List<MajorCustomer>>(domesticForm.MajorCustomers), formId);
 
                     //var form = this._dbContext.Forms.Where(f => f.Form_Id == domesticForm.DomesticVendorPersonalData.Form_Id).FirstOrDefault();
-                    var oldTask = this._dbContext.Tasks.Where(f => f.Form_Id == formId && f.Status == "Rejected").FirstOrDefault();
+                    var oldTask = this._dbContext.Tasks.Where(f => f.Form_Id == formId && f.Level == 1).FirstOrDefault();
                     var workFlow = await this.UpdateWorkflow(formId, oldTask.Owner_Id, oldTask.Role_Id, oldTask.Level);
                     var form = _dbContext.Forms.FirstOrDefault(x => x.Form_Id == formId);
-                    form.Status_Id = (int)FormStatusEnum.Pending;
+                    form.Status_Id = form.Status_Id == (int)FormStatusEnum.Rejected ? (int)FormStatusEnum.Pending : (int)FormStatusEnum.EditApprovalPending;
                     if (workFlow)
                     {
                         await this._dbContext.SaveChangesAsync();

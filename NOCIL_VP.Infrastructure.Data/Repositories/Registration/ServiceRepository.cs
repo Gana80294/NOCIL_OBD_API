@@ -116,8 +116,10 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                     this._dbContext.Bank_Details.Update(this._mapper.Map<Bank_Detail>(serviceForm.BankDetail));
 
                     //var form = this._dbContext.Forms.Where(f => f.Form_Id == domesticForm.DomesticVendorPersonalData.Form_Id).FirstOrDefault();
-                    var oldTask = this._dbContext.Tasks.Where(f => f.Form_Id == formId && f.Status == "Rejected").FirstOrDefault();
+                    var oldTask = this._dbContext.Tasks.Where(f => f.Form_Id == formId && f.Level == 1).FirstOrDefault();
                     var workFlow = await this.UpdateWorkflow(formId, oldTask.Owner_Id, oldTask.Role_Id, oldTask.Level);
+                    var form = _dbContext.Forms.FirstOrDefault(x => x.Form_Id == formId);
+                    form.Status_Id = form.Status_Id == (int)FormStatusEnum.Rejected ? (int)FormStatusEnum.Pending : (int)FormStatusEnum.EditApprovalPending;
                     if (workFlow) await this._dbContext.SaveChangesAsync();
                     else
                     {

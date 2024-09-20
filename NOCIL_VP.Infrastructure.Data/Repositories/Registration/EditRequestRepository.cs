@@ -55,6 +55,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
             this._transportRepository = transportRepository;
             this._serviceRepository = serviceRepository;
             this._registrationRepository = registrationRepository;
+            _domesticRepository = domesticRepository;
             this._mapper = mapper;
         }
 
@@ -66,19 +67,6 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                 {
                     var form = await _dbContext.Forms.FirstOrDefaultAsync(x => x.Form_Id == data.FormId);
                     var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Employee_Id == form.Created_By);
-
-                    //send mail to request
-                    var sendMail = new SendRequestToEditMail()
-                    {
-                        ToEmail = user.Email,
-                        Username = $"{user.First_Name} {user.Middle_Name} {user.Last_Name}".TrimEnd(),
-                        Form_Id = data.FormId,
-                        Vendor_Type_Id = form.Vendor_Type_Id,
-                        VendorCode = data.VendorCode,
-                        Reason = data.Reason
-                    };
-                    await _emailHelper.SendRequestToEditMail(sendMail);
-
                     form.Status_Id = (int)FormStatusEnum.EditRequested;
 
                     var history = new EditRequestHistory()
@@ -93,6 +81,18 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                     };
                     await _dbContext.EditRequestHistories.AddAsync(history);
                     await _dbContext.SaveChangesAsync();
+                    //send mail to request
+                    var sendMail = new SendRequestToEditMail()
+                    {
+                        ToEmail = user.Email,
+                        Username = $"{user.First_Name} {user.Middle_Name} {user.Last_Name}".TrimEnd(),
+                        Form_Id = data.FormId,
+                        Vendor_Type_Id = form.Vendor_Type_Id,
+                        VendorCode = form.Vendor_Code,
+                        VendorName = form.Vendor_Name,
+                        Reason = data.Reason
+                    };
+                    await _emailHelper.SendRequestToEditMail(sendMail);
                     transaction.Commit();
                     transaction.Dispose();
 
@@ -114,14 +114,6 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                 try
                 {
                     var form = _dbContext.Forms.FirstOrDefault(x => x.Form_Id == formId);
-                    var sendMail = new SendMail()
-                    {
-                        ToEmail = form.Vendor_Mail,
-                        Username = form.Vendor_Name,
-                        Form_Id = formId,
-                        Vendor_Type_Id = form.Vendor_Type_Id
-                    };
-                    await _emailHelper.SendAcceptEditReqMail(sendMail);
                     form.Status_Id = (int)FormStatusEnum.EditReqApproved;
 
                     //var history = new EditRequestHistory()
@@ -138,9 +130,17 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                     var task = _dbContext.Tasks.Where(x => x.Form_Id == formId).OrderByDescending(x => x.Task_Id).FirstOrDefault();
                     task.Status = "Rejected";
                     await _dbContext.SaveChangesAsync();
+                    var sendMail = new SendMail()
+                    {
+                        ToEmail = form.Vendor_Mail,
+                        Username = form.Vendor_Name,
+                        Form_Id = formId,
+                        Vendor_Type_Id = form.Vendor_Type_Id
+                    };
+                    await _emailHelper.SendAcceptEditReqMail(sendMail);
                     transaction.Commit();
                     transaction.Dispose();
-                    return ResponseWritter.WriteSuccessResponse("Form edit request successfully");
+                    return ResponseWritter.WriteSuccessResponse("Form edit request approved successfully");
                 }
                 catch (Exception ex)
                 {
@@ -159,16 +159,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                 try
                 {
                     var form = _dbContext.Forms.FirstOrDefault(x => x.Form_Id == reject.Form_Id);
-                    var sendMail = new SendRequestRejectToEditMail()
-                    {
-                        ToEmail = form.Vendor_Mail,
-                        Username = form.Vendor_Name,
-                        VendorCode = form.Vendor_Code,
-                        Reason = reject.Reason
-                    };
-                    await _emailHelper.SendRejectEditReqMail(sendMail);
                     form.Status_Id = (int)FormStatusEnum.EditReqRejected;
-
                     var history = new EditRequestHistory()
                     {
                         Log_Id = 0,
@@ -178,10 +169,18 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                         IsApproved = false,
                         Status = FormStatusEnum.EditReqRejected.ToString(),
                         Message = reject.Reason,
-                        RejectedBy = reject.Employee_Id,
+                        Rejectedby = reject.Employee_Id,
                     };
                     await _dbContext.EditRequestHistories.AddAsync(history);
                     await _dbContext.SaveChangesAsync();
+                    var sendMail = new SendRequestRejectToEditMail()
+                    {
+                        ToEmail = form.Vendor_Mail,
+                        Username = form.Vendor_Name,
+                        VendorCode = form.Vendor_Code,
+                        Reason = reject.Reason
+                    };
+                    await _emailHelper.SendRejectEditReqMail(sendMail);
                     transaction.Commit();
                     transaction.Dispose();
                     return ResponseWritter.WriteSuccessResponse("Form edit request rejected successfully");
@@ -256,9 +255,6 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                 default:
                     break;
             }
-            var form = _dbContext.Forms.FirstOrDefault(x => x.Form_Id == formData.Form_Id);
-            form.Status_Id = (int)FormStatusEnum.EditApprovalPending;
-            _dbContext.SaveChanges();
 
             if (submitted) return ResponseWritter.WriteSuccessResponse("Form Upated Successfully");
             else throw new Exception("Workflow for this vendor type is not defined");
@@ -392,7 +388,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                         List<TransactionHistory> histories = new List<TransactionHistory>()
                         {
                             new TransactionHistory{ Log_Id = 0,Form_Id = approvalDto.Form_Id,Logged_Date = DateTime.Now, Message = $"Form {approvalDto.Form_Id} is approved by {approvalDto.EmployeeId}"},
-                            new TransactionHistory { Log_Id = 0,Form_Id = approvalDto.Form_Id,Logged_Date = DateTime.Now, Message = $"Form {approvalDto.Form_Id} is moved to SAP"}
+                            new TransactionHistory { Log_Id = 0,Form_Id = approvalDto.Form_Id,Logged_Date = DateTime.Now, Message = $"Form {approvalDto.Form_Id} edit process success."}
                         };
                         var form1 = this._dbContext.Forms.FirstOrDefault(x => x.Form_Id == approvalDto.Form_Id);
                         form1.Status_Id = (int)FormStatusEnum.Approved;
@@ -469,7 +465,8 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                     }
 
                     var formData = this._dbContext.Forms.FirstOrDefault(x => x.Form_Id == rejectDto.Form_Id);
-                    formData.Status_Id = (int)FormStatusEnum.Rejected;
+                    //formData.Status_Id = (int)FormStatusEnum.Rejected;
+                    formData.Status_Id = (int)FormStatusEnum.EditReqRejected;
 
                     TransactionHistory history = new TransactionHistory
                     {
@@ -489,7 +486,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                         IsApproved = false,
                         Status = FormStatusEnum.EditReqRejected.ToString(),
                         Message = rejectDto.Reason,
-                        RejectedBy = rejectDto.Employee_Id
+                        Rejectedby = rejectDto.Employee_Id
                     };
 
                     await _dbContext.EditRequestHistories.AddAsync(edit);
@@ -501,9 +498,6 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
                     await _dbContext.SaveChangesAsync();
                     await transaction.CommitAsync();
                     transaction.Dispose();
-                    var form = _dbContext.Forms.FirstOrDefault(x => x.Form_Id == formData.Form_Id);
-                    form.Status_Id = (int)FormStatusEnum.EditReqRejected;
-                    _dbContext.SaveChanges();
 
                     return ResponseWritter.WriteSuccessResponse("Form Rejected Successfully");
                 }
@@ -600,7 +594,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Registration
             {
                 var res = (from form in _dbContext.EditRequestHistories
                            where form.Form_Id == formId && form.Status == "EditReqRejected"
-                           join joinuser in _dbContext.Users on form.RejectedBy equals joinuser.Employee_Id into users
+                           join joinuser in _dbContext.Users on form.Rejectedby equals joinuser.Employee_Id into users
                            from user in users.DefaultIfEmpty()
                            orderby form.Log_Id
                            select new ReasonDetailDto

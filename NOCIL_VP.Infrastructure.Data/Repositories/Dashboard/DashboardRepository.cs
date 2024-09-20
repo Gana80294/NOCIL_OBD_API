@@ -84,7 +84,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
         public async Task<List<DashboardDto>> GetInitiatedData(string employeeId)
         {
             var result = await (from form in _dbContext.Forms
-                                where form.Status_Id == (int)FormStatusEnum.Initiated && form.Created_By == employeeId
+                                where form.Status_Id == (int)FormStatusEnum.Initiated || form.Status_Id == (int)FormStatusEnum.EditReqApproved && form.Created_By == employeeId
                                 select new DashboardDto
                                 {
                                     FormId = form.Form_Id,
@@ -105,7 +105,7 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
             var result = await (from form in _dbContext.Forms
                                 where form.Status_Id == (int)FormStatusEnum.Pending || form.Status_Id == (int)FormStatusEnum.EditApprovalPending
                                 join task in _dbContext.Tasks on form.Form_Id equals task.Form_Id
-                                where task.Status == "Active"
+                                where task.Owner_Id == employeeId && task.Status == "Active"
                                 select new DashboardDto
                                 {
                                     FormId = form.Form_Id,
@@ -144,8 +144,9 @@ namespace NOCIL_VP.Infrastructure.Data.Repositories.Dashboard
         public async Task<List<DashboardDto>> GetRejectedData(string employeeId)
         {
             var result = await (from form in _dbContext.Forms
+                                where form.Status_Id == (int)FormStatusEnum.Rejected || form.Status_Id == (int)FormStatusEnum.EditReqRejected
                                 join task in _dbContext.Tasks on form.Form_Id equals task.Form_Id
-                                where form.Status_Id == (int)FormStatusEnum.Rejected && task.Owner_Id == employeeId
+                                where task.Owner_Id == employeeId
                                 select new DashboardDto
                                 {
                                     FormId = form.Form_Id,

@@ -66,6 +66,7 @@ namespace NOCIL_VP.Domain.Core.Dtos
         public int Form_Id { get; set; }
         public int Vendor_Type_Id { get; set; }
         public string VendorCode { get; set; }
+        public string VendorName { get; set; }
         public string Reason { get; set; }
     }
 

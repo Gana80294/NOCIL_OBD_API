@@ -279,7 +279,7 @@ namespace NOCIL_VP.Infrastructure.Data.Helpers
                 if (sendMail.ToEmail != null)
                 {
                     mailBody = readHtmlString("EditRequestTemplate.html");
-                    mailBody = mailBody.Replace("{recepient}", sendMail.Username).Replace("{registerUrl}", _smtpSettings.SiteLink).Replace("{applicant}", sendMail.VendorCode).Replace("{reason}", sendMail.Reason);
+                    mailBody = mailBody.Replace("{recepient}", sendMail.Username).Replace("{registerUrl}", _smtpSettings.SiteLink).Replace("{applicant}", sendMail.VendorName).Replace("{reason}", sendMail.Reason).Replace("{vendorCode}", sendMail.VendorCode);
                 }
                 else
                 {
